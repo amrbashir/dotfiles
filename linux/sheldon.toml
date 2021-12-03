@@ -1,0 +1,13 @@
+shell = "zsh"
+
+[plugins.fast-syntax-highlighting]
+github = 'zdharma-continuum/fast-syntax-highlighting'
+
+[plugins.zsh-autosuggestions]
+github = "zsh-users/zsh-autosuggestions"
+
+[plugins.oh-my-zsh]
+github = "ohmyzsh/ohmyzsh"
+dir = "plugins"
+use = ["{sudo}.plugin.zsh"]
+

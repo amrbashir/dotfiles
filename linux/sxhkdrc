@@ -1,0 +1,41 @@
+# Open terminal
+super + Return
+	kitty
+
+# Switch between open windows
+alt + Tab
+	rofi -show window
+
+# App launcher
+alt + space
+	rofi -show drun
+
+# Shell prompt
+super + r
+	rofi -show run
+
+# Change keyboard layout
+super + space
+	(setxkbmap -query | grep -q "layout:\s\+us") && setxkbmap ar || setxkbmap us
+
+# Lock screen
+alt + l
+	dm-tool switch-to-greeter
+
+# Take a screen shot
+super + shift + s
+	flameshot gui
+
+# Increase/Decrease volume
+KP_Add
+	amixer set Master 2%+
+KP_Subtract
+	amixer set Master 2%-
+
+# Media Controls
+Next
+	playerctl next
+Prior
+	playerctl play-pause
+End
+	playerctl previous

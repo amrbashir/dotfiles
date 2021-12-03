@@ -1,0 +1,85 @@
+format = """
+$hostname\
+$username\
+$shlvl\
+$kubernetes\
+$directory\
+$git_branch\
+$git_commit\
+$git_state\
+$git_status\
+$hg_branch\
+$docker_context\
+$package\
+$cmake\
+$dart\
+$dotnet\
+$elixir\
+$elm\
+$erlang\
+$golang\
+$helm\
+$java\
+$julia\
+$kotlin\
+$nim\
+$nodejs\
+$ocaml\
+$perl\
+$php\
+$purescript\
+$python\
+$ruby\
+$rust\
+$swift\
+$terraform\
+$vagrant\
+$zig\
+$nix_shell\
+$conda\
+$memory_usage\
+$aws\
+$gcloud\
+$openstack\
+$env_var\
+$crystal\
+$custom\
+$cmd_duration\
+$line_break\
+$lua\
+$jobs\
+$battery\
+$time\
+$status\
+$character"""
+
+[git_status]
+conflicted = "🏳${count "
+ahead = "⇡⨯${count} "
+behind = "⇣⨯${count} "
+diverged = "⇕⇡⨯${ahead_count} ⇣⨯${behind_count} "
+untracked = "?⨯${count} "
+stashed = '\$⨯${count} '
+modified = "!⨯${count} "
+staged = "+⨯${count} "
+renamed = ">>⨯${count} "
+deleted = "✘⨯${count} "
+format = '[$conflicted$stashed$deleted$renamed$modified$staged$untracked$ahead_behind]($style)'
+
+[directory]
+format = "[$path]($style) "
+fish_style_pwd_dir_length = 2
+
+[package]
+disabled = true
+
+[hostname]
+ssh_only = true
+format =  "[$hostname](bold green)/"
+
+[username]
+style_user = "white bold"
+style_root = "black bold"
+format = "[$user]($style) - "
+disabled = false
+show_always = true

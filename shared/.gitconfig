@@ -1,0 +1,13 @@
+[user]
+	email = amr.bashir2015@gmail.com
+	name = amrbashir
+	signingkey = BBD7A47A2003FF33
+
+[commit]
+    gpgsign = true
+
+[core]
+    autocrlf = input
+
+[alias]
+    lg = log --color --format='%Cred%h%C(auto)%d %C(auto)%s %Cgreen(%cr) %C(bold blue)<%an>'
