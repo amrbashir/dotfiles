@@ -82,9 +82,7 @@ Install-Module posh-git -Scope CurrentUser -AllowPrerelease -Force
         New-Item -Path $_.targetFolder -ItemType Directory -Force
     }
 
-    $dest = $_.targetFolder + $_.targetFile
-    Remove-Item -Path $dest  -Force
-    New-Item -ItemType SymbolicLink -Path $dest -Target $_.file
-    Write-Host "    ✅ $($_.file)" -ForegroundColor Green
-
+    $target = $_.targetFolder + $_.targetFile
+    Remove-Item -Path $target  -Force
+    New-Item -ItemType SymbolicLink -Path $target -Target $_.file
 }
