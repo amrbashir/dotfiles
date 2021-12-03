@@ -14,7 +14,7 @@ alt + space
 super + r
 	rofi -show run
 
-# Change keyboard layout
+# Toggle between en|ar keyboard layout
 super + space
 	(setxkbmap -query | grep -q "layout:\s\+us") && setxkbmap ar || setxkbmap us
 

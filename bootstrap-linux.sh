@@ -13,7 +13,7 @@ rm -f $HOME/.config/sxhkd/sxhkdrc
 ln -sf $PWD/linux/sxhkdrc $HOME/.config/sxhkd/sxhkdrc
 
 mkdir -p $HOME/.config/dunst
-rm -f $HOME/.config/sxhkd/sxhkdrc
+rm -f $HOME/.config/dunst/dunstrc
 ln -sf $PWD/linux/dunstrc $HOME/.config/dunst/dunstrc
 
 mkdir -p $HOME/.config/picom
@@ -34,9 +34,9 @@ mkdir -p $HOME/.config/paru
 rm -rf $HOME/.config/paru/paru.conf
 ln -sf $PWD/linux/paru.conf $HOME/.config/paru/paru.conf
 
-mkdir -p /etc/lightdm
-cp -f $PWD/linux/lightdm.conf /etc/lightdm/
-cp -f $PWD/linux/lightdm-webkit2-greeter.conf /etc/lightdm/
+sudo mkdir -p /etc/lightdm
+sudo cp -f $PWD/linux/lightdm.conf /etc/lightdm/
+sudo cp -f $PWD/linux/lightdm-webkit2-greeter.conf /etc/lightdm/
 
 mkdir -p $HOME/.config/nvim
 rm -f $HOME/.config/nvim/init.vim
