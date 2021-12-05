@@ -74,6 +74,7 @@ Install-Module posh-git -Scope CurrentUser -AllowPrerelease -Force
     [PSCustomObject]@{file = "$PWD/windows/powershell.ps1"; targetFolder = "$HOME\Documents\PowerShell"; targetFile = "Microsoft.PowerShell_profile.ps1"},
     [PSCustomObject]@{file = "$PWD/windows/windows-terminal.json"; targetFolder = "$Env:LOCALAPPDATA\Microsoft\Windows Terminal"; targetFile = "settings.json"},
     [PSCustomObject]@{file = "$PWD/windows/spicetify.ini"; targetFolder = "$HOME\.spicetify"; targetFile = "config-xpui.ini"},
+    [PSCustomObject]@{file = "$PWD/windows/alt-drag.ini"; targetFolder = "$HOME\scoop\apps\altdrag\current"; targetFile = "AltDrag.ini"}
     [PSCustomObject]@{file = "$PWD/shared/starship.toml"; targetFolder = "$HOME\.config"; targetFile = "starship.toml"},
     [PSCustomObject]@{file = "$PWD/shared/.gitconfig"; targetFolder = "$HOME"; targetFile = ".gitconfig"},
     [PSCustomObject]@{file = "$PWD/shared/neovim.vim"; targetFolder = "$Env:LOCALAPPDATA\nvim"; targetFile = "init.vim"}
@@ -84,5 +85,5 @@ Install-Module posh-git -Scope CurrentUser -AllowPrerelease -Force
 
     $target = $_.targetFolder + $_.targetFile
     Remove-Item -Path $target  -Force
-    New-Item -ItemType SymbolicLink -Path $target -Target $_.file
+    New-Item -ItemType SymbolicLink -Target $_.file -Path $target
 }
