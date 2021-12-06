@@ -71,19 +71,16 @@ Install-Module PSReadLine -Force -SkipPublisherCheck -AllowPrerelease
 Install-Module posh-git -Scope CurrentUser -AllowPrerelease -Force
 
 @(
-    [PSCustomObject]@{file = "$PWD/windows/powershell.ps1"; targetFolder = "$HOME\Documents\PowerShell"; targetFile = "Microsoft.PowerShell_profile.ps1"},
-    [PSCustomObject]@{file = "$PWD/windows/windows-terminal.json"; targetFolder = "$Env:LOCALAPPDATA\Microsoft\Windows Terminal"; targetFile = "settings.json"},
-    [PSCustomObject]@{file = "$PWD/windows/spicetify.ini"; targetFolder = "$HOME\.spicetify"; targetFile = "config-xpui.ini"},
-    [PSCustomObject]@{file = "$PWD/windows/alt-drag.ini"; targetFolder = "$HOME\scoop\apps\altdrag\current"; targetFile = "AltDrag.ini"}
-    [PSCustomObject]@{file = "$PWD/shared/starship.toml"; targetFolder = "$HOME\.config"; targetFile = "starship.toml"},
-    [PSCustomObject]@{file = "$PWD/shared/.gitconfig"; targetFolder = "$HOME"; targetFile = ".gitconfig"},
-    [PSCustomObject]@{file = "$PWD/shared/neovim.vim"; targetFolder = "$Env:LOCALAPPDATA\nvim"; targetFile = "init.vim"}
+    [PSCustomObject]@{file = "$PWD/windows/powershell.ps1"; targetDir = "$HOME\Documents\PowerShell\"; targetFile = "Microsoft.PowerShell_profile.ps1"},
+    [PSCustomObject]@{file = "$PWD/windows/windows-terminal.json"; targetDir = "$Env:LOCALAPPDATA\Microsoft\Windows Terminal\"; targetFile = "settings.json"},
+    [PSCustomObject]@{file = "$PWD/windows/spicetify.ini"; targetDir = "$HOME\.spicetify\"; targetFile = "config-xpui.ini"},
+    [PSCustomObject]@{file = "$PWD/windows/alt-drag.ini"; targetDir = "$HOME\scoop\apps\altdrag\current\"; targetFile = "AltDrag.ini"}
+    [PSCustomObject]@{file = "$PWD/shared/starship.toml"; targetDir = "$HOME\.config\"; targetFile = "starship.toml"},
+    [PSCustomObject]@{file = "$PWD/shared/.gitconfig"; targetDir = "$HOME\"; targetFile = ".gitconfig"},
+    [PSCustomObject]@{file = "$PWD/shared/neovim.vim"; targetDir = "$Env:LOCALAPPDATA\nvim\"; targetFile = "init.vim"}
 ) | ForEach-Object {
-    if ($_.targetFolder -ne $HOME) {
-        New-Item -Path $_.targetFolder -ItemType Directory -Force
-    }
-
-    $target = $_.targetFolder + $_.targetFile
+    New-Item -Path $_.targetDir -ItemType Directory -Force
+    $target = $_.targetDir + $_.targetFile
     Remove-Item -Path $target  -Force
     New-Item -ItemType SymbolicLink -Target $_.file -Path $target
 }
