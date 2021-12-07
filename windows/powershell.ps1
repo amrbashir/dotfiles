@@ -3,7 +3,7 @@ Invoke-Expression (&starship init powershell)
 
 #region module imports
 Import-Module posh-git
-Import-Module "C:\Users\amrba\AppData\Local\vcpkg\scripts\posh-vcpkg"
+Import-Module "~\AppData\Local\vcpkg\scripts\posh-vcpkg"
 #endregion
 
 #region configure PSReadLine

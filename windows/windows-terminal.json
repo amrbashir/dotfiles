@@ -350,6 +350,5 @@
     "tabSwitcherMode": "inOrder",
     "tabWidthMode": "equal",
     "trimBlockSelection": true,
-    "useAcrylicInTabRow": true,
-    "windowingBehavior": "useExisting"
+    "useAcrylicInTabRow": true
 }

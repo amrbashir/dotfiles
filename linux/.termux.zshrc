@@ -26,9 +26,9 @@ autoload -U compinit && compinit
 export EDITOR="nvim"
 export MANPAGER="bat -l man -p"
 export GPG_TTY="$(tty)"
-export GIT_ASKPASS="$HOME/.termux/git-ask-pass.sh"
+export GIT_ASKPASS=~/.termux/git-ask-pass.sh
 
-export PATH="$HOME/.local/bin:$PATH"
+export PATH=~/.local/bin:$PATH
 # -------
 # Aliases
 # -------

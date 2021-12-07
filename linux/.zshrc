@@ -26,7 +26,7 @@ autoload -U compinit && compinit
 export LANG=en_US.UTF-8
 export EDITOR="nvim"
 export MANPAGER="sh -c 'col -bx | bat -l man -p'"
-export PATH="$HOME/.local/bin:$HOME/.cargo/bin:$HOME/.nvm:$HOME/spicetify-cli:$PATH"
+export PATH=~/.local/bin:~/.cargo/bin:~/.nvm:~/spicetify-cli:$PATH
 
 # -------
 # Aliases
@@ -42,4 +42,4 @@ alias vim="nvim"
 # -----------------
 eval "$(sheldon source)"
 eval "$(starship init zsh)"
-[ -s "$HOME/.nvm/nvm.sh" ] && \. "$HOME/.nvm/nvm.sh"
+[ -s "~/.nvm/nvm.sh" ] && \. "~/.nvm/nvm.sh"
