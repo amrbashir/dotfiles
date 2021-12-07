@@ -74,7 +74,7 @@ Install-Module posh-git -Scope CurrentUser -AllowPrerelease -Force
     [PSCustomObject]@{file = "$PWD/windows/powershell.ps1"; targetDir = "$HOME\Documents\PowerShell\"; targetFile = "Microsoft.PowerShell_profile.ps1"},
     [PSCustomObject]@{file = "$PWD/windows/windows-terminal.json"; targetDir = "$Env:LOCALAPPDATA\Microsoft\Windows Terminal\"; targetFile = "settings.json"},
     [PSCustomObject]@{file = "$PWD/windows/spicetify.ini"; targetDir = "$HOME\.spicetify\"; targetFile = "config-xpui.ini"},
-    [PSCustomObject]@{file = "$PWD/windows/alt-drag.ini"; targetDir = "$HOME\scoop\apps\altdrag\current\"; targetFile = "AltDrag.ini"}
+    [PSCustomObject]@{file = "$PWD/windows/alt-snap.ini"; targetDir = "$HOME\scoop\apps\altdrag\current\"; targetFile = "AltSnap.ini"}
     [PSCustomObject]@{file = "$PWD/shared/starship.toml"; targetDir = "$HOME\.config\"; targetFile = "starship.toml"},
     [PSCustomObject]@{file = "$PWD/shared/.gitconfig"; targetDir = "$HOME\"; targetFile = ".gitconfig"},
     [PSCustomObject]@{file = "$PWD/shared/neovim.vim"; targetDir = "$Env:LOCALAPPDATA\nvim\"; targetFile = "init.vim"}
