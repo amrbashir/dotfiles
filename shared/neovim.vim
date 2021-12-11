@@ -7,43 +7,9 @@ call plug#begin()
 Plug 'itchyny/lightline.vim'
 Plug 'editorconfig/editorconfig-vim'
 Plug 'machakann/vim-highlightedyank'
-Plug 'neoclide/coc.nvim', {'branch': 'release'}
 
 call plug#end()
 " <<</ Plugins >>>
-
-" <<< coc.nvim >>>
-inoremap <silent><expr> <C-Space> coc#refresh()
-
-" todo: if item is selected, autocomplete it, or match with vscode behavior
-" and find another way to scroll down the list 
-inoremap <silent><expr> <TAB> pumvisible() ? "\<C-n>" : "\<TAB>"
-
-inoremap <silent><expr> <CR> pumvisible() ? coc#_select_confirm() : "\<CR>"
-
-autocmd CursorHold * silent call CocActionAsync('highlight')
-
-nmap <silent> gd <Plug>(coc-definition)
-nmap <silent> gtd <Plug>(coc-type-definition)
-nmap <silent> gi <Plug>(coc-implementation)
-nmap <silent> gr <Plug>(coc-references)
-
-nmap <leader>r <Plug>(coc-rename)
-nmap <leader>a <Plug>(coc-codeaction)
-nmap <leader>f :call CocAction('format')<CR>
-
-nnoremap <silent> K :call <SID>show_documentation()<CR>
-
-function! s:show_documentation()
-  if (index(['vim','help'], &filetype) >= 0)
-    execute 'h '.expand('<cword>')
-  elseif (coc#rpc#ready())
-    call CocActionAsync('doHover')
-  else
-    execute '!' . &keywordprg . " " . expand('<cword>')
-  endif
-endfunction
-" <<</ coc.nvim >>>
 
 " <<< Editor >>>
 filetype plugin indent on
