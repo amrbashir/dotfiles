@@ -1,8 +1,8 @@
 #Requires -RunAsAdministrator
 
 if ($PSVersionTable.PSEdition -ne "Core") {
-    Write-Host "❌ Install Powershell Core first then use it to run the script." -ForegroundColor Red
-    exit
+   Write-Host "❌ Install Powershell Core first then use it to run the script." -ForegroundColor Red
+   exit
 }
 
 Set-ExecutionPolicy Bypass -Scope CurrentUser
@@ -10,8 +10,8 @@ Set-ExecutionPolicy Bypass -Scope CurrentUser
 function RefreshPATH { $ENV:path = [System.ENVironment]::GetENVironmentVariable("Path", "Machine") + ";" + [System.ENVironment]::GetENVironmentVariable("Path", "User") }
 
 if (-Not (Get-Command scoop)) {
-    Invoke-Expression (New-Object System.Net.WebClient).DownloadString("https://get.scoop.sh")
-    RefreshPATH
+   Invoke-Expression (New-Object System.Net.WebClient).DownloadString("https://get.scoop.sh")
+   RefreshPATH
 }
 
 scoop install git --global
@@ -47,10 +47,12 @@ scoop install instant-eyedropper
 
 git clone "https://github.com/microsoft/vcpkg" "$ENV:LOCALAPPDATA/vcpkg"
 &"$ENV:LOCALAPPDATA/vcpkg/bootstrap-vcpkg.bat" -disableMetrics
+scoop install fnm
 scoop install yarn
+fnm install --lts
+fnm env --use-on-cd | Out-String | Invoke-Expression
 RefreshPATH
 yarn add --global pnpm
-pnpm env use --global latest
 
 #######
 # 1. rustup - try scoop again

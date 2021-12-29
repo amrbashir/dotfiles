@@ -1,5 +1,8 @@
-# start starship prompt
+# starship
 Invoke-Expression (&starship init powershell)
+
+# fnm
+fnm env --use-on-cd | Out-String | Invoke-Expression
 
 #region module imports
 Import-Module posh-git
