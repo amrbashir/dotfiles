@@ -38,6 +38,7 @@ scoop install starship
 scoop install neovim
 scoop install bat
 scoop install ripgrep
+scoop install fd
 
 scoop install mailspring
 scoop install 7zip --global
