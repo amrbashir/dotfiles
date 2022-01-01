@@ -36,6 +36,10 @@ Set-PSReadLineKeyHandler -Key Ctrl+Shift+LeftArrow -Function SelectBackwardWord
 Set-PSReadLineKeyHandler -Key Ctrl+Shift+RightArrow -Function SelectForwardWord
 #endregion
 
+#region set environment variables
+$env:CARGO_TARGET_DIR = "D:\.cargo-target"
+#endregion
+
 #region functions and aliases
 Function Refresh-PATH {
     $env:path = [System.Environment]::GetEnvironmentVariable("Path", "Machine") + ";" + [System.Environment]::GetEnvironmentVariable("Path", "User")
