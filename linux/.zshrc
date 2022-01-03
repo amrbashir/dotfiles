@@ -1,6 +1,12 @@
 # ------------------
 # ZSH configurations
 # ------------------
+
+# -- General
+unsetopt BEEP
+WORDCHARS="${WORDCHARS/\//}"
+
+# -- History
 HISTFILE=~/.zsh_history
 HISTSIZE=1000
 SAVEHIST=1000
@@ -9,7 +15,6 @@ setopt hist_ignore_dups
 setopt hist_ignore_space
 setopt hist_verify
 setopt share_history
-unsetopt BEEP
 
 # -- Keybindings
 bindkey '\e[A' history-search-backward
@@ -17,6 +22,7 @@ bindkey '\e[B' history-search-forward
 bindkey "^[[1;5C" forward-word
 bindkey "^[[1;5D" backward-word
 
+# -- Completions
 zstyle ':completion:*' matcher-list 'm:{a-zA-Z}={A-Za-z}' 'r:|[._-]=* r:|=*' 'l:|=* r:|=*'
 autoload -U compinit && compinit
 
