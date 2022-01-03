@@ -39,7 +39,7 @@ export PATH=~/.local/bin:~/.cargo/bin:~/.nvm:~/spicetify-cli:$PATH
 # -------
 alias cls="clear"
 alias ls="exa --icons"
-alias lsa="exa -lah --icons --git --group-directories-first"
+alias ll="exa -lah --icons --git --group-directories-first"
 alias pacman="sudo pacman"
 alias vim="nvim"
 

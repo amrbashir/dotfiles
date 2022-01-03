@@ -40,7 +40,7 @@ export PATH=~/.local/bin:$PATH
 # -------
 alias cls="clear"
 alias ls="exa --icons"
-alias lsa="exa -lah --icons --git --group-directories-first --no-user --no-time"
+alias ll="exa -lah --icons --git --group-directories-first --no-user --no-time"
 alias vim="nvim"
 
 # -----------------

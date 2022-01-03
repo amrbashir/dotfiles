@@ -67,9 +67,9 @@ Function __rm {
 Set-Alias rm __rm
 
 Function __ls { exa --icons $args }
-Function __lsa { exa -lah --icons --git --group-directories-first $args }
+Function __ll { exa -lah --icons --git --group-directories-first $args }
 Set-Alias ls __ls -Option AllScope
-Set-Alias lsa __lsa
+Set-Alias ll __ll
 
 Set-Alias vim nvim
 Set-Alias touch New-Item
