@@ -312,6 +312,10 @@
           {
             "executionArgument": "D:\\Games\\steamapps\\common\\rocketleague\\Binaries\\Win64\\RocketLeague.exe",
             "executionArgumentType": "File Path"
+          },
+          {
+            "executionArgument": "C:\\ProgramData\\Microsoft\\Windows\\Start Menu\\Programs\\BakkesMod.lnk",
+            "executionArgumentType": "File Path"
           }
         ],
         "icon": {
