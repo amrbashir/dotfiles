@@ -23,7 +23,10 @@ Set-ExecutionPolicy Bypass -Scope CurrentUser
 
 # Install apps
 iwr -useb get.scoop.sh | iex
-scoop install -g 7zip git
+WingetSilentInstall git
+Add-PATHEntry "C:\Program Files\Git\bin"
+Refresh-PATH
+scoop install -g 7zip
 Refresh-PATH
 scoop bucket add spotify "https://github.com/TheRandomLabs/Scoop-Spotify.git"
 scoop bucket add nerd-fonts
