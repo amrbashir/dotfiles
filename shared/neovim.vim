@@ -1,10 +1,41 @@
+let mapleader = "\<Space>"
+
+" ----------------
+" Plugins settings
+" ----------------
+call plug#begin()
+Plug 'itchyny/lightline.vim'
+Plug 'editorconfig/editorconfig-vim'
+Plug 'machakann/vim-highlightedyank'
+Plug 'neoclide/coc.nvim', {'branch': 'release'}
+Plug 'numToStr/Comment.nvim'
+Plug 'junegunn/fzf'
+Plug 'junegunn/fzf.vim'
+Plug 'ntpeters/vim-better-whitespace'
+Plug 'joshdick/onedark.vim'
+Plug 'jghauser/mkdir.nvim' " Automatically create missing directories when saving files
+call plug#end()
+
+lua << EOF
+require('Comment').setup({
+    mappings = {
+        basic = true,
+        extra = false,
+        extended = false,
+    }
+})
+EOF
+
+let g:coc_global_extensions = ['coc-json', 'coc-tsserver', 'coc-rust-analyzer', 'coc-prettier']
+let g:lightline = {
+  \ 'colorscheme': 'onedark',
+  \ }
+
 " -----------------
 "  Editor setttings
 " -----------------
-let mapleader = "\<Space>"
 filetype plugin indent on
 syntax on
-set nocompatible " Disable Vi compatability
 set mouse=a "Enable mouse everywhere
 set number " Show line number
 set relativenumber "Show the line numbers relative to current line; useful for motions.
@@ -22,42 +53,24 @@ set tabstop=4
 set expandtab " Use Spaces instead of Tabs
 set smarttab
 set showcmd " Displays commands like when using leader key comobos
-set cmdheight=2 " Give more space to display messages in the cmdline 
+set cmdheight=2 " Give more space to display messages in the cmdline
 set updatetime=300 " Faster updates to the buffer for smooth experience
 set shortmess+=c " Don't pass messages to |ins-completion-menu|; useful for coc.nvim
 set incsearch " Navigate to search matches as you type
-set ignorecase " Enble case-insensitive search 
+set ignorecase " Enble case-insensitive search
 set smartcase " Enable case-insensitive search if it only contains lowercase letters; see |ignorecase|
-set wildmenu " Enable autocomplete menu for the cmdline 
+set wildmenu " Enable autocomplete menu for the cmdline
 set wildmode=longest:list,full " Set wildmenu completion to show list if there is many then complete full match afterwards
 set nobackup " Disable backup for some coc.nvim lsp servers; see coc.nvim#649
 set nowritebackup " Disable backup for some coc.nvim lsp servers; see coc.nvim#649
 set nowrap " Disable line wrapping
+set cursorline " Highlight current line
+set termguicolors " Enable 24-bit colors
 
 " ----------------------
 " Editor colors settings
 " ----------------------
-highlight Pmenu ctermbg=60 ctermfg=15
-highlight PmenuSel ctermbg=62 ctermfg=235
-highlight PmenuSbar ctermbg=60
-highlight PmenuThumb ctermbg=62
-
-" ----------------
-" Plugins settings
-" ----------------
-call plug#begin()
-Plug 'itchyny/lightline.vim'
-Plug 'editorconfig/editorconfig-vim'
-Plug 'machakann/vim-highlightedyank'
-Plug 'neoclide/coc.nvim', {'branch': 'release'}
-Plug 'preservim/nerdcommenter'
-Plug 'junegunn/fzf'
-Plug 'junegunn/fzf.vim'
-call plug#end()
-
-let g:coc_global_extensions = ['coc-json', 'coc-tsserver', 'coc-rust-analyzer', 'coc-prettier']
-let g:NERDCreateDefaultMappings = 0
-let g:NERDSpaceDelims = 1
+colorscheme onedark
 
 " ------------
 "  Keybindings
@@ -74,7 +87,7 @@ map L $
 	" |j| to navigate down on wrapped lines
 nnoremap j gj
 	" |k| to navigate up on wrapped lines
-nnoremap k gk 
+nnoremap k gk
 	" |n| to navigate to next search match, centered on screen
 nnoremap <silent> n nzz
 	" |Shift+n| to navigate to previous search match, centered on screen
@@ -86,22 +99,20 @@ nnoremap <silent> # #zz
 	" |/| to search forwards using regex
 nnoremap / /\v
 	" |?| to search backwards using regex
-nnoremap ? ?\v 
+nnoremap ? ?\v
 	" |:%s/| to search and replace using regex
 cnoremap %s/ %sm/
-	" |<leader>+c| to toggle comments
-nmap <leader>c <Plug>NERDCommenterInver 
 	" |Ctrl+Space| to open the autocomplete menu
-inoremap <silent><expr> <c-space> coc#refresh() 
+inoremap <silent><expr> <c-space> coc#refresh()
 	" |Tab| to autocomplete and cycle forwards in the autocomplete menu
-inoremap <silent><expr> <TAB> pumvisible() ? "\<C-n>" : "\<TAB>" 
+inoremap <silent><expr> <TAB> pumvisible() ? "\<C-n>" : "\<TAB>"
 	" |Enter| to use the selected item in the autocomplete menu
 inoremap <silent><expr> <cr> pumvisible() ? coc#_select_confirm() : "\<CR>"
 	" |gd| to go to symbol definition
 nmap <silent> gd <Plug>(coc-definition)
 	" |gtd| to go to symbol type definition
 nmap <silent> gtd <Plug>(coc-type-definition)
-	" |gi| to go to symbol implementation 
+	" |gi| to go to symbol implementation
 nmap <silent> gi <Plug>(coc-implementation)
 	" |gr| to go to symbol refrences
 nmap <silent> gr <Plug>(coc-references)
@@ -114,7 +125,7 @@ nmap <leader>a <Plug>(coc-codeaction-selected)
 	" |<leader>+cl| to perform code lense actions
 nmap <leader>cl  <Plug>(coc-codelens-action)
 	" |Shift+K| to show symbol documentation
-nnoremap <silent> K :call <SID>show_documentation()<CR> 
+nnoremap <silent> K :call <SID>show_documentation()<CR>
 	" |<leader>+f| to format current buffer
 nmap <leader>f :call CocActionAsync('format')<CR>
 
@@ -138,8 +149,8 @@ endfunction
 
 " TODO: add file explorer
 " TODO: search for a word in the workspace and replace
+" TODO: multi-cursor editing; ctrl+d
 " TODO: better ESC
 " TODO: show buffers as Tabs
-" TODO: better coloring of autocomplete popus
 " TODO: integrate coc.nvim to lightline and customize lightline
 "
