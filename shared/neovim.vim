@@ -13,7 +13,6 @@ Plug 'junegunn/fzf'
 Plug 'junegunn/fzf.vim'
 Plug 'ntpeters/vim-better-whitespace'
 Plug 'joshdick/onedark.vim'
-Plug 'jghauser/mkdir.nvim' " Automatically create missing directories when saving files
 call plug#end()
 
 lua << EOF
@@ -147,6 +146,8 @@ function! s:show_documentation()
   endif
 endfunction
 
+" TODO: auto create missing dirs with vim
+" TODO: git integrations
 " TODO: add file explorer
 " TODO: search for a word in the workspace and replace
 " TODO: multi-cursor editing; ctrl+d
