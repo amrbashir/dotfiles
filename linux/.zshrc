@@ -28,28 +28,30 @@ export LANG=en_US.UTF-8
 export EDITOR="nvim"
 export MANPAGER="sh -c 'col -bx | bat -l man -p'"
 export CARGO_TARGET_DIR=~/.cache/.cargo-target
-export FZF_DEFAULT_COMMAND="fd . $HOME"
+export FZF_DEFAULT_COMMAND="fd --type file --follow --hidden --exclude .git --color=always"
+export FZF_DEFAULT_OPTS="--ansi"
 export PATH=~/.local/bin:~/.cargo/bin:~/.nvm:~/spicetify-cli:$PATH
 
 # -------
 # Aliases
 # -------
-alias ls="exa --icons"
-alias ll="exa -lah --icons --git --group-directories-first"
 alias cls="clear"
 alias pacman="sudo pacman"
 alias vim="nvim"
 
-alias ga="git add"
-alias gcm="git commit"
-alias gl="git lg"
+alias ls="exa --icons"
+alias ll="exa -lah --icons --git --group-directories-first"
+
 alias gc="git checkout"
-alias gb="git branch"
 alias gs="git status"
 alias gd="git diff"
+alias ga="git add"
+alias gcm="git commit"
 alias gst="git stash"
 alias gpull="git pull"
 alias gpush="git push"
+alias gl="git lg"
+alias gb="git branch"
 
 # -----------------
 eval "$(sheldon source)"

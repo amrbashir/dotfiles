@@ -28,7 +28,8 @@ export EDITOR="nvim"
 export MANPAGER="bat -l man -p"
 export GPG_TTY="$(tty)"
 export GIT_ASKPASS=~/.termux/git-ask-pass.sh
-export FZF_DEFAULT_COMMAND="fd . $HOME"
+export FZF_DEFAULT_COMMAND="fd --type file --follow --hidden --exclude .git --color=always"
+export FZF_DEFAULT_OPTS="--ansi"
 export PATH=~/.local/bin:$PATH
 
 # -------
@@ -39,16 +40,16 @@ alias ll="exa -lah --icons --git --group-directories-first --no-user --no-time"
 alias cls="clear"
 alias vim="nvim"
 
-alias ga="git add"
-alias gcm="git commit"
-alias gl="git lg"
 alias gc="git checkout"
-alias gb="git branch"
 alias gs="git status"
 alias gd="git diff"
+alias ga="git add"
+alias gcm="git commit"
 alias gst="git stash"
 alias gpull="git pull"
 alias gpush="git push"
+alias gl="git lg"
+alias gb="git branch"
 
 # -----------------
 eval "$(sheldon source)"
