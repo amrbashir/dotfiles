@@ -47,12 +47,14 @@ Function Add-EnvVar {
 Set-Alias vim nvim
 
 Function __ls { exa --icons $args }
-Set-Alias ls __ls -Option AllScope
+Remove-Alias ls
+Set-Alias ls __ls
 Function __ll { exa -lah --icons --git --group-directories-first $args }
 Set-Alias ll __ll
 
 Function __coreutils_cp { coreutils cp $args }
-Set-Alias cp __coreutils_cp -Option AllScope
+Remove-Alias cp
+Set-Alias cp __coreutils_cp
 Function __coreutils_mv { coreutils mv $args }
 Set-Alias mv __coreutils_mv
 Function __coreutils_rm { coreutils rm $args }
@@ -71,6 +73,7 @@ Function __coreutils_wc { coreutils wc $args }
 Set-Alias wc __coreutils_wc
 
 Function __git_checkout { git checkout $args }
+Remove-Alias gc -Force
 Set-Alias gc __git_checkout
 Function __git_status { git status $args }
 Set-Alias gs __git_status
@@ -81,6 +84,7 @@ Set-Alias ga __git_add
 Function __git_add { git add $args }
 Set-Alias gaa __git_add
 Function __git_commit { git commit $args }
+Remove-Alias gcm -Force
 Set-Alias gcm __git_commit
 Function __git_commit { git commit $args }
 Set-Alias gcmm __git_commit
@@ -91,6 +95,7 @@ Set-Alias gpull __git_pull
 Function __git_push { git push $args }
 Set-Alias gpush __git_push
 Function __git_lg { git lg $args }
+Remove-Alias gl -Force
 Set-Alias gl __git_lg
 Function __git_branch { git branch $args }
 Set-Alias gb __git_branch
@@ -102,9 +107,7 @@ Function __git_remote { git remote $args }
 Set-Alias gremote __git_remote
 Function __git_rebase { git rebase $args }
 Set-Alias grebase __git_rebase
-#endregion
 
-#region -------
+# ------------------
 Invoke-Expression (&starship init powershell)
 fnm env --use-on-cd | Out-String | Invoke-Expression
-#endregion
