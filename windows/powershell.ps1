@@ -1,6 +1,3 @@
-Import-Module posh-git
-Import-Module "~\AppData\Local\vcpkg\scripts\posh-vcpkg"
-
 # configure PSReadLine
 $PSReadLineOptions = @{
     PredictionSource              = "History"
@@ -72,41 +69,45 @@ Set-Alias pwd __coreutils_pwd
 Function __coreutils_wc { coreutils wc $args }
 Set-Alias wc __coreutils_wc
 
-Function __git_checkout { git checkout $args }
+Function Git-checkout { git checkout $args }
 Remove-Alias gc -Force
-Set-Alias gc __git_checkout
-Function __git_status { git status $args }
-Set-Alias gs __git_status
-Function __git_diff { git diff $args }
-Set-Alias gd __git_diff
-Function __git_add { git add $args }
-Set-Alias ga __git_add
-Function __git_add_all { git add . $args }
-Set-Alias gaa __git_add_all
-Function __git_commit { git commit $args }
+Set-Alias gc Git-checkout
+Function Git-status { git status $args }
+Set-Alias gs Git-status
+Function Git-diff { git diff $args }
+Set-Alias gd Git-diff
+Function Git-add { git add $args }
+Set-Alias ga Git-add
+Function Git-add-all { git add . $args }
+Set-Alias gaa Git-add-all
+Function Git-commit { git commit $args }
 Remove-Alias gcm -Force
-Set-Alias gcm __git_commit
-Function __git_commit_m { git commit -m $args }
-Set-Alias gcmm __git_commit_m
-Function __git_stash { git stash $args }
-Set-Alias gst __git_stash
-Function __git_pull { git pull $args }
-Set-Alias gpull __git_pull
-Function __git_push { git push $args }
-Set-Alias gpush __git_push
-Function __git_lg { git lg $args }
+Set-Alias gcm Git-commit
+Function Git-commit-m { git commit -m $args }
+Set-Alias gcmm Git-commit-m
+Function Git-stash { git stash $args }
+Set-Alias gst Git-stash
+Function Git-pull { git pull $args }
+Set-Alias gpull Git-pull
+Function Git-push { git push $args }
+Set-Alias gpush Git-push
+Function Git-lg { git lg $args }
 Remove-Alias gl -Force
-Set-Alias gl __git_lg
-Function __git_branch { git branch $args }
-Set-Alias gb __git_branch
-Function __git_restore { git restore $args }
-Set-Alias grestore __git_restore
-Function __git_reset { git reset $args }
-Set-Alias greset __git_reset
-Function __git_remote { git remote $args }
-Set-Alias gremote __git_remote
-Function __git_rebase { git rebase $args }
-Set-Alias grebase __git_rebase
+Set-Alias gl Git-lg
+Function Git-branch { git branch $args }
+Set-Alias gb Git-branch
+Function Git-restore { git restore $args }
+Set-Alias grestore Git-restore
+Function Git-reset { git reset $args }
+Set-Alias greset Git-reset
+Function Git-remote { git remote $args }
+Set-Alias gremote Git-remote
+Function Git-rebase { git rebase $args }
+Set-Alias grebase Git-rebase
+
+# imports
+Import-Module posh-git -arg 0,0,1
+Import-Module "~\AppData\Local\vcpkg\scripts\posh-vcpkg"
 
 # ------------------
 Invoke-Expression (&starship init powershell)
