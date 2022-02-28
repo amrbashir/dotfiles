@@ -1,9 +1,3 @@
-# starship
-Invoke-Expression (&starship init powershell)
-
-# fnm
-fnm env --use-on-cd | Out-String | Invoke-Expression
-
 #region module imports
 Import-Module posh-git
 Import-Module "~\AppData\Local\vcpkg\scripts\posh-vcpkg"
@@ -53,24 +47,43 @@ Function Add-EnvVar {
     [System.Environment]::SetEnvironmentVariable($args[0], $args[1], "User")
 }
 
-Function __rm {
-    Param([Parameter(Position = 0)] [string[]] $path, [switch] $r, [switch] $f, [switch] $rf)
-    Process {
-        $rmArgs = @{
-            Path    = $path
-            Recurse = ($r -OR $rf)
-            Force   = ($f -OR $rf)
-        }
-        Remove-Item @rmArgs
-    }
-}
-Set-Alias rm __rm
+Set-Alias vim nvim
 
 Function __ls { exa --icons $args }
-Function __ll { exa -lah --icons --git --group-directories-first $args }
 Set-Alias ls __ls -Option AllScope
+
+Function __ll { exa -lah --icons --git --group-directories-first $args }
 Set-Alias ll __ll
 
-Set-Alias vim nvim
-Set-Alias touch New-Item
+Function __coreutils_cp { coreutils cp $args }
+Set-Alias cp __coreutils_cp -Option AllScope
+
+Function __coreutils_mv { coreutils mv $args }
+Set-Alias mv __coreutils_mv
+
+Function __coreutils_rm { coreutils rm $args }
+Set-Alias rm __coreutils_rm
+
+Function __coreutils_rmdir { coreutils rmdir $args }
+Set-Alias rmdir __coreutils_rmdir
+
+Function __coreutils_touch { coreutils touch $args }
+Set-Alias touch __coreutils_touch
+
+Function __coreutils_mkdir { coreutils mkdir $args }
+Set-Alias mkdir __coreutils_mkdir
+
+Function __coreutils_dirname { coreutils dirname $args }
+Set-Alias dirname __coreutils_dirname
+
+Function __coreutils_pwd { coreutils pwd $args }
+Set-Alias pwd __coreutils_pwd
+
+Function __coreutils_wc { coreutils wc $args }
+Set-Alias wc __coreutils_wc
+#endregion
+
+#region -------
+Invoke-Expression (&starship init powershell)
+fnm env --use-on-cd | Out-String | Invoke-Expression
 #endregion

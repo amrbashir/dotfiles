@@ -31,7 +31,7 @@ Refresh-PATH
 scoop bucket add spotify "https://github.com/TheRandomLabs/Scoop-Spotify.git"
 scoop bucket add nerd-fonts
 scoop bucket add extras
-scoop install -g vcredist starship bat ripgrep fd less qbittorrent python everything notepadplusplus
+scoop install -g uutils-coreutils vcredist starship bat ripgrep fd less qbittorrent python everything notepadplusplus
 scoop install pnpm neovim mailspring spicetify-cli autohotkey trafficmonitor instant-eyedropper cmake fnm yarn rustup rainmeter
 iwr -useb https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim | ni "$(@($env:XDG_DATA_HOME, $env:LOCALAPPDATA)[$null -eq $env:XDG_DATA_HOME])/nvim-data/site/autoload/plug.vim" -Force
 WingetSilentInstall ModernFlyouts
