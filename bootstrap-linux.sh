@@ -2,7 +2,7 @@
 
 # TODO: add packages installation
 
-configs=(
+declare -a configs=(
     # file -- targetDir -- targetFileOrFolder
     "$PWD/linux/kitty.conf" "$HOME/.config/kitty/" "kitty.conf"
     "$PWD/linux/sxhkdrc" "$HOME/.config/sxhkd/" "sxhkdrc"

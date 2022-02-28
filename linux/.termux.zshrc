@@ -35,10 +35,11 @@ export PATH=~/.local/bin:$PATH
 # -------
 # Aliases
 # -------
-alias ls="exa --icons"
-alias ll="exa -lah --icons --git --group-directories-first --no-user --no-time"
 alias cls="clear"
 alias vim="nvim"
+
+alias ls="exa --icons"
+alias ll="exa -lah --icons --git --group-directories-first --no-user --no-time"
 
 alias gc="git checkout"
 alias gs="git status"

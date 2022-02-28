@@ -81,13 +81,13 @@ Function __git_diff { git diff $args }
 Set-Alias gd __git_diff
 Function __git_add { git add $args }
 Set-Alias ga __git_add
-Function __git_add { git add $args }
-Set-Alias gaa __git_add
+Function __git_add_all { git add . $args }
+Set-Alias gaa __git_add_all
 Function __git_commit { git commit $args }
 Remove-Alias gcm -Force
 Set-Alias gcm __git_commit
-Function __git_commit { git commit $args }
-Set-Alias gcmm __git_commit
+Function __git_commit_m { git commit -m $args }
+Set-Alias gcmm __git_commit_m
 Function __git_stash { git stash $args }
 Set-Alias gst __git_stash
 Function __git_pull { git pull $args }
