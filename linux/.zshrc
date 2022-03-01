@@ -30,7 +30,7 @@ export MANPAGER="sh -c 'col -bx | bat -l man -p'"
 export CARGO_TARGET_DIR=~/.cache/.cargo-target
 export FZF_DEFAULT_COMMAND="fd --type file --follow --hidden --exclude .git --color=always"
 export FZF_DEFAULT_OPTS="--ansi"
-export PATH=~/.local/bin:~/.cargo/bin:~/.nvm:~/spicetify-cli:$PATH
+export PATH=~/.local/bin:~/.cargo/bin::~/.fnm:$PATH~/spicetify-cli:$PATH
 
 # -------
 # Aliases
@@ -62,4 +62,4 @@ alias grebase="git rebase"
 # -----------------
 eval "$(sheldon source)"
 eval "$(starship init zsh)"
-[ -s "~/.nvm/nvm.sh" ] && \. "~/.nvm/nvm.sh"
+eval "`fnm env`"
