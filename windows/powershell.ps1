@@ -25,10 +25,7 @@ Set-PSReadLineKeyHandler -Key Ctrl+Shift+LeftArrow -Function SelectBackwardWord
 Set-PSReadLineKeyHandler -Key Ctrl+Shift+RightArrow -Function SelectForwardWord
 Set-PSReadLineOption -AddToHistoryHandler {
     param($command)
-    # ignore:
-    # 1. any command that starts with a space
-    # 2. any of the following commands (cd|ls|ll|exit), only if it is used without arguments.
-    if ($command -match '^(\s[\s\S]*|cd|ls|ll|exit)\s*$') {
+    if ($command -match '^(\s[\s\S]*|cd|cd\s.|cd\s-|ls|ls\s..|ll|ll\s..|exit)\s*$') {
         return $false
     }
     return $true
