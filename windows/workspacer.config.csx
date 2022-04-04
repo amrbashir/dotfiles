@@ -8,13 +8,13 @@ using workspacer.Bar.Widgets;
 
 Action<IConfigContext> doConfig = (context) =>
 {
-    context.Branch = Branch.Unstable;
+    context.CanMinimizeWindows = true;
 
     context.AddBar(new BarPluginConfig() {
         FontSize = 10,
         FontName = "Segoe UI Variable",
         BarHeight = 20,
-        DefaultWidgetBackground = new Color(0,0,0),
+        DefaultWidgetBackground = new Color(0x18,0x18,0x18),
         RightWidgets = () => new IBarWidget[] {}
     });
 
