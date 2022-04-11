@@ -31,8 +31,8 @@ Refresh-PATH
 scoop bucket add spotify "https://github.com/TheRandomLabs/Scoop-Spotify.git"
 scoop bucket add nerd-fonts
 scoop bucket add extras
-scoop install -g uutils-coreutils vcredist starship bat ripgrep fd less qbittorrent python everything notepadplusplus
-scoop install workspacer pnpm neovim mailspring spicetify-cli autohotkey trafficmonitor instant-eyedropper cmake fnm yarn rustup
+scoop install -g uutils-coreutils starship bat ripgrep fd less qbittorrent python everything notepadplusplus
+scoop install pnpm neovim mailspring spicetify-cli autohotkey trafficmonitor instant-eyedropper cmake fnm yarn rustup
 iwr -useb https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim | ni "$(@($env:XDG_DATA_HOME, $env:LOCALAPPDATA)[$null -eq $env:XDG_DATA_HOME])/nvim-data/site/autoload/plug.vim" -Force
 WingetSilentInstall ModernFlyouts
 WingetSilentInstall Vivaldi
@@ -54,7 +54,7 @@ Refresh-PATH
 # - ueli - I have a custom build
 # - Visual Studio Build Tools
 # - exa -> `cargo install exa --git https://github.com/skyline75489/exa --branch chesterliu/dev/win-support`
-# - XBar or TranslucentTB
+# - TranslucentTB
 
 # Install Fonts
 scoop install -g FiraCode FiraCode-NF
@@ -76,7 +76,6 @@ Refresh-PATH
     [PSCustomObject]@{file = "$PWD/shared/.gitconfig"; targetDir = "$HOME\"; targetFile = ".gitconfig"; symlink = $TRUE},
     [PSCustomObject]@{file = "$PWD/shared/neovim.vim"; targetDir = "$Env:LOCALAPPDATA\nvim\"; targetFile = "init.vim"; symlink = $TRUE},
     [PSCustomObject]@{file = "$PWD/windows/traffic-monitor.ini"; targetDir = "$Env:APPDATA\TrafficMonitor\"; targetFile = "config.ini"; symlink = $TRUE}
-    [PSCustomObject]@{file = "$PWD/windows/workspacer.config.csx"; targetDir = "$HOME\.workspacer\"; targetFile = "workspacer.config.csx"; symlink = $FALSE}
 ) | ForEach-Object {
     New-Item -Path $_.targetDir -ItemType Directory -Force
     $target = $_.targetDir + $_.targetFile
@@ -96,4 +95,3 @@ Refresh-PATH
 Add-PATHEntry "$HOME\scoop\persist\rustup\.cargo\bin"
 Add-PATHEntry "$ENV:LOCALAPPDATA/vcpkg"
 Invoke-WebRequest -UseBasicParsing "https://raw.githubusercontent.com/JulienMaille/dribbblish-dynamic-theme/master/install.ps1" | Invoke-Expression
-spicetify backup apply
