@@ -23,7 +23,7 @@ body {
 }
 /* Bookmark bar  end*/
 
-/* toolbar (address bar) start */
+/* toolbar start */
 .toolbar-mainbar {
   background-color: var(--colorBgLighter) !important;
 }
@@ -46,7 +46,11 @@ body {
   border-color: var(--colorAccentBg);
   box-shadow: none;
 }
-/* toolbar (address bar) end */
+
+.toolbar-extensions {
+  background-color: var(--colorBgLighter) !important;
+}
+/* toolbar end */
 
 /* Tabs start*/
 .tab {
