@@ -33,7 +33,7 @@ scoop bucket add nerd-fonts
 scoop bucket add extras
 scoop install -g uutils-coreutils starship bat ripgrep fd less qbittorrent python everything notepadplusplus
 scoop install pnpm neovim mailspring spicetify-cli autohotkey trafficmonitor instant-eyedropper cmake fnm yarn rustup
-# TODO: clone AstroNvim repo
+git clone https://github.com/AstroNvim/AstroNvim "$Env:LOCALAPPDATA/nvim"
 WingetSilentInstall ModernFlyouts
 WingetSilentInstall Vivaldi
 WingetSilentInstall VLC
@@ -43,7 +43,7 @@ WingetSilentInstall "Windows Terminal"
 WingetSilentInstall AltSnap
 WingetSilentInstall Discord
 WingetSilentInstall Spotify
-git clone "https://github.com/microsoft/vcpkg" "$ENV:LOCALAPPDATA/vcpkg"
+git clone "https://github.com/microsoft/vcpkg" "$Env:LOCALAPPDATA/vcpkg"
 &"$ENV:LOCALAPPDATA/vcpkg/bootstrap-vcpkg.bat" -disableMetrics
 Refresh-PATH
 fnm install --lts
@@ -74,6 +74,7 @@ Refresh-PATH
     [PSCustomObject]@{file = "$PWD/windows/alt-snap.ini"; targetDir = "$Env:APPDATA\AltSnap\"; targetFile = "AltSnap.ini"; symlink = $FALSE}
     [PSCustomObject]@{file = "$PWD/shared/starship.toml"; targetDir = "$HOME\.config\"; targetFile = "starship.toml"; symlink = $TRUE},
     [PSCustomObject]@{file = "$PWD/shared/.gitconfig"; targetDir = "$HOME\"; targetFile = ".gitconfig"; symlink = $TRUE},
+    [PSCustomObject]@{file = "$PWD/shared/neovim.lua"; targetDir = "$Env:LOCALAPPDATA\nvim\lua\user\"; targetFile = "init.lua"; symlink = $TRUE},
     [PSCustomObject]@{file = "$PWD/windows/traffic-monitor.ini"; targetDir = "$Env:APPDATA\TrafficMonitor\"; targetFile = "config.ini"; symlink = $TRUE}
 ) | ForEach-Object {
     New-Item -Path $_.targetDir -ItemType Directory -Force
