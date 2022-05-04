@@ -8,7 +8,19 @@ local config = {
 
   plugins = {
     init = {
-      { "machakann/vim-highlightedyank" }
+      { "machakann/vim-highlightedyank" },
+    },
+
+    enabled = {
+      autopairs = false,
+    },
+
+    tree_sitter = {
+      ensure_installed = { "lua", "rust", "javascript", "typescript", "python", "bash" }
+    },
+
+    ["nvim-lsp-installer"] = {
+      ensure_installed = { "sumneko_lua", "rust_analyzer", "tsserver", "jsonls", "bashls" },
     },
 
     ["neo-tree"] = {
@@ -17,8 +29,7 @@ local config = {
 	      width = 35
       }
     }
-  },
-
+  }
 }
 
 return config
