@@ -1,4 +1,4 @@
-local config = {
+return {
   default_theme = {
     highlights = function(highlights)
       highlights.Normal = { bg = "NONE" }
@@ -9,10 +9,7 @@ local config = {
   plugins = {
     init = {
       { "machakann/vim-highlightedyank" },
-    },
-
-    enabled = {
-      autopairs = false,
+      [ "windwp/nvim-autopairs" ] = { disable = true }
     },
 
     tree_sitter = {
@@ -29,7 +26,5 @@ local config = {
 	      width = 35
       }
     }
-  }
+  },
 }
-
-return config
