@@ -33,7 +33,9 @@ scoop bucket add nerd-fonts
 scoop bucket add extras
 scoop install -g uutils-coreutils starship bat ripgrep fd less qbittorrent python everything notepadplusplus
 scoop install pnpm neovim mailspring spicetify-cli autohotkey trafficmonitor instant-eyedropper cmake fnm yarn rustup
-git clone https://github.com/AstroNvim/AstroNvim "$Env:LOCALAPPDATA/nvim"
+Refresh-PATH
+iwr "https://github.com/ogham/exa/files/8483243/exa.zip" -o "$HOME/downloads/exa.zip"; 7z e .\exa.zip -o"$HOME\scoop\persist\rustup\.cargo\bin"; Remove-Item "$HOME\downloads\exa.zip" -Force
+git clone "https://github.com/AstroNvim/AstroNvim" "$Env:LOCALAPPDATA/nvim"
 WingetSilentInstall ModernFlyouts
 WingetSilentInstall Vivaldi
 WingetSilentInstall VLC
@@ -53,7 +55,6 @@ Refresh-PATH
 ### Remaining apps:
 # - ueli - I have a custom build
 # - Visual Studio Build Tools
-# - exa -> `cargo install exa --git https://github.com/skyline75489/exa --branch chesterliu/dev/win-support`
 # - TranslucentTB
 
 # Install Fonts
