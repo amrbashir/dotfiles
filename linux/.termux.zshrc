@@ -28,8 +28,6 @@ export EDITOR="nvim"
 export MANPAGER="bat -l man -p"
 export GPG_TTY="$(tty)"
 export GIT_ASKPASS=~/.termux/git-ask-pass.sh
-export FZF_DEFAULT_COMMAND="fd --type file --follow --hidden --exclude .git --color=always"
-export FZF_DEFAULT_OPTS="--ansi"
 export PATH=~/.local/bin:$PATH
 
 # -------

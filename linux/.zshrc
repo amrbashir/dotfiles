@@ -28,8 +28,6 @@ export LANG=en_US.UTF-8
 export EDITOR="nvim"
 export MANPAGER="sh -c 'col -bx | bat -l man -p'"
 export CARGO_TARGET_DIR=~/.cache/.cargo-target
-export FZF_DEFAULT_COMMAND="fd --type file --follow --hidden --exclude .git --color=always"
-export FZF_DEFAULT_OPTS="--ansi"
 export PNPM_HOME=~/.local/share/pnpm
 export PATH=~/.local/bin:~/.cargo/bin:~/.fnm:~/spicetify-cli:$PNPM_HOME:$PATH
 
