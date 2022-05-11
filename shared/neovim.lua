@@ -1,7 +1,7 @@
-return {
+local config = {
   default_theme = {
     highlights = function(highlights)
-      highlights.Normal = { bg = "NONE" }
+      highlights.Normal = { bg = nil }
       return highlights
     end,
   },
@@ -28,3 +28,14 @@ return {
     }
   },
 }
+
+
+if vim.fn.has("win32") == 1 then
+  config["options"] = {
+    opt = {
+      shell = "pwsh -NoLogo"
+    }
+  }
+end
+
+return config
