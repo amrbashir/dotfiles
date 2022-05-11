@@ -9,7 +9,8 @@ local config = {
   plugins = {
     init = {
       { "machakann/vim-highlightedyank" },
-      [ "windwp/nvim-autopairs" ] = { disable = true }
+      [ "windwp/nvim-autopairs" ] = { disable = true },
+      [ "windwp/nvim-ts-autotag" ] = { disable = true },
     },
 
     tree_sitter = {
