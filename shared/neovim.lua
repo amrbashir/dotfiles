@@ -1,16 +1,10 @@
 local config = {
-  default_theme = {
-    highlights = function(highlights)
-      highlights.Normal = { bg = nil }
-      return highlights
-    end,
-  },
-
   plugins = {
     init = {
       { "machakann/vim-highlightedyank" },
       [ "windwp/nvim-autopairs" ] = { disable = true },
       [ "windwp/nvim-ts-autotag" ] = { disable = true },
+      { "amrbashir/nvim-docs-view" },
     },
 
     tree_sitter = {
@@ -29,7 +23,6 @@ local config = {
     }
   },
 }
-
 
 if vim.fn.has("win32") == 1 then
   config["options"] = {
