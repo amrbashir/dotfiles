@@ -1,10 +1,15 @@
 local config = {
   plugins = {
     init = {
-      { "machakann/vim-highlightedyank" },
       [ "windwp/nvim-autopairs" ] = { disable = true },
       [ "windwp/nvim-ts-autotag" ] = { disable = true },
-      { "amrbashir/nvim-docs-view" },
+      { "machakann/vim-highlightedyank" },
+      { "jghauser/mkdir.nvim" },
+      {
+        "amrbashir/nvim-docs-view",
+        opt = true,
+        cmd = { "DocsViewToggle" },
+      },
     },
 
     tree_sitter = {
