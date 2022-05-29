@@ -6,6 +6,15 @@ local config = {
 			{ "machakann/vim-highlightedyank" },
 			{ "jghauser/mkdir.nvim" },
 			{
+				"fedepujol/move.nvim",
+				config = function ()
+					vim.api.nvim_set_keymap('n', '<A-j>', ":MoveLine(1)<CR>", { noremap = true, silent = true })
+					vim.api.nvim_set_keymap('n', '<A-k>', ":MoveLine(-1)<CR>", { noremap = true, silent = true })
+					vim.api.nvim_set_keymap('v', '<A-j>', ":MoveBlock(1)<CR>", { noremap = true, silent = true })
+					vim.api.nvim_set_keymap('v', '<A-k>', ":MoveBlock(-1)<CR>", { noremap = true, silent = true })
+				end
+		  },
+			{
 				"amrbashir/nvim-docs-view",
 				opt = true,
 				cmd = { "DocsViewToggle" },
