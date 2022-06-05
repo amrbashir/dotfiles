@@ -23,13 +23,6 @@ Set-PSReadLineKeyHandler -Key Alt+Backspace -Function BackwardKillWord
 Set-PSReadLineKeyHandler -Key F1 -Function WhatIsKey
 Set-PSReadLineKeyHandler -Key Ctrl+Shift+LeftArrow -Function SelectBackwardWord
 Set-PSReadLineKeyHandler -Key Ctrl+Shift+RightArrow -Function SelectForwardWord
-Set-PSReadLineOption -AddToHistoryHandler {
-    param($command)
-    if ($command -match '^(\s[\s\S]*|cd|cd\s.|cd\s-|ls|ls\s..|ll|ll\s..|exit)\s*$') {
-        return $false
-    }
-    return $true
-}
 
 # set environment variables
 $env:CARGO_TARGET_DIR = "D:\.cargo-target"

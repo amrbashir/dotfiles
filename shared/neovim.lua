@@ -5,6 +5,7 @@ local config = {
 			["windwp/nvim-ts-autotag"] = { disable = true },
 			{ "machakann/vim-highlightedyank" },
 			{ "jghauser/mkdir.nvim" },
+			{ "gpanders/editorconfig.nvim" },
 			{
 				"fedepujol/move.nvim",
 				config = function ()
@@ -19,6 +20,15 @@ local config = {
 				opt = true,
 				cmd = { "DocsViewToggle" },
 			},
+			{
+        "johnfrankmorgan/whitespace.nvim",
+        config = function ()
+          require("whitespace-nvim").setup({
+            highlight = "DiffDelete",
+            ignored_filetypes = { "TelescopePrompt", "alpha", "neo-tree" },
+          })
+        end
+      }
 		},
 
 		tree_sitter = {
