@@ -88,9 +88,9 @@ Set-Alias gcmm Git-commit-m
 Function Git-stash { git stash $args }
 Set-Alias gst Git-stash
 Function Git-pull { git pull $args }
-Set-Alias gpull Git-pull
+Set-Alias gpl Git-pull
 Function Git-push { git push $args }
-Set-Alias gpush Git-push
+Set-Alias gp Git-push -Force
 Function Git-lg { git lg $args }
 Remove-Alias gl -Force
 Set-Alias gl Git-lg
