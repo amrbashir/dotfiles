@@ -13,7 +13,7 @@ declare -a configs=(
     "$PWD/linux/rofi" "$HOME/.config/" "rofi"
     "$PWD/linux/paru.conf" "$HOME/.config/paru/" "paru.conf"
     "$PWD/shared/starship.toml" "$HOME/.config/" "starship.toml"
-    "$PWD/shared/.gitconfig" "$HOME/" ".gitconfig"
+    "$PWD/linux/.gitconfig" "$HOME/" ".gitconfig"
     "$PWD/shared/neovim.lua" "$HOME/.config/nvim/lua/user/" "init.lua"
     "$PWD/linux/polybar" "$HOME/.config/" "polybar"
     "$PWD/linux/spicetify.ini" "$HOME/.config/spicetify/" "config-xpui.ini"

@@ -1,0 +1,6 @@
+[include]
+  path = "~/dotfiles/shared/.gitconfig"
+
+[credential]
+	helper = /usr/share/git-credential-manager-core/git-credential-manager-core
+	credentialStore = secretservice
