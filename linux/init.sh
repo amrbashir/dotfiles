@@ -13,3 +13,4 @@ volctl &
 optimus-manager-qt &
 discord --start-minimized &
 spotify-tray -m &
+mailspring -b &
