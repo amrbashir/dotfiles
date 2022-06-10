@@ -77,6 +77,7 @@ Refresh-PATH
     [PSCustomObject]@{file = "$PWD/windows/.gitconfig"; targetDir = "$HOME\"; targetFile = ".gitconfig"; symlink = $TRUE},
     [PSCustomObject]@{file = "$PWD/shared/neovim.lua"; targetDir = "$Env:LOCALAPPDATA\nvim\lua\user\"; targetFile = "init.lua"; symlink = $TRUE},
     [PSCustomObject]@{file = "$PWD/windows/traffic-monitor.ini"; targetDir = "$Env:APPDATA\TrafficMonitor\"; targetFile = "config.ini"; symlink = $TRUE}
+    [PSCustomObject]@{file = "$PWD/windows/keybindings.ahk"; targetDir = "$Env:APPDATA\Microsoft\Windows\Start Menu\Programs\Startup\"; targetFile = "keybindings.ahk"; symlink = $TRUE}
 ) | ForEach-Object {
     New-Item -Path $_.targetDir -ItemType Directory -Force
     $target = $_.targetDir + $_.targetFile
