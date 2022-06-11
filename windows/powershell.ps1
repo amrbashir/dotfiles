@@ -26,6 +26,7 @@ Set-PSReadLineKeyHandler -Key Ctrl+Shift+RightArrow -Function SelectForwardWord
 
 # set environment variables
 $env:CARGO_TARGET_DIR = "D:\.cargo-target"
+$env:KOMOREBI_CONFIG_HOME = "$env:HOME\dotfiles\windows"
 
 # functions
 Function Refresh-PATH {

@@ -32,7 +32,7 @@ scoop bucket add spotify "https://github.com/TheRandomLabs/Scoop-Spotify.git"
 scoop bucket add nerd-fonts
 scoop bucket add extras
 scoop install -g uutils-coreutils starship bat ripgrep fd less qbittorrent python everything notepadplusplus
-scoop install pnpm neovim mailspring spicetify-cli autohotkey trafficmonitor instant-eyedropper cmake fnm yarn rustup
+scoop install komorebi pnpm neovim mailspring spicetify-cli autohotkey trafficmonitor instant-eyedropper cmake fnm yarn rustup
 Refresh-PATH
 iwr "https://github.com/ogham/exa/files/8483243/exa.zip" -o "$HOME/downloads/exa.zip"; 7z e .\exa.zip -o"$HOME\scoop\persist\rustup\.cargo\bin"; Remove-Item "$HOME\downloads\exa.zip" -Force
 git clone "https://github.com/AstroNvim/AstroNvim" "$Env:LOCALAPPDATA/nvim"
