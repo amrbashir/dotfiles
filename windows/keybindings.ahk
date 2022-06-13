@@ -4,10 +4,10 @@
 ; -----------
 
 ; Win + Enter
-#Enter::					; Launch Terminal
-	Run, wt.exe,,,
-	Sleep 500
-	WinActivate, ahk_exe WindowsTerminal.exe
+#Enter::	           	; Launch Terminal
+  Run, wt.exe,,,
+  WinWait, ahk_exe WindowsTerminal.exe,,
+  WinActivate, ahk_exe WindowsTerminal.exe
 Return
 
 
@@ -16,8 +16,6 @@ Return
 
 ; Win + Q
 #q::    	WinClose, A 			; Close active window
-
-
 
 
 ; Media keys

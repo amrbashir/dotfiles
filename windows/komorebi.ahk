@@ -3,14 +3,11 @@
 ; Run komorebi
 Run, komorebic.exe start, , Hide
 
-; Enable hot reloading of changes to this file
-Run, komorebic.exe watch-configuration enable, , Hide
-
-; Enable focus follows mouse
+; Disable focus follows mouse
 Run, komorebic.exe focus-follows-mouse disable, , Hide
 
-; Ensure there are 9 workspaces created on monitor 0
-Run, komorebic.exe ensure-workspaces 0 9, , Hide
+; Ensure there are 5 workspaces created on monitor 0
+Run, komorebic.exe ensure-workspaces 0 5, , Hide
 
 ; Always float Task Manager, matching on class
 Run, komorebic.exe float-rule class TaskManagerWindow, , Hide
@@ -19,7 +16,6 @@ Run, komorebic.exe float-rule class TaskManagerWindow, , Hide
 Run, komorebic.exe identify-tray-application exe Discord.exe, , Hide
 Run, komorebic.exe identify-tray-application exe Spotify.exe, , Hide
 Run, komorebic.exe identify-tray-application exe mailspring.exe, , Hide
-
 
 ; Change the focused window, Alt + Vim direction keys
 !h::
@@ -75,7 +71,6 @@ return
 Run, komorebic.exe retile, , Hide
 return
 
-
 ; Switch to workspace
 !1::
 Send !
@@ -102,26 +97,6 @@ Send !
 Run, komorebic.exe focus-workspace 4, , Hide
 return
 
-!6::
-Send !
-Run, komorebic.exe focus-workspace 5, , Hide
-return
-
-!7::
-Send !
-Run, komorebic.exe focus-workspace 6, , Hide
-return
-
-!8::
-Send !
-Run, komorebic.exe focus-workspace 7, , Hide
-return
-
-!9::
-Send !
-Run, komorebic.exe focus-workspace 8, , Hide
-return
-
 ; Move window to workspace
 !+1::
 Run, komorebic.exe move-to-workspace 0, , Hide
@@ -141,20 +116,4 @@ return
 
 !+5::
 Run, komorebic.exe move-to-workspace 4, , Hide
-return
-
-!+6::
-Run, komorebic.exe move-to-workspace 5, , Hide
-return
-
-!+7::
-Run, komorebic.exe move-to-workspace 6, , Hide
-return
-
-!+8::
-Run, komorebic.exe move-to-workspace 7, , Hide
-return
-
-!+9::
-Run, komorebic.exe move-to-workspace 8, , Hide
 return
