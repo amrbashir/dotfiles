@@ -9,7 +9,6 @@ dunst &
 sh ~/.config/polybar/launch.sh &
 . ~/.fehbg &
 nm-applet &
-volctl &
 optimus-manager-qt &
 discord --start-minimized &
 spotify-tray -m &

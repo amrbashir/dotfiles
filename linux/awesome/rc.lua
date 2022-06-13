@@ -50,7 +50,7 @@ modkey = "Mod4"
 
 -- {{{ Table of layouts to cover with awful.layout.inc, order matters.
 awful.layout.layouts = {
-  awful.layout.suit.tile,
+  awful.layout.suit.tile.right,
   awful.layout.suit.floating,
 }
 -- }}}
@@ -439,3 +439,6 @@ beautiful.hotkeys_description_font = "Cantarell 10"
 
 -- Set gaps between windows/clients
 beautiful.useless_gap = 5
+
+-- start apps
+awful.spawn.with_shell("sh $HOME/dotfiles/linux/init.sh")
