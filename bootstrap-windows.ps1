@@ -71,7 +71,7 @@ Refresh-PATH
 @(
     [PSCustomObject]@{file = "$PWD/windows/powershell.ps1"; targetDir = "$HOME\Documents\PowerShell\"; targetFile = "Microsoft.PowerShell_profile.ps1"; symlink = $TRUE},
     [PSCustomObject]@{file = "$PWD/windows/windows-terminal.json"; targetDir = "$Env:LOCALAPPDATA\Packages\Microsoft.WindowsTerminal_8wekyb3d8bbwe\LocalState\"; targetFile = "settings.json"; symlink = $TRUE},
-    [PSCustomObject]@{file = "$PWD/windows/spicetify.ini"; targetDir = "$HOME\.spicetify\"; targetFile = "config-xpui.ini"; symlink = $TRUE},
+    [PSCustomObject]@{file = "$PWD/windows/spicetify.ini"; targetDir = "$APPDATA\spicetify\"; targetFile = "config-xpui.ini"; symlink = $TRUE},
     [PSCustomObject]@{file = "$PWD/windows/alt-snap.ini"; targetDir = "$Env:APPDATA\AltSnap\"; targetFile = "AltSnap.ini"; symlink = $FALSE}
     [PSCustomObject]@{file = "$PWD/shared/starship.toml"; targetDir = "$HOME\.config\"; targetFile = "starship.toml"; symlink = $TRUE},
     [PSCustomObject]@{file = "$PWD/windows/.gitconfig"; targetDir = "$HOME\"; targetFile = ".gitconfig"; symlink = $TRUE},

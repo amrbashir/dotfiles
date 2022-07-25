@@ -24,7 +24,7 @@ Set-PSReadLineKeyHandler -Key F1 -Function WhatIsKey
 Set-PSReadLineKeyHandler -Key Ctrl+Shift+LeftArrow -Function SelectBackwardWord
 Set-PSReadLineKeyHandler -Key Ctrl+Shift+RightArrow -Function SelectForwardWord
 
-# set environment variables
+# set environment variables (don't forget to also add them in Widnows settings for GUI apps)
 $env:CARGO_TARGET_DIR = "D:\.cargo-target"
 $env:KOMOREBI_CONFIG_HOME = "$HOME\dotfiles\windows"
 
