@@ -23,6 +23,28 @@ Set-PSReadLineKeyHandler -Key Alt+Backspace -Function BackwardKillWord
 Set-PSReadLineKeyHandler -Key F1 -Function WhatIsKey
 Set-PSReadLineKeyHandler -Key Ctrl+Shift+LeftArrow -Function SelectBackwardWord
 Set-PSReadLineKeyHandler -Key Ctrl+Shift+RightArrow -Function SelectForwardWord
+$___escTapCount=0
+Set-PSReadLineKeyHandler -Key Escape -ScriptBlock {
+    ([ref]$___escTapCount).Value++
+    if ($___escTapCount % 2 -eq 0) {
+        ([ref]$___escTapCount).Value=0
+
+        $currentString=$null
+        $currentCPos=$null
+        [Microsoft.PowerShell.PSConsoleReadLine]::GetBufferState([ref] $currentString, [ref] $currentCPos)
+        if ($currentString -like "sudo *") {
+            [Microsoft.PowerShell.PSConsoleReadLine]::Delete(0, 5)
+            [Microsoft.PowerShell.PSConsoleReadLine]::SetCursorPosition($currentCPos - 5)
+        } else {
+            [Microsoft.PowerShell.PSConsoleReadLine]::SetCursorPosition(0)
+            [Microsoft.PowerShell.PSConsoleReadLine]::Insert("sudo ")
+            [Microsoft.PowerShell.PSConsoleReadLine]::SetCursorPosition($currentCPos + 5)
+        }
+    }
+}
+
+
+
 
 # set environment variables (don't forget to also add them in Widnows settings for GUI apps)
 $env:CARGO_TARGET_DIR = "D:\.cargo-target"
