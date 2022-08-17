@@ -55,9 +55,8 @@ Function Refresh-PATH {
     $env:path = [System.Environment]::GetEnvironmentVariable("Path", "Machine") + ";" + [System.Environment]::GetEnvironmentVariable("Path", "User")
 }
 Function Add-PATHEntry {
-    $oldpath = (Get-ItemProperty -Path "Registry::HKEY_CURRENT_USER\Environment" -Name PATH).path
-    $newpath = $oldpath + ";" + $args
-    Set-ItemProperty -Path "Registry::HKEY_CURRENT_USER\Environment" -Name PATH -Value $newPath
+    $newpath = [System.Environment]::GetEnvironmentVariable("Path") + ";" + $args[0]
+    [System.Environment]::SetEnvironmentVariable("Path", $newpath, "User")
 }
 Function Add-EnvVar {
     [System.Environment]::SetEnvironmentVariable($args[0], $args[1], "User")
