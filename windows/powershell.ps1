@@ -129,7 +129,6 @@ Set-Alias grebase Git-rebase
 
 # imports
 Import-Module posh-git -arg 0,0,1
-Import-Module "~\AppData\Local\vcpkg\scripts\posh-vcpkg"
 
 # ------------------
 Invoke-Expression (&starship init powershell)

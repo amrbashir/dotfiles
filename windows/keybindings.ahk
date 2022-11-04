@@ -21,8 +21,6 @@ Return
 ; Media keys
 ; ----------
 
-NumpadAdd:: Volume_Up
-NumpadSub:: Volume_Down
-End:: Media_Prev
-PgUp:: Media_Play_Pause
-PgDn:: Media_Next
+Pause:: Media_Prev
+PrintScreen:: Media_Play_Pause
+Home:: Media_Next
