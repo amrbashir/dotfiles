@@ -4,20 +4,20 @@
     "actions": 
     [
         {
-            "command": 
-            {
-                "action": "copy",
-                "singleLine": false
-            },
-            "keys": "ctrl+c"
+            "command": "find",
+            "keys": "ctrl+shift+f"
         },
         {
             "command": "paste",
             "keys": "ctrl+v"
         },
         {
-            "command": "find",
-            "keys": "ctrl+shift+f"
+            "command": 
+            {
+                "action": "copy",
+                "singleLine": false
+            },
+            "keys": "ctrl+c"
         },
         {
             "command": 
@@ -65,6 +65,23 @@
                 "name": "Command Prompt"
             },
             {
+                "guid": "{61c54bbd-c2c6-5271-96e7-009a87ff44bf}",
+                "hidden": false,
+                "name": "Windows PowerShell"
+            },
+            {
+                "guid": "{b453ae62-4e3d-5e58-b989-0a998ec441b8}",
+                "hidden": true,
+                "name": "Azure Cloud Shell",
+                "source": "Windows.Terminal.Azure"
+            },
+            {
+                "guid": "{699754f1-3313-5a0e-a817-735e6de967c7}",
+                "hidden": true,
+                "name": "Developer Command Prompt for VS 2022",
+                "source": "Windows.Terminal.VisualStudio"
+            },
+			{
                 "commandline": "powershell.exe -NoExit -Command \"&{Import-Module \"\"\"C:\\Program Files\\Microsoft Visual Studio\\2022\\Preview\\Common7\\Tools\\Microsoft.VisualStudio.DevShell.dll\"\"\"; Enter-VsDevShell ce59c7d0 -SkipAutomaticLocation -DevCmdArguments \"\"\"-arch=x64 -host_arch=x64\"\"\"}\"",
                 "guid": "{04574724-5016-428a-8d4f-2f4088b281cb}",
                 "hidden": false,
@@ -72,27 +89,16 @@
                 "name": "Developer PowerShell for VS 2022 [Preview]"
             },
             {
-                "guid": "{61c54bbd-c2c6-5271-96e7-009a87ff44bf}",
-                "hidden": false,
-                "name": "Windows PowerShell"
-            },
-            {
-                "guid": "{b453ae62-4e3d-5e58-b989-0a998ec441b8}",
-                "hidden": false,
-                "name": "Azure Cloud Shell",
-                "source": "Windows.Terminal.Azure"
-            },
-            {
-                "guid": "{699754f1-3313-5a0e-a817-735e6de967c7}",
-                "hidden": false,
-                "name": "Developer Command Prompt for VS 2022",
-                "source": "Windows.Terminal.VisualStudio"
-            },
-            {
                 "guid": "{ec198edf-7e25-5868-b771-f977edbae405}",
                 "hidden": false,
                 "name": "Developer PowerShell for VS 2022",
                 "source": "Windows.Terminal.VisualStudio"
+            },
+            {
+                "guid": "{58ad8b0c-3ef8-5f4d-bc6f-13e4c00f2530}",
+                "hidden": false,
+                "name": "Debian",
+                "source": "Windows.Terminal.Wsl"
             }
         ]
     },

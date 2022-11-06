@@ -62,11 +62,17 @@ Install-Module PSReadLine -Force -SkipPublisherCheck -AllowPrerelease
 Install-Module posh-git -Scope CurrentUser -AllowPrerelease -Force
 Refresh-PATH
 
+# Run post-install scripts
+&"C:\ProgramData\scoop\apps\6zip\current\install-context.reg"
+&"C:\ProgramData\scoop\apps\everything\current\install-context.reg"
+&"C:\ProgramData\scoop\apps\python\current\install-pep-515.reg"
+&"C:\ProgramData\scoop\apps\notepadplusplus\current\install-context.reg"
+
 # Symlink config files
 @(
     [PSCustomObject]@{file = "$PWD/windows/powershell.ps1"; targetDir = "$HOME\Documents\PowerShell\"; targetFile = "Microsoft.PowerShell_profile.ps1"; symlink = $TRUE},
     [PSCustomObject]@{file = "$PWD/windows/windows-terminal.json"; targetDir = "$Env:LOCALAPPDATA\Packages\Microsoft.WindowsTerminal_8wekyb3d8bbwe\LocalState\"; targetFile = "settings.json"; symlink = $TRUE},
-    [PSCustomObject]@{file = "$PWD/windows/spicetify.ini"; targetDir = "$APPDATA\spicetify\"; targetFile = "config-xpui.ini"; symlink = $TRUE},
+    [PSCustomObject]@{file = "$PWD/windows/spicetify.ini"; targetDir = "$Env:APPDATA\spicetify\"; targetFile = "config-xpui.ini"; symlink = $TRUE},
     [PSCustomObject]@{file = "$PWD/windows/alt-snap.ini"; targetDir = "$Env:APPDATA\AltSnap\"; targetFile = "AltSnap.ini"; symlink = $FALSE}
     [PSCustomObject]@{file = "$PWD/shared/starship.toml"; targetDir = "$HOME\.config\"; targetFile = "starship.toml"; symlink = $TRUE},
     [PSCustomObject]@{file = "$PWD/windows/.gitconfig"; targetDir = "$HOME\"; targetFile = ".gitconfig"; symlink = $TRUE},
@@ -82,9 +88,3 @@ Refresh-PATH
         Copy-Item $_.file $target
     }
 }
-
-# Run post-install scripts
-&"C:\ProgramData\scoop\apps\7zip\current\install-context.reg"
-&"C:\ProgramData\scoop\apps\everything\current\install-context.reg"
-&"C:\ProgramData\scoop\apps\python\current\install-pep-514.reg"
-&"C:\ProgramData\scoop\apps\notepadplusplus\current\install-context.reg"
