@@ -25,11 +25,12 @@ autoload -U compinit && compinit
 # Environment variables
 # ---------------------
 export LANG=en_US.UTF-8
+export SHELDON_CONFIG_DIR="$HOME/.sheldon"
 export EDITOR="nvim"
 export MANPAGER="sh -c 'col -bx | bat -l man -p'"
 export CARGO_TARGET_DIR=~/.cache/.cargo-target
 export PNPM_HOME=~/.local/share/pnpm
-export PATH=~/.local/bin:~/.cargo/bin:~/.fnm:$PNPM_HOME:$PATH
+export PATH=~/.local/bin:~/.cargo/bin:~/.local/share/fnm:$PNPM_HOME:$PATH
 
 # -------
 # Aliases
@@ -58,7 +59,8 @@ alias greset="git reset"
 alias gremote="git remote"
 alias grebase="git rebase"
 
-alias mpv480yt="mpv --ytdl-format='bestvideo[height<=?1080][fps<=?30][vcodec!=?vp9]+bestaudio/best'"
+alias start="dolphin"
+
 # -----------------
 eval "$(sheldon source)"
 eval "$(starship init zsh)"
