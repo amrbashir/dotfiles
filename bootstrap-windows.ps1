@@ -31,9 +31,9 @@ Refresh-PATH
 scoop bucket add spotify "https://github.com/TheRandomLabs/Scoop-Spotify.git"
 scoop bucket add nerd-fonts
 scoop bucket add extras
-scoop install zulip sudo uutils-coreutils starship bat ripgrep fd less qbittorrent python everything notepadplusplus pnpm neovim mailspring spicetify-cli autohotkey trafficmonitor instant-eyedropper fnm yarn rustup inkscape
+scoop install zulip sudo uutils-coreutils starship bat ripgrep fd less qbittorrent python everything notepadplusplus pnpm neovim mailspring spicetify-cli autohotkey trafficmonitor instant-eyedropper fnm yarn inkscape
 Refresh-PATH
-iwr "https://github.com/ogham/exa/files/8483243/exa.zip" -o "$HOME/downloads/exa.zip"; 7z e "$HOME/downloads/exa.zip" -o"$HOME\scoop\persist\rustup\.cargo\bin"; Remove-Item "$HOME\downloads\exa.zip" -Force
+iwr "https://github.com/ogham/exa/files/8483243/exa.zip" -o "$HOME/downloads/exa.zip"; 7z e "$HOME/downloads/exa.zip" -o"$HOME\.cargo\bin"; Remove-Item "$HOME\downloads\exa.zip" -Force
 WingetSilentInstall Discord
 WingetSilentInstall VSCode
 WingetSilentInstall Steam
@@ -51,6 +51,7 @@ Refresh-PATH
 # - ueli - I have a custom build
 # - Visual Studio Build Tools
 # - TranslucentTB
+# - Rust
 
 # Install Fonts
 scoop install FiraCode FiraCode-NF
