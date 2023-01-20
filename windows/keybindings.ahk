@@ -17,7 +17,9 @@
 ; Win + Q
 #q::      ; Close active window
 {
-  WinClose "A"
+  try { 
+    WinClose "A"
+  }
 }
 
 ; Media keys
