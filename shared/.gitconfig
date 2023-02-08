@@ -11,5 +11,3 @@
 
 [alias]
     lg = log --color --format='%Cred%h%C(auto)%d %C(auto)%s %Cgreen(%cr) %C(bold blue)<%an>'
-[safe]
-	directory = *
