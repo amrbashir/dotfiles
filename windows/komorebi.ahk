@@ -111,23 +111,23 @@ RunWait "komorebic.exe complete-configuration", , "Hide"
 ; move windows across workspaces
 !+1::
 {
-    Run "komorebic.exe move-to-workspace 0", , "Hide"
+    Run "komorebic.exe send-to-workspace 0", , "Hide"
 }
 !+2::
 {
-    Run "komorebic.exe move-to-workspace 1", , "Hide"
+    Run "komorebic.exe send-to-workspace 1", , "Hide"
 }
 !+3::
 {
-    Run "komorebic.exe move-to-workspace 2", , "Hide"
+    Run "komorebic.exe send-to-workspace 2", , "Hide"
 }
 !+4::
 {
-    Run "komorebic.exe move-to-workspace 3", , "Hide"
+    Run "komorebic.exe send-to-workspace 3", , "Hide"
 }
 !+5::
 {
-    Run "komorebic.exe move-to-workspace 4", , "Hide"
+    Run "komorebic.exe send-to-workspace 4", , "Hide"
 }
 
 ; manipulate windows

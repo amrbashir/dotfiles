@@ -487,7 +487,5 @@ RunWait "komorebic.exe float-rule exe ueli.exe", , "Hide"
 RunWait "komorebic.exe identify-tray-application exe Zulip.exe", , "Hide"
 
 ; Games
-RunWait "komorebic.exe float-rule exe RocketLeague.exe", , "Hide"
 RunWait "komorebic.exe float-rule exe LeagueClient.exe", , "Hide"
 RunWait "komorebic.exe float-rule exe RiotClientUx.exe", , "Hide"
-RunWait "komorebic.exe float-rule exe 'League of Legends.exe'", , "Hide"
