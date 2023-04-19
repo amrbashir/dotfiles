@@ -17,7 +17,7 @@
 ; Win + Q
 #q::      ; Close active window
 {
-  try { 
+  try {
     WinClose "A"
   }
 }
