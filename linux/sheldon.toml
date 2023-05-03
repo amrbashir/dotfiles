@@ -11,3 +11,6 @@ github = "ohmyzsh/ohmyzsh"
 dir = "plugins"
 use = ["{sudo}.plugin.zsh"]
 
+[plugins.zsh-shift-select]
+github = 'jirutka/zsh-shift-select'
+
