@@ -43,11 +43,11 @@
             "colorScheme": "OneDark",
             "font": 
             {
-                "face": "FiraCode NF",
+                "face": "FiraCode Nerd Font",
                 "size": 10
             },
             "opacity": 50,
-            "startingDirectory": "D:\\dev",
+            "startingDirectory": "D:\\amrbashir",
             "useAcrylic": true
         },
         "list": 

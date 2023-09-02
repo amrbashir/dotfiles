@@ -1,5 +1,8 @@
+[includeIf "gitdir:D:/amrbashir/"]
+       path = D:/amrbashir/.amrbashir.gitconfig
+
+[includeIf "gitdir:D:/crabnebula-dev/"]
+        path = D:/crabnebula-dev/.crabnebula-dev.gitconfig
+
 [include]
   path = "~/dotfiles/shared/.gitconfig"
-
-[safe]
-	directory = *

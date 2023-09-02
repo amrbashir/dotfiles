@@ -28,10 +28,9 @@ Add-PATHEntry "C:\Program Files\Git\bin"
 Refresh-PATH
 scoop install 7zip
 Refresh-PATH
-scoop bucket add spotify "https://github.com/TheRandomLabs/Scoop-Spotify.git"
 scoop bucket add nerd-fonts
 scoop bucket add extras
-scoop install zulip sudo uutils-coreutils starship bat ripgrep fd less qbittorrent python everything notepadplusplus pnpm neovim mailspring spicetify-cli autohotkey trafficmonitor-lite instant-eyedropper fnm yarn inkscape
+scoop install zulip sudo uutils-coreutils starship bat ripgrep fd less qbittorrent python everything notepadplusplus pnpm neovim mailspring autohotkey trafficmonitor-lite instant-eyedropper fnm yarn inkscape
 Refresh-PATH
 iwr "https://github.com/ogham/exa/files/8483243/exa.zip" -o "$HOME/downloads/exa.zip"; 7z e "$HOME/downloads/exa.zip" -o"$HOME\.cargo\bin"; Remove-Item "$HOME\downloads\exa.zip" -Force
 WingetSilentInstall Discord
@@ -39,7 +38,7 @@ WingetSilentInstall VSCode
 WingetSilentInstall Steam
 WingetSilentInstall "Windows Terminal"
 WingetSilentInstall AltSnap
-WingetSilentInstall Spotify
+WingetSilentInstall StartAllBack
 Refresh-PATH
 fnm install --lts
 fnm env --use-on-cd | Out-String | Invoke-Expression
@@ -47,7 +46,6 @@ fnm use lts-latest
 Refresh-PATH
 
 ### Remaining apps:
-# - Better discord
 # - ueli - I have a custom build
 # - Visual Studio Build Tools
 # - TranslucentTB
@@ -69,7 +67,7 @@ Refresh-PATH
 &"C:\ProgramData\scoop\apps\python\current\install-pep-515.reg"
 &"C:\ProgramData\scoop\apps\notepadplusplus\current\install-context.reg"
 
-# Symlink config files
+# Symlink or copy config files
 @(
     [PSCustomObject]@{file = "$PWD/windows/powershell.ps1"; targetDir = "$HOME\Documents\PowerShell\"; targetFile = "Microsoft.PowerShell_profile.ps1"; symlink = $TRUE},
     [PSCustomObject]@{file = "$PWD/windows/windows-terminal.json"; targetDir = "$Env:LOCALAPPDATA\Packages\Microsoft.WindowsTerminal_8wekyb3d8bbwe\LocalState\"; targetFile = "settings.json"; symlink = $TRUE},

@@ -1,8 +1,3 @@
-[user]
-	email = amr.bashir2015@gmail.com
-	name = amrbashir
-	signingkey = BBD7A47A2003FF33
-
 [commit]
     gpgsign = true
 
