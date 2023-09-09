@@ -32,7 +32,8 @@ scoop bucket add nerd-fonts
 scoop bucket add extras
 scoop install zulip sudo uutils-coreutils starship bat ripgrep fd less qbittorrent python everything notepadplusplus pnpm neovim mailspring autohotkey trafficmonitor-lite instant-eyedropper fnm yarn inkscape
 Refresh-PATH
-iwr "https://github.com/ogham/exa/files/8483243/exa.zip" -o "$HOME/downloads/exa.zip"; 7z e "$HOME/downloads/exa.zip" -o"$HOME\.cargo\bin"; Remove-Item "$HOME\downloads\exa.zip" -Force
+mkdir "$HOME\bin"
+iwr "https://github.com/eza-community/eza/releases/download/v0.11.0/x86_64-pc-windows-gnu-eza.exe" -o "$HOME\bin\eza.exe"
 WingetSilentInstall Discord
 WingetSilentInstall VSCode
 WingetSilentInstall Steam

@@ -149,7 +149,10 @@
     "isEnabled": true
   },
   "searchEngineOptions": {
-    "blackList": ["*uninstall*", ".*"],
+    "blackList": [
+      "*uninstall*",
+      ".*"
+    ],
     "fuzzyness": "0.5",
     "maxSearchResults": "24"
   },
@@ -165,7 +168,9 @@
         },
         "name": "Ping Google Dns",
         "needsUserConfirmationBeforeExecution": false,
-        "tags": ["Shell"],
+        "tags": [
+          "Shell"
+        ],
         "type": "Commandline tool"
       },
       {
@@ -177,7 +182,9 @@
         },
         "name": "Close Rocket League",
         "needsUserConfirmationBeforeExecution": false,
-        "tags": ["Shell"],
+        "tags": [
+          "Shell"
+        ],
         "type": "Commandline tool"
       },
       {
@@ -189,7 +196,9 @@
         },
         "name": "amr",
         "needsUserConfirmationBeforeExecution": false,
-        "tags": ["Directoy"],
+        "tags": [
+          "Directoy"
+        ],
         "type": "File path"
       }
     ]
@@ -273,11 +282,11 @@
         "description": "Launch Rocket League and Bakkesmod",
         "executionSteps": [
           {
-            "executionArgument": "D:\\Games\\steamapps\\common\\rocketleague\\Binaries\\Win64\\RocketLeague.exe",
+            "executionArgument": "E:\\Games\\steamapps\\common\\rocketleague\\Binaries\\Win64\\RocketLeague.exe",
             "executionArgumentType": "File Path"
           },
           {
-            "executionArgument": "C:\\ProgramData\\Microsoft\\Windows\\Start Menu\\Programs\\BakkesMod.lnk",
+            "executionArgument": "C:\\Program Files\\BakkesMod\\BakkesMod.exe",
             "executionArgumentType": "File Path"
           }
         ],

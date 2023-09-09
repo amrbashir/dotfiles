@@ -65,10 +65,10 @@ Function Add-EnvVar {
 # aliases
 Set-Alias vim nvim
 
-Function __ls { exa --icons $args }
+Function __ls { eza --icons $args }
 Remove-Alias ls
 Set-Alias ls __ls
-Function __ll { exa -lah --icons --git --group-directories-first $args }
+Function __ll { eza -lah --icons --git --group-directories-first $args }
 Set-Alias ll __ll
 
 Function __coreutils_cp { coreutils cp $args }
