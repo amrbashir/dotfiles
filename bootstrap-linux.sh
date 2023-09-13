@@ -10,7 +10,7 @@ declare -a configs=(
     "$PWD/linux/paru.conf" "$HOME/.config/paru/" "paru.conf"
     "$PWD/shared/starship.toml" "$HOME/.config/" "starship.toml"
     "$PWD/linux/.gitconfig" "$HOME/" ".gitconfig"
-    "$PWD/linux/sheldon.toml" "$HOME/.sheldon/" "plugins.toml"
+    "$PWD/linux/sheldon.toml" "$HOME/.config/sheldon/" "plugins.toml"
 )
 for ((i = 0 ; i < ${#configs[*]} ; i+=3)); do
     file="${configs[$i]}"
