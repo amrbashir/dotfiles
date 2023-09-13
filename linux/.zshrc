@@ -30,7 +30,7 @@ export EDITOR="nvim"
 export MANPAGER="sh -c 'col -bx | bat -l man -p'"
 export CARGO_TARGET_DIR=~/.cache/.cargo-target
 export PNPM_HOME=~/.local/share/pnpm
-export PATH=~/.local/bin:~/.cargo/bin:~/.local/share/fnm:~/.spicetify:$PNPM_HOME:$PATH
+export PATH=~/.local/bin:~/.cargo/bin:~/.local/share/fnm:$PNPM_HOME:$PATH
 
 # -------
 # Aliases
