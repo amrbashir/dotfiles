@@ -15,6 +15,7 @@ format = '[$conflicted$stashed$deleted$renamed$modified$staged$untracked$ahead_b
 
 [directory]
 format = "[$path]($style) "
+truncation_length = 60
 truncate_to_repo = false
 
 [username]
