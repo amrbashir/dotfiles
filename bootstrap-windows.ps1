@@ -30,7 +30,7 @@ scoop install 7zip
 Refresh-PATH
 scoop bucket add nerd-fonts
 scoop bucket add extras
-scoop install zulip sudo uutils-coreutils starship bat ripgrep fd less qbittorrent python everything notepadplusplus pnpm neovim mailspring autohotkey trafficmonitor-lite instant-eyedropper fnm yarn inkscape eza
+scoop install zulip sudo uutils-coreutils starship bat ripgrep fd less qbittorrent python everything notepadplusplus pnpm neovim mailspring autohotkey trafficmonitor-lite instant-eyedropper fnm yarn inkscape eza komorebi whkd
 Refresh-PATH
 WingetSilentInstall Discord
 WingetSilentInstall VSCode
@@ -75,6 +75,7 @@ Refresh-PATH
     [PSCustomObject]@{file = "$PWD/windows/.gitconfig"; targetDir = "$HOME\"; targetFile = ".gitconfig"; symlink = $TRUE},
     [PSCustomObject]@{file = "$PWD/windows/traffic-monitor.ini"; targetDir = "$Env:APPDATA\TrafficMonitor\"; targetFile = "config.ini"; symlink = $TRUE}
     [PSCustomObject]@{file = "$PWD/windows/keybindings.ahk"; targetDir = "$Env:APPDATA\Microsoft\Windows\Start Menu\Programs\Startup\"; targetFile = "keybindings.ahk"; symlink = $TRUE}
+    [PSCustomObject]@{file = "$PWD/windows/komorebi/whkdrc"; targetDir = "$HOME\.config\"; targetFile = "whkdrc"; symlink = $TRUE}
 ) | ForEach-Object {
     New-Item -Path $_.targetDir -ItemType Directory -Force
     $target = $_.targetDir + $_.targetFile
