@@ -1,11 +1,5 @@
 #SingleInstance force
 
-; Startup apps
-; ------------
-
-Run "whkd.exe", , "Hide"
-RunWait "komorebic.exe start", , "Hide"
-
 ; Launch apps
 ; -----------
 

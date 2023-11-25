@@ -1295,15 +1295,22 @@
   - kind: Exe
     id: ueli.exe
 - name: LeagueClient
-  float_identifiers:
+  identifier:
     kind: Exe
     id: LeagueClient.exe
     matching_strategy: Equals
-- name: RiotClientUx
   float_identifiers:
+  - kind: Exe
+    id: LeagueClient.exe
+    matching_strategy: Equals
+- name: RiotClientUx
+  identifier:
     kind: Exe
     id: RiotClientUx.exe
     matching_strategy: Equals
+  float_identifiers:
+  - kind: Exe
+    id: RiotClientUx.exe
 - name: Zulip
   identifier:
     kind: Exe
