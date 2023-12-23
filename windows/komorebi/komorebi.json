@@ -7,7 +7,7 @@
   "mouse_follows_focus": false,
   "focus_follows_mouse": "Komorebi",
   "default_container_padding": 2,
-  "default_workspace_padding": 2,
+  "default_workspace_padding": 5,
   "monitors": [
     {
       "workspaces": [

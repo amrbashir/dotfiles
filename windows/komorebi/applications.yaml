@@ -1117,6 +1117,12 @@
   options:
   - border_overflow
   - tray_and_multi_window
+- name: VMware Horizon Client
+  identifier:
+    kind: Exe
+    id: vmware-view.exe
+  options:
+  - tray_and_multi_window
 - name: VRCX
   identifier:
     kind: Exe
@@ -1294,27 +1300,13 @@
   float_identifiers:
   - kind: Exe
     id: ueli.exe
-- name: LeagueClient
+- name: kal
   identifier:
     kind: Exe
-    id: LeagueClient.exe
-    matching_strategy: Equals
-  float_identifiers:
-  - kind: Exe
-    id: LeagueClient.exe
-    matching_strategy: Equals
-- name: RiotClientUx
-  identifier:
-    kind: Exe
-    id: RiotClientUx.exe
-    matching_strategy: Equals
-  float_identifiers:
-  - kind: Exe
-    id: RiotClientUx.exe
-- name: Zulip
-  identifier:
-    kind: Exe
-    id: Zulip.exe
+    id: kal.exe
     matching_strategy: Equals
   options:
   - tray_and_multi_window
+  float_identifiers:
+  - kind: Exe
+    id: kal.exe

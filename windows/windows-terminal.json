@@ -8,6 +8,15 @@
             "keys": "ctrl+shift+f"
         },
         {
+            "command": 
+            {
+                "action": "splitPane",
+                "split": "auto",
+                "splitMode": "duplicate"
+            },
+            "keys": "alt+shift+d"
+        },
+        {
             "command": "paste",
             "keys": "ctrl+v"
         },
@@ -18,15 +27,6 @@
                 "singleLine": false
             },
             "keys": "ctrl+c"
-        },
-        {
-            "command": 
-            {
-                "action": "splitPane",
-                "split": "auto",
-                "splitMode": "duplicate"
-            },
-            "keys": "alt+shift+d"
         }
     ],
     "confirmCloseAllTabs": false,
@@ -36,15 +36,22 @@
     "initialCols": 100,
     "initialRows": 25,
     "multiLinePasteWarning": false,
+    "newTabMenu": 
+    [
+        {
+            "type": "remainingProfiles"
+        }
+    ],
     "profiles": 
     {
         "defaults": 
         {
+            "closeOnExit": "automatic",
             "colorScheme": "OneDark",
             "font": 
             {
                 "face": "FiraCode Nerd Font",
-                "size": 10
+                "size": 10.0
             },
             "opacity": 50,
             "startingDirectory": "D:\\amrbashir",
@@ -54,10 +61,12 @@
         [
             {
                 "commandline": "pwsh.exe -NoLogo",
+                "experimental.retroTerminalEffect": false,
                 "guid": "{574e775e-4f2a-5b96-ac1e-a2962a402336}",
                 "hidden": false,
                 "name": "PowerShell",
-                "source": "Windows.Terminal.PowershellCore"
+                "source": "Windows.Terminal.PowershellCore",
+                "useAcrylic": true
             },
             {
                 "guid": "{0caa0dad-35be-5f56-a8ff-afceeeaa6101}",
@@ -81,7 +90,7 @@
                 "name": "Developer Command Prompt for VS 2022",
                 "source": "Windows.Terminal.VisualStudio"
             },
-		    {
+            {
                 "commandline": "powershell.exe -NoExit -Command \"&{Import-Module \"\"\"C:\\Program Files\\Microsoft Visual Studio\\2022\\Preview\\Common7\\Tools\\Microsoft.VisualStudio.DevShell.dll\"\"\"; Enter-VsDevShell ce59c7d0 -SkipAutomaticLocation -DevCmdArguments \"\"\"-arch=x64 -host_arch=x64\"\"\"}\"",
                 "guid": "{04574724-5016-428a-8d4f-2f4088b281cb}",
                 "hidden": false,
@@ -361,6 +370,7 @@
     "startOnUserLogin": false,
     "tabSwitcherMode": "inOrder",
     "tabWidthMode": "equal",
+    "themes": [],
     "trimBlockSelection": true,
     "useAcrylicInTabRow": true,
     "windowingBehavior": "useExisting"
