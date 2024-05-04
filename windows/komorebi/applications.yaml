@@ -1010,30 +1010,6 @@
   options:
   - border_overflow
   - tray_and_multi_window
-- name: Steam
-  identifier:
-    kind: Class
-    id: vguiPopupWindow
-  options:
-  - border_overflow
-- name: Steam Beta
-  identifier:
-    kind: Class
-    id: SDL_app
-  options:
-  - border_overflow
-  - tray_and_multi_window
-  float_identifiers:
-  - kind: Title
-    id: notificationtoasts_
-    comment: Target notification toast popups
-- name: Stremio
-  identifier:
-    kind: Exe
-    id: stremio.exe
-    matching_strategy: Equals
-  options:
-  - tray_and_multi_window
 - name: System Informer
   identifier:
     kind: Exe
@@ -1310,3 +1286,23 @@
   float_identifiers:
   - kind: Exe
     id: kal.exe
+- name: Steam
+  identifier:
+    kind: Exe
+    id: steam.exe
+    matching_strategy: Equals
+  options:
+  - tray_and_multi_window
+  float_identifiers:
+  - kind: Exe
+    id: steam.exe
+- name: BakkesMod
+  identifier:
+    kind: Exe
+    id: BakkesMod.exe
+    matching_strategy: Equals
+  options:
+  - tray_and_multi_window
+  float_identifiers:
+  - kind: Exe
+    id: BakkesMod.exe
