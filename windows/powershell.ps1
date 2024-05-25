@@ -48,7 +48,7 @@ Set-PSReadLineKeyHandler -Key Escape -ScriptBlock {
 
 # set environment variables (don't forget to also add them in Widnows settings for GUI apps)
 $env:CARGO_TARGET_DIR = "D:\.cargo-target"
-$env:KOMOREBI_CONFIG_HOME = "$HOME\dotfiles\windows\komorebi"
+$env:KOMOREBI_CONFIG_HOME = "$HOME\dotfiles\windows"
 
 # functions
 Function Refresh-PATH {

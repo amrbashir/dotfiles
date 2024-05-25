@@ -32,36 +32,40 @@ Home::Media_Next
 ; Komorebi
 ; --------------
 
+Komorebic(cmd) {
+    RunWait(format("komorebic.exe {}", cmd), , "Hide")
+}
+
 ; Alt + Shift + R
-!+r::Run "komorebic.exe retile",,"Hide"
+!+r::Komorebic("retile")
 
 ; Alt + Shift + Enter
-!+Enter::Run "komorebic.exe promote",,"Hide"
+!+Enter::Komorebic("promote")
 
 ; Alt + T
-!t::Run "komorebic.exe toggle-float",,"Hide"
+!t::Komorebic("toggle-float")
 
 ; Alt + Shift + F
-!+f::Run "komorebic.exe toggle-monocle",,"Hide"
+!+f::Komorebic("toggle-monocle")
 
 ; Alt + [1..9]
-!1::Run "komorebic.exe focus-workspace 0",,"Hide"
-!2::Run "komorebic.exe focus-workspace 1",,"Hide"
-!3::Run "komorebic.exe focus-workspace 2",,"Hide"
-!4::Run "komorebic.exe focus-workspace 3",,"Hide"
-!5::Run "komorebic.exe focus-workspace 4",,"Hide"
-!6::Run "komorebic.exe focus-workspace 5",,"Hide"
-!7::Run "komorebic.exe focus-workspace 6",,"Hide"
-!8::Run "komorebic.exe focus-workspace 7",,"Hide"
-!9::Run "komorebic.exe focus-workspace 8",,"Hide"
+!1::Komorebic("focus-workspace 0")
+!2::Komorebic("focus-workspace 1")
+!3::Komorebic("focus-workspace 2")
+!4::Komorebic("focus-workspace 3")
+!5::Komorebic("focus-workspace 4")
+!6::Komorebic("focus-workspace 5")
+!7::Komorebic("focus-workspace 6")
+!8::Komorebic("focus-workspace 7")
+!9::Komorebic("focus-workspace 8")
 
 ; Alt + Shift + [1..9]
-!+1::Run "komorebic.exe send-to-workspace 0",,"Hide"
-!+2::Run "komorebic.exe send-to-workspace 1",,"Hide"
-!+3::Run "komorebic.exe send-to-workspace 2",,"Hide"
-!+4::Run "komorebic.exe send-to-workspace 3",,"Hide"
-!+5::Run "komorebic.exe send-to-workspace 4",,"Hide"
-!+6::Run "komorebic.exe send-to-workspace 5",,"Hide"
-!+7::Run "komorebic.exe send-to-workspace 6",,"Hide"
-!+8::Run "komorebic.exe send-to-workspace 7",,"Hide"
-!+9::Run "komorebic.exe send-to-workspace 8",,"Hide"
+!+1::Komorebic("send-to-workspace 0")
+!+2::Komorebic("send-to-workspace 1")
+!+3::Komorebic("send-to-workspace 2")
+!+4::Komorebic("send-to-workspace 3")
+!+5::Komorebic("send-to-workspace 4")
+!+6::Komorebic("send-to-workspace 5")
+!+7::Komorebic("send-to-workspace 6")
+!+8::Komorebic("send-to-workspace 7")
+!+9::Komorebic("send-to-workspace 8")

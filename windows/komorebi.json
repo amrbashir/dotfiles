@@ -1,0 +1,21 @@
+{
+  "$schema": "https://raw.githubusercontent.com/LGUG2Z/komorebi/master/schema.json",
+  "window_hiding_behaviour": "Cloak",
+  "cross_monitor_move_behaviour": "Insert",
+  "default_container_padding": 2,
+  "default_workspace_padding": 5,
+  "active_window_border": false,
+  "border_width": 1,
+  "border_offset": -1,
+  "monitors": [
+    {
+      "workspaces": [
+        { "name": "I", "layout": "VerticalStack" },
+        { "name": "II", "layout": "VerticalStack" },
+        { "name": "III", "layout": "VerticalStack" },
+        { "name": "IV", "layout": "VerticalStack" },
+        { "name": "V", "layout": "VerticalStack" }
+      ]
+    }
+  ]
+}
