@@ -1,5 +1,6 @@
 {
   "$schema": "https://raw.githubusercontent.com/LGUG2Z/komorebi/master/schema.json",
+  "app_specific_configuration_path": "C:\\Users\\amr\\scoop\\persist\\komorebi\\komorebi-applications.yml",
   "window_hiding_behaviour": "Cloak",
   "cross_monitor_move_behaviour": "Insert",
   "default_container_padding": 2,
@@ -15,14 +16,19 @@
         { "name": "II", "layout": "VerticalStack" },
         { "name": "III", "layout": "VerticalStack" },
         { "name": "IV", "layout": "VerticalStack" },
-        { "name": "V", "layout": "VerticalStack" }
+        { "name": "V", "layout": "VerticalStack" },
+        { "name": "VI", "layout": "VerticalStack" },
+        { "name": "VII", "layout": "VerticalStack" },
+        { "name": "VIII", "layout": "VerticalStack" },
+        { "name": "IX", "layout": "VerticalStack" },
+        { "name": "X", "layout": "VerticalStack" }
       ]
     }
   ],
   "float_rules": [
     {
-      "id": "Snipping Tool Overlay",
-      "kind": "Title",
+      "id": "KalWindowClass",
+      "kind": "Class",
       "matching_strategy": "Equals"
     }
   ]

@@ -132,4 +132,4 @@ Import-Module posh-git -arg 0,0,1
 
 # ------------------
 Invoke-Expression (&starship init powershell)
-fnm env --use-on-cd | Out-String | Invoke-Expression
+fnm env --use-on-cd --shell power-shell | Out-String | Invoke-Expression

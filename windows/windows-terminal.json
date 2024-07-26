@@ -48,6 +48,7 @@
         {
             "closeOnExit": "automatic",
             "colorScheme": "OneDark",
+            "experimental.retroTerminalEffect": false,
             "font": 
             {
                 "face": "FiraCode Nerd Font",
@@ -370,6 +371,7 @@
     "startOnUserLogin": false,
     "tabSwitcherMode": "inOrder",
     "tabWidthMode": "equal",
+    "theme": "system",
     "themes": [],
     "trimBlockSelection": true,
     "useAcrylicInTabRow": true,
