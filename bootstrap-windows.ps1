@@ -19,28 +19,27 @@ Function WingetSilentInstall {
 }
 
 # Remove execution restrictions
-Set-ExecutionPolicy Bypass -Scope CurrentUser
+Set-ExecutionPolicy RemoteSigned -Scope CurrentUser
 
 # Install apps
 iwr -useb get.scoop.sh | iex
-WingetSilentInstall git
+WingetSilentInstall --id Git.Git
 Add-PATHEntry "C:\Program Files\Git\bin"
 Refresh-PATH
 scoop install 7zip
 Refresh-PATH
 scoop bucket add nerd-fonts
 scoop bucket add extras
-scoop install zulip sudo uutils-coreutils starship bat ripgrep fd less qbittorrent python everything notepadplusplus pnpm neovim mailspring autohotkey trafficmonitor-lite instant-eyedropper fnm yarn inkscape eza komorebi
+scoop install sudo uutils-coreutils starship bat ripgrep fd less qbittorrent python everything everything-cli notepadplusplus neovim mailspring zulip autohotkey trafficmonitor-lite instant-eyedropper fnm eza komorebi
 Refresh-PATH
 WingetSilentInstall Discord
 WingetSilentInstall VSCode
 WingetSilentInstall Steam
-WingetSilentInstall "Windows Terminal"
 WingetSilentInstall AltSnap
 WingetSilentInstall StartAllBack
 Refresh-PATH
 fnm install --lts
-fnm env --use-on-cd | Out-String | Invoke-Expression
+fnm env --use-on-cd --shell power-shell | Out-String | Invoke-Expression
 fnm use lts-latest
 Refresh-PATH
 
@@ -61,9 +60,8 @@ Install-Module posh-git -Scope CurrentUser -AllowPrerelease -Force
 Refresh-PATH
 
 # Run post-install scripts
-&"C:\ProgramData\scoop\apps\6zip\current\install-context.reg"
-&"C:\ProgramData\scoop\apps\everything\current\install-context.reg"
-&"C:\ProgramData\scoop\apps\python\current\install-pep-515.reg"
+&"C:\ProgramData\scoop\apps\7zip\current\install-context.reg"
+&"C:\ProgramData\scoop\apps\python\current\install-pep-514.reg"
 &"C:\ProgramData\scoop\apps\notepadplusplus\current\install-context.reg"
 
 # Symlink or copy config files
