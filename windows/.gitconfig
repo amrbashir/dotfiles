@@ -1,6 +1,9 @@
 [includeIf "gitdir:D:/amrbashir/"]
        path = D:/amrbashir/.amrbashir.gitconfig
 
+[includeIf "gitdir:C:/Users/amr/dotfiles/"]
+       path = D:/amrbashir/.amrbashir.gitconfig
+
 [includeIf "gitdir:D:/crabnebula-dev/"]
        path = D:/crabnebula-dev/.crabnebula-dev.gitconfig
 

@@ -30,7 +30,7 @@ scoop install 7zip
 Refresh-PATH
 scoop bucket add nerd-fonts
 scoop bucket add extras
-scoop install sudo uutils-coreutils starship bat ripgrep fd less qbittorrent python everything everything-cli notepadplusplus neovim mailspring zulip autohotkey trafficmonitor-lite instant-eyedropper fnm eza komorebi
+scoop install sudo uutils-coreutils starship bat ripgrep fd less qbittorrent python everything everything-cli notepadplusplus neovim mailspring zulip autohotkey trafficmonitor-lite instant-eyedropper fnm eza komorebi ds4windows
 Refresh-PATH
 WingetSilentInstall Discord
 WingetSilentInstall VSCode

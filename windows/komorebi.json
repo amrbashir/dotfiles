@@ -30,6 +30,16 @@
       "id": "KalWindowClass",
       "kind": "Class",
       "matching_strategy": "Equals"
+    },
+    {
+      "id": "Arc extension popup",
+      "kind": "Title",
+      "matching_strategy": "Equals"
+    },
+    {
+      "id": "Arc picture in picture",
+      "kind": "Title",
+      "matching_strategy": "Equals"
     }
   ]
 }
