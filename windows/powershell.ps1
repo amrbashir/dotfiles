@@ -61,6 +61,17 @@ Function Add-PATHEntry {
 Function Add-EnvVar {
     [System.Environment]::SetEnvironmentVariable($args[0], $args[1], "User")
 }
+Function Load-DotEnv {
+    Get-Content .env | ForEach {
+        $nameValue, $comment = $_.split('#')
+        if (![string]::IsNullOrWhiteSpace($nameValue)) {
+            $name, $value = $nameValue.split('=')
+            if (![string]::IsNullOrWhiteSpace($name)) {
+                Set-Item -Path Env:\$($name) -Value $value
+            }
+        }
+    }
+}
 
 # aliases
 Set-Alias vim nvim

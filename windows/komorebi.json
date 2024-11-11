@@ -1,6 +1,6 @@
 {
   "$schema": "https://raw.githubusercontent.com/LGUG2Z/komorebi/master/schema.json",
-  "app_specific_configuration_path": "C:\\Users\\amr\\scoop\\persist\\komorebi\\komorebi-applications.yml",
+  "app_specific_configuration_path": "C:\\Users\\amr\\scoop\\persist\\komorebi\\applications.json",
   "window_hiding_behaviour": "Cloak",
   "cross_monitor_move_behaviour": "Insert",
   "default_container_padding": 2,
@@ -23,6 +23,13 @@
         { "name": "IX", "layout": "VerticalStack" },
         { "name": "X", "layout": "VerticalStack" }
       ]
+    }
+  ],
+  "tray_and_multi_window_applications": [
+    {
+      "id": "Zulip.exe",
+      "kind": "Exe",
+      "matching_strategy": "Equals"
     }
   ],
   "float_rules": [

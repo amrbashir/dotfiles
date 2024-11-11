@@ -15,7 +15,8 @@
 ; --------------
 
 ; Close active window
-#q:: ; Win + Q     
+; Win + Q     
+#q::
 {
   try {
     WinClose "A"
@@ -25,9 +26,9 @@
 ; Media keys
 ; ----------
 
-Pause::Media_Prev
-PrintScreen::Media_Play_Pause
-Home::Media_Next
+Pause::Media_Next
+Scrolllock::Media_Play_Pause
+PrintScreen::Media_Prev
 
 ; Komorebi
 ; --------------
