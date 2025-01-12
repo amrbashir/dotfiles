@@ -1,9 +1,6 @@
 [includeIf "gitdir:/mnt/d/amrbashir"]
        path = /mnt/d/amrbashir/.amrbashir.gitconfig
 
-[includeIf "gitdir:/mnt/d/crabnebula-dev/"]
-        path = /mnt/d/crabnebula-dev/.crabnebula-dev.gitconfig
-
 [include]
   path = "~/dotfiles/shared/.gitconfig"
 

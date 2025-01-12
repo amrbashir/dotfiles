@@ -6,3 +6,8 @@
 
 [alias]
     lg = log --color --format='%Cred%h%C(auto)%d %C(auto)%s %Cgreen(%cr) %C(bold blue)<%an>'
+
+[user]
+	email = github@amrbashir.me
+	name = amrbashir
+	signingkey = BBD7A47A2003FF33
