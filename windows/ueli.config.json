@@ -18,11 +18,9 @@
   "applicationSearchOptions": {
     "applicationFileExtensions": [
       ".lnk",
-      ".appref-ms",
       ".exe",
       ".cmd",
-      ".bat",
-      ".py"
+      ".bat"
     ],
     "applicationFolders": [
       "C:\\ProgramData\\Microsoft\\Windows\\Start Menu\\Programs",
@@ -47,16 +45,16 @@
   "colorConverterOptions": {
     "hexEnabled": true,
     "hslEnabled": false,
-    "isEnabled": true,
+    "isEnabled": false,
     "rgbEnabled": true,
     "rgbaEnabled": true,
     "showColorPreview": true
   },
   "colorThemeOptions": {
     "name": "Dark",
-    "userInputBackgroundColor": "rgba(0, 0, 0, 0.7)",
+    "userInputBackgroundColor": "#0000009C",
     "userInputTextColor": "#fff",
-    "searchResultsBackgroundColor": "rgba(0, 0, 0, 0.7)",
+    "searchResultsBackgroundColor": "#0000009C",
     "searchResultsItemActiveBackgroundColor": "rgba(46,139,230,0.7)",
     "searchResultsItemActiveDescriptionColor": "rgba(234,234,234,1)",
     "searchResultsItemActiveTextColor": "rgba(255,255,255,1)",
@@ -68,7 +66,7 @@
   "commandlineOptions": {
     "isEnabled": true,
     "prefix": ">",
-    "shell": "Powershell in Windows Terminal",
+    "shell": "PowerShell Core",
     "closeAfterExecution": true
   },
   "controlPanelOptions": {
@@ -80,7 +78,7 @@
   },
   "dictionaryOptions": {
     "debounceDelay": "250",
-    "isEnabled": true,
+    "isEnabled": false,
     "minSearchTermLength": 3,
     "prefix": "d "
   },
@@ -90,7 +88,7 @@
   "everythingSearchOptions": {
     "enabled": true,
     "maxSearchResults": 24,
-    "pathToEs": "C:\\Users\\amr\\scoop\\persist\\everything\\es.exe",
+    "pathToEs": "C:\\Users\\amr\\scoop\\apps\\everything-cli\\current\\es.exe",
     "prefix": " "
   },
   "fileBrowserOptions": {
@@ -239,13 +237,13 @@
   },
   "urlOptions": {
     "defaultProtocol": "https",
-    "isEnabled": true
+    "isEnabled": false
   },
   "uwpSearchOptions": {
     "isEnabled": true
   },
   "websearchOptions": {
-    "isEnabled": true,
+    "isEnabled": false,
     "webSearchEngines": [
       {
         "encodeSearchTerm": true,
