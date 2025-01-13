@@ -38,8 +38,9 @@ scoop install FiraCode FiraCode-NF
 WingetSilentInstall Discord
 WingetSilentInstall VSCode
 WingetSilentInstall Steam
+WingetSilentInstall 1password
 WingetSilentInstall TranslucentTB
-WingetSilentInstall --id Microsoft.Powershell
+WingetSilentInstall Powershell
 Refresh-PATH
 
 # Run post-install scripts
