@@ -6,7 +6,7 @@
   "default_container_padding": 2,
   "default_workspace_padding": 5,
   "mouse_follows_focus": false,
-  "active_window_border": false,
+  "border": false,
   "border_width": 1,
   "border_offset": -1,
   "monitors": [
@@ -25,14 +25,7 @@
       ]
     }
   ],
-  "tray_and_multi_window_applications": [
-    {
-      "id": "Zulip.exe",
-      "kind": "Exe",
-      "matching_strategy": "Equals"
-    }
-  ],
-  "float_rules": [
+  "ignore_rules": [
     {
       "id": "KalWindowClass",
       "kind": "Class",
