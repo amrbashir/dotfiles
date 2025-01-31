@@ -1,0 +1,20 @@
+#:schema https://raw.githubusercontent.com/amrbashir/kal/refs/heads/master/kal-config-schema-generator/kal-config.schema.json
+
+[general]
+hotkey = "Alt+Space"
+
+[plugins.DirectoryIndexer]
+paths = ["D:\\", "E:\\"]
+
+[[plugins.Workflows.workflows]]
+name = "Launch RocketLeague and BakkesMod"
+steps = [
+    { path = "E:\\Games\\steamapps\\common\\rocketleague\\Binaries\\Win64\\RocketLeague.exe" },
+    { path = "E:\\Games\\steamapps\\common\\rocketleague\\BakkesMod\\BakkesMod.exe" },
+]
+
+[[plugins.Workflows.workflows]]
+name = "Close RocketLeague and BakkesMod"
+steps = [
+    { script = "spps -n rocketleague && spps -n bakkesmod", hidden = true },
+]

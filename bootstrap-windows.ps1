@@ -66,6 +66,7 @@ pwsh -Command "Install-Module posh-git -Scope CurrentUser -AllowPrerelease -Forc
 
 # Symlink or copy config files
 @(
+    @{file = "$PWD/windows/kal.toml"; targetDir = "$HOME\.config\"; targetFile = "kal.toml"; symlink = $TRUE},
     @{file = "$PWD/windows/powershell.ps1"; targetDir = "$HOME\Documents\PowerShell\"; targetFile = "Microsoft.PowerShell_profile.ps1"; symlink = $TRUE},
     @{file = "$PWD/windows/windows-terminal.json"; targetDir = "$Env:LOCALAPPDATA\Packages\Microsoft.WindowsTerminal_8wekyb3d8bbwe\LocalState\"; targetFile = "settings.json"; symlink = $TRUE},
     @{file = "$PWD/windows/alt-snap.ini"; targetDir = "$Env:APPDATA\AltSnap\"; targetFile = "AltSnap.ini"; symlink = $FALSE}
