@@ -1,2 +1,5 @@
 [include]
   path = "~/dotfiles/shared/.gitconfig"
+
+[gpg "ssh"]
+  program = "C:/Users/amr/AppData/Local/1Password/app/8/op-ssh-sign.exe"

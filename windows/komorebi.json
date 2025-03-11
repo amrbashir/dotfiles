@@ -1,6 +1,6 @@
 {
   "$schema": "https://raw.githubusercontent.com/LGUG2Z/komorebi/master/schema.json",
-  "app_specific_configuration_path": "C:\\Users\\amr\\scoop\\persist\\komorebi\\applications.json",
+  "app_specific_configuration_path": "C:/Users/amr/dotfiles/windows/applications.json",
   "window_hiding_behaviour": "Cloak",
   "cross_monitor_move_behaviour": "Insert",
   "default_container_padding": 2,
@@ -12,16 +12,16 @@
   "monitors": [
     {
       "workspaces": [
-        { "name": "I", "layout": "VerticalStack" },
-        { "name": "II", "layout": "VerticalStack" },
-        { "name": "III", "layout": "VerticalStack" },
-        { "name": "IV", "layout": "VerticalStack" },
-        { "name": "V", "layout": "VerticalStack" },
-        { "name": "VI", "layout": "VerticalStack" },
-        { "name": "VII", "layout": "VerticalStack" },
-        { "name": "VIII", "layout": "VerticalStack" },
-        { "name": "IX", "layout": "VerticalStack" },
-        { "name": "X", "layout": "VerticalStack" }
+        { "name": "1", "layout": "VerticalStack" },
+        { "name": "2", "layout": "VerticalStack" },
+        { "name": "3", "layout": "VerticalStack" },
+        { "name": "4", "layout": "VerticalStack" },
+        { "name": "5", "layout": "VerticalStack" },
+        { "name": "6", "layout": "VerticalStack" },
+        { "name": "7", "layout": "VerticalStack" },
+        { "name": "8", "layout": "VerticalStack" },
+        { "name": "9", "layout": "VerticalStack" },
+        { "name": "10", "layout": "VerticalStack" }
       ]
     }
   ],
