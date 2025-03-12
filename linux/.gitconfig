@@ -1,6 +1,5 @@
 [include]
   path = "~/dotfiles/shared/.gitconfig"
 
-[credential]
-	helper = /usr/bin/git-credential-manager
-	credentialStore = secretservice
+[gpg "ssh"]
+  program = "/opt/1Password/op-ssh-sign"
