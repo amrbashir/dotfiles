@@ -14,9 +14,25 @@
 
 [rerere]
 	enabled = true
+    autoUpdate = true
+
+[column]
+    ui = auto
 
 [branch]
     sort = -committerdate
+
+[diff]
+    algorithm = histogram
+    colorMoved = plain
+
+[push]
+    default = simple
+    autoSetupRemote = true
+
+[fetch]
+    prune = true
+    all = true
 
 [alias]
     lg = log --color --format='%Cred%h%C(auto)%d %C(auto)%s %Cgreen(%cr) %C(bold blue)<%an>'
