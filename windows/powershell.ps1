@@ -105,7 +105,7 @@ Set-Alias wc __coreutils_wc
 Function Git-checkout { git checkout $args }
 Remove-Alias gc -Force
 Set-Alias gc Git-checkout
-Function Git-status { git status $args }
+Function Git-status { git st $args }
 Set-Alias gs Git-status
 Function Git-diff { git diff $args }
 Set-Alias gd Git-diff
