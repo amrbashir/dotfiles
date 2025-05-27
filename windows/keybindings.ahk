@@ -26,9 +26,9 @@
 ; Media keys
 ; ----------
 
-Home::Media_Next
-PrintScreen::Media_Play_Pause
-Pause::Media_Prev
+PrintScreen::Media_Prev
+ScrollLock::Media_Play_Pause
+Pause::Media_Next
 
 ; Komorebi
 ; --------------

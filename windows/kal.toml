@@ -6,6 +6,15 @@ hotkey = "Alt+Space"
 [plugins.DirectoryIndexer]
 paths = ["D:\\", "E:\\"]
 
+[plugins.AppLauncher]
+paths = [
+    "%USERPROFILE%\\Desktop",
+    "%PUBLIC%\\Desktop",
+    "%APPDATA%\\Microsoft\\Windows\\Start Menu\\Programs",
+    "%PROGRAMDATA%\\Microsoft\\Windows\\Start Menu\\Programs",
+    "E:\\Games",
+]
+
 [[plugins.Workflows.workflows]]
 name = "Launch RocketLeague and BakkesMod"
 steps = [

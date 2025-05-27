@@ -7,8 +7,6 @@
   "default_workspace_padding": 5,
   "mouse_follows_focus": false,
   "border": false,
-  "border_width": 1,
-  "border_offset": -1,
   "monitors": [
     {
       "workspaces": [
