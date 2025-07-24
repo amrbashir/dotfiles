@@ -24,6 +24,4 @@ steps = [
 
 [[plugins.Workflows.workflows]]
 name = "Close RocketLeague and BakkesMod"
-steps = [
-    { script = "spps -n rocketleague && spps -n bakkesmod", hidden = true },
-]
+steps = [{ script = "spps -n RocketLeague; spps -n BakkesMod", hidden = true }]

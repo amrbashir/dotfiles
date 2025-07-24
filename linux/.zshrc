@@ -33,7 +33,6 @@ export PATH=~/.local/bin:~/.cargo/bin:~/.local/share/fnm:$PATH
 # -------
 # Aliases
 # -------
-alias cls="clear"
 alias pacman="sudo pacman"
 alias vim="nvim"
 
