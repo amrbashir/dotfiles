@@ -144,9 +144,4 @@ Import-Module posh-git -arg 0,0,1
 # ------------------
 Invoke-Expression (&starship init powershell)
 fnm env --use-on-cd --shell power-shell | Out-String | Invoke-Expression
-Invoke-Expression (& { (zoxide init powershell | Out-String) })
-
-
-# set up cd as an alias for zoxide
-Remove-Alias cd -Force
-Set-Alias cd z
+Invoke-Expression (& { (zoxide init powershell --cmd cd | Out-String) })
