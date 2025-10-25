@@ -34,12 +34,12 @@ scoop install 7zip uutils-coreutils starship bat ripgrep fd neovim eza zoxide fz
 scoop install python fnm
 sudo scoop install windowsdesktop-runtime-lts
 scoop install qbittorrent everything everything-cli instant-eyedropper mailspring ds4windows
-scoop install komorebi autohotkey trafficmonitor-lite altsnap micaforeveryone windhawk
+scoop install komorebi autohotkey trafficmonitor-lite altsnap windhawk
 scoop install FiraCode FiraCode-NF
 WingetSilentInstall Discord
 WingetSilentInstall VSCode
 WingetSilentInstall Steam
-WingetSilentInstall 1password
+WingetSilentInstall Bitwarden
 WingetSilentInstall TranslucentTB
 WingetSilentInstall Powershell
 Refresh-PATH
