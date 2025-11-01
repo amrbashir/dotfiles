@@ -1,5 +1,2 @@
 [include]
   path = "~/dotfiles/shared/.gitconfig"
-
-[gpg "ssh"]
-  program = "/opt/1Password/op-ssh-sign"
