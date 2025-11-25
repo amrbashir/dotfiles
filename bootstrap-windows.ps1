@@ -16,7 +16,16 @@ Function WingetSilentInstall {
 Function InstallMyApp {
     $appName = $args[0]
     irm "https://github.com/amrbashir/$appName/releases/latest/download/$appName-setup.exe" -OutFile "$appName-setup.exe"
-    & "./$appName-setup.exe"
+    & "./$appName-setup.exe" /S
+    # loop until the installer is done
+    while ($True) {
+        Remove-Item "./$appName-setup.exe" -ErrorAction SilentlyContinue
+        # if successfully removed, exit loop
+        if (!(Test-Path "./$appName-setup.exe")) {
+            break
+        }
+        Start-Sleep -Seconds 1
+    }
 }
 
 #################
