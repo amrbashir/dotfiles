@@ -29,7 +29,6 @@
             "id": "User.copy.644BA8F2"
         }
     ],
-    "confirmCloseAllTabs": false,
     "copyFormatting": "none",
     "copyOnSelect": false,
     "defaultProfile": "{574e775e-4f2a-5b96-ac1e-a2962a402336}",
@@ -54,7 +53,6 @@
             "keys": "ctrl+c"
         }
     ],
-    "multiLinePasteWarning": false,
     "newTabMenu": 
     [
         {
@@ -99,6 +97,18 @@
                 "hidden": false,
                 "name": "Debian",
                 "source": "Windows.Terminal.Wsl"
+            },
+            {
+                "guid": "{75d3a36c-844d-5dde-91d0-d6b6e46d6c0c}",
+                "hidden": false,
+                "name": "Developer Command Prompt for VS 2022",
+                "source": "Windows.Terminal.VisualStudio"
+            },
+            {
+                "guid": "{912455d1-9be7-5202-8f00-370d96d5195b}",
+                "hidden": false,
+                "name": "Developer PowerShell for VS 2022",
+                "source": "Windows.Terminal.VisualStudio"
             }
         ]
     },
@@ -151,12 +161,13 @@
             "yellow": "#D19A66"
         }
     ],
-    "startOnUserLogin": false,
     "tabSwitcherMode": "inOrder",
     "tabWidthMode": "equal",
     "theme": "system",
     "themes": [],
     "trimBlockSelection": true,
     "useAcrylicInTabRow": true,
+    "warning.confirmCloseAllTabs": false,
+    "warning.multiLinePaste": false,
     "windowingBehavior": "useExisting"
 }
