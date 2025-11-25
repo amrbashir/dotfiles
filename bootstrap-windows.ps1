@@ -25,9 +25,8 @@ Refresh-PATH
 # Install Scoop
 iwr -useb get.scoop.sh | iex
 Refresh-PATH
-scoop bucket add nerd-fonts
 scoop bucket add extras
-scoop bucket add versions
+scoop bucket add nerd-fonts
 
 # Install apps
 scoop install 7zip winrar uutils-coreutils starship bat ripgrep fd neovim eza zoxide fzf
