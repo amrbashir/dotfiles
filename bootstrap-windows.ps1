@@ -64,17 +64,16 @@ pwsh -Command "Install-Module -Name PowerShellGet -Force"
 pwsh -Command "Install-Module PSReadLine -Force -SkipPublisherCheck -AllowPrerelease"
 pwsh -Command "Install-Module posh-git -Scope CurrentUser -AllowPrerelease -Force"
 
-# Symlink or copy config files
+# Symlink config files
 @(
-    @{file = "$PWD/windows/kal.toml"; targetDir = "$HOME\.config\"; targetFile = "kal.toml"; symlink = $TRUE},
-    @{file = "$PWD/windows/powershell.ps1"; targetDir = "$HOME\Documents\PowerShell\"; targetFile = "Microsoft.PowerShell_profile.ps1"; symlink = $TRUE},
-    @{file = "$PWD/windows/windows-terminal.json"; targetDir = "$Env:LOCALAPPDATA\Packages\Microsoft.WindowsTerminal_8wekyb3d8bbwe\LocalState\"; targetFile = "settings.json"; symlink = $TRUE},
-    @{file = "$PWD/windows/alt-snap.ini"; targetDir = "$HOME\scoop\apps\AltSnap\current"; targetFile = "AltSnap.ini"; symlink = $TRUE}
-    @{file = "$PWD/shared/starship.toml"; targetDir = "$HOME\.config\"; targetFile = "starship.toml"; symlink = $TRUE},
-    @{file = "$PWD/windows/MicaForEveryone.conf"; targetDir = "$Env:LOCALAPPDATA\Mica For Everyone\"; targetFile = "MicaForEveryone.conf"; symlink = $TRUE},
-    @{file = "$PWD/windows/.gitconfig"; targetDir = "$HOME\"; targetFile = ".gitconfig"; symlink = $TRUE},
-    @{file = "$PWD/windows/traffic-monitor.ini"; targetDir = "$Env:APPDATA\TrafficMonitor\"; targetFile = "config.ini"; symlink = $TRUE}
-    @{file = "$PWD/windows/keybindings.ahk"; targetDir = "$Env:APPDATA\Microsoft\Windows\Start Menu\Programs\Startup\"; targetFile = "keybindings.ahk"; symlink = $TRUE}
+    @{file = "$PWD/windows/kal.toml"; targetDir = "$HOME\.config\"; targetFile = "kal.toml"},
+    @{file = "$PWD/windows/powershell.ps1"; targetDir = "$HOME\Documents\PowerShell\"; targetFile = "Microsoft.PowerShell_profile.ps1"},
+    @{file = "$PWD/windows/windows-terminal.json"; targetDir = "$Env:LOCALAPPDATA\Packages\Microsoft.WindowsTerminal_8wekyb3d8bbwe\LocalState\"; targetFile = "settings.json"},
+    @{file = "$PWD/windows/alt-snap.ini"; targetDir = "$HOME\scoop\apps\AltSnap\current"; targetFile = "AltSnap.ini"}
+    @{file = "$PWD/shared/starship.toml"; targetDir = "$HOME\.config\"; targetFile = "starship.toml"},
+    @{file = "$PWD/windows/.gitconfig"; targetDir = "$HOME\"; targetFile = ".gitconfig"},
+    @{file = "$PWD/windows/traffic-monitor.ini"; targetDir = "$Env:APPDATA\TrafficMonitor\"; targetFile = "config.ini"}
+    @{file = "$PWD/windows/keybindings.ahk"; targetDir = "$Env:APPDATA\Microsoft\Windows\Start Menu\Programs\Startup\"; targetFile = "keybindings.ahk"}
 ) | ForEach-Object {
     New-Item -Path $_.targetDir -ItemType Directory -Force
     $target = $_.targetDir + $_.targetFile
@@ -83,9 +82,5 @@ pwsh -Command "Install-Module posh-git -Scope CurrentUser -AllowPrerelease -Forc
       Remove-Item -Path $target  -Force
     } 
 
-    if ($_.symlink -eq $TRUE) {
-        New-Item -ItemType SymbolicLink -Target $_.file -Path $target
-    } else {
-        Copy-Item $_.file $target
-    }
+    New-Item -ItemType SymbolicLink -Target $_.file -Path $target
 }
