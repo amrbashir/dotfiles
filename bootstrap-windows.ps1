@@ -15,17 +15,17 @@ Function WingetSilentInstall {
 
 Function InstallMyApp {
     $appName = $args[0]
-    irm "https://github.com/amrbashir/$appName/releases/latest/download/$appName-setup.exe" -OutFile "$appName-setup.exe"
-    & "./$appName-setup.exe" /S
-    # loop until the installer is done
-    while ($True) {
-        Remove-Item "./$appName-setup.exe" -ErrorAction SilentlyContinue
-        # if successfully removed, exit loop
-        if (!(Test-Path "./$appName-setup.exe")) {
-            break
-        }
-        Start-Sleep -Seconds 1
-    }
+    Write-Output "Installing $appName..."
+    irm "https://github.com/amrbashir/$appName/releases/latest/download/$appName-setup.exe" -OutFile "$Env:TEMP/$appName-setup.exe"
+    &"$Env:TEMP/$appName-setup.exe" /S
+}
+
+Function AddAppToStartup {
+    $appName = $args[0]
+    $appExePath = $args[1]
+    $args = $args[2]
+    $args = if ($args -eq $null) {""} else {" $args"}
+    New-ItemProperty -Path "HKCU:\Software\Microsoft\Windows\CurrentVersion\Run" -Name $appName -Value "`"$appExePath`"$args"
 }
 
 #################
@@ -47,31 +47,38 @@ Refresh-PATH
 scoop bucket add extras
 scoop bucket add nerd-fonts
 
-# Install apps
+# Install scoop apps
 scoop install 7zip winrar
 scoop install uutils-coreutils starship bat ripgrep fd neovim eza zoxide fzf
 scoop install python fnm gh cmake ninja deno nsis taplo
-scoop install bitwarden bitwarden-cli yubioath
+scoop install bitwarden-cli yubioath
 scoop install g-helper qbittorrent everything everything-cli instant-eyedropper mailspring ds4windows inkscape
 scoop install komorebi autohotkey trafficmonitor-lite altsnap windhawk translucenttb
 scoop install FiraCode FiraCode-NF
 sudo scoop install windowsdesktop-runtime-lts
+
 InstallMyApp kal
 InstallMyApp komorebi-switcher
-WingetSilentInstall "Zen Browser"
-WingetSilentInstall Screenbox
-WingetSilentInstall Discord
-WingetSilentInstall VSCode
-WingetSilentInstall Steam
-WingetSilentInstall HidHide
-WingetSilentInstall Powershell
-WingetSilentInstall Google.AndroidStudio
-WingetSilentInstall Docker
+ 
+WingetSilentInstall --id Bitwarden.Bitwarden
+WingetSilentInstall --id Zen-Team.Zen-Browser
+WingetSilentInstall --id Starpine.Screenbox
+WingetSilentInstall --id Discord.Discord
+WingetSilentInstall --id Microsoft.VisualStudioCode
+WingetSilentInstall --id Valve.Steam
+WingetSilentInstall --id Nefarius.HidHide
+WingetSilentInstall --id Microsoft.PowerShell
+WingetSilentInstall --id Google.AndroidStudio
+WingetSilentInstall --id Docker.DockerDesktop
 
 Refresh-PATH
 
+# Install WSL
+wsl --update
+wsl --install debian --no-launch
+
 # Install Rust
-irm -Uri https://win.rustup.rs/x86_64 -Out $Env:TEMP/rustup-init.exe
+irm -Uri https://win.rustup.rs/x86_64 -Out "$Env:TEMP/rustup-init.exe"
 &"$Env:TEMP/rustup-init.exe"
 
 Refresh-PATH
@@ -88,23 +95,36 @@ pwsh -Command "Install-Module -Name PowerShellGet -Force"
 pwsh -Command "Install-Module PSReadLine -Force -SkipPublisherCheck -AllowPrerelease"
 pwsh -Command "Install-Module posh-git -Scope CurrentUser -AllowPrerelease -Force"
 
+# Add startup apps
+AddAppToStartup keybindings "$HOME\scoop\apps\autohotkey\current\v2\AutoHotkey64.exe" "`"$PWD\windows\keybindings.ahk`""
+AddAppToStartup Everything "$HOME\scoop\apps\everything\current\everything.exe" "-startup"
+AddAppToStartup Mailspring "$HOME\scoop\apps\mailspring\current\mailspring.exe" "--background"
+AddAppToStartup komorebi "$HOME\scoop\apps\komorebi\current\komorebic.exe" "start --config $PWD\windows\komorebi.json"
+AddAppToStartup TrafficMonitor "$HOME\scoop\apps\trafficmonitor-lite\current\TrafficMonitor.exe"
+AddAppToStartup AltSnap "$HOME\scoop\apps\altsnap\current\AltSnap.exe" "-elevate"
+AddAppToStartup Windhawk "$HOME\scoop\apps\windhawk\current\windhawk.exe" "-tray-only"
+AddAppToStartup TranslucentTB "$HOME\scoop\apps\translucenttb\current\TranslucentTB.exe"
+AddAppToStartup kal "$Env:LOCALAPPDATA\kal\kal.exe"
+AddAppToStartup komorebi-switcher "$Env:LOCALAPPDATA\komorebi-switcher\komorebi-switcher.exe"
+AddAppToStartup electron.app.Bitwarden "$Env:LOCALAPPDATA\Programs\Bitwarden\Bitwarden.exe"
+
 # Symlink config files
 @(
-    @{file = "$PWD/windows/kal.toml"; targetDir = "$HOME\.config\"; targetFile = "kal.toml"},
-    @{file = "$PWD/windows/powershell.ps1"; targetDir = "$HOME\Documents\PowerShell\"; targetFile = "Microsoft.PowerShell_profile.ps1"},
-    @{file = "$PWD/windows/windows-terminal.json"; targetDir = "$Env:LOCALAPPDATA\Packages\Microsoft.WindowsTerminal_8wekyb3d8bbwe\LocalState\"; targetFile = "settings.json"},
-    @{file = "$PWD/windows/alt-snap.ini"; targetDir = "$HOME\scoop\apps\AltSnap\current"; targetFile = "AltSnap.ini"}
-    @{file = "$PWD/shared/starship.toml"; targetDir = "$HOME\.config\"; targetFile = "starship.toml"},
-    @{file = "$PWD/windows/.gitconfig"; targetDir = "$HOME\"; targetFile = ".gitconfig"},
-    @{file = "$PWD/windows/traffic-monitor.ini"; targetDir = "$Env:APPDATA\TrafficMonitor\"; targetFile = "config.ini"}
-    @{file = "$PWD/windows/keybindings.ahk"; targetDir = "$Env:APPDATA\Microsoft\Windows\Start Menu\Programs\Startup\"; targetFile = "keybindings.ahk"}
+    @{file = "$PWD\windows\kal.toml"; toDir = "$HOME\.config\"; toFile = "kal.toml"},
+    @{file = "$PWD\windows\powershell.ps1"; toDir = "$HOME\Documents\PowerShell\"; toFile = "Microsoft.PowerShell_profile.ps1"},
+    @{file = "$PWD\windows\windows-terminal.json"; toDir = "$Env:LOCALAPPDATA\Packages\Microsoft.WindowsTerminal_8wekyb3d8bbwe\LocalState\"; toFile = "settings.json"},
+    @{file = "$PWD\shared\starship.toml"; toDir = "$HOME\.config\"; toFile = "starship.toml"},
+    @{file = "$PWD\windows\.gitconfig"; toDir = "$HOME\"; toFile = ".gitconfig"},
+    @{file = "$PWD\windows\altsnap.ini"; toDir = "$HOME\scoop\persist\altsnap\"; toFile = "AltSnap.ini"}
+    @{file = "$PWD\windows\traffic-monitor.ini"; toDir = "$HOME\scoop\persist\trafficmonitor-lite\"; toFile = "config.ini"}
 ) | ForEach-Object {
-    New-Item -Path $_.targetDir -ItemType Directory -Force
-    $target = $_.targetDir + $_.targetFile
+    New-Item -Path $_.toDir -ItemType Directory -Force
+    $to = $_.toDir + $_.toFile
 
-    if (Test-Path -Path $target) {
-      Remove-Item -Path $target  -Force
+    if (Test-Path -Path $to) {
+      Remove-Item -Path $to  -Force
     } 
 
-    New-Item -ItemType SymbolicLink -Target $_.file -Path $target
+    # This requires Developer mode
+    New-Item -ItemType SymbolicLink -Target $_.file -Path $to
 }

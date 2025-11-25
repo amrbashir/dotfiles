@@ -9,6 +9,11 @@ cd $HOME/dotfiles
 
 ### windows
 
+> Before proceeding:
+> - Enable Developer Mode
+> - Enable sudo
+> - Disable UAC
+
 ```powershell
 Set-ExecutionPolicy -ExecutionPolicy RemoteSigned -Scope CurrentUser
 ./bootstrap-windows.ps1

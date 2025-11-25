@@ -1,6 +1,6 @@
 {
   "$schema": "https://raw.githubusercontent.com/LGUG2Z/komorebi/master/schema.json",
-  "app_specific_configuration_path": "C:/Users/amr/dotfiles/windows/applications.json",
+  "app_specific_configuration_path": "~/dotfiles/windows/applications.json",
   "window_hiding_behaviour": "Cloak",
   "cross_monitor_move_behaviour": "Insert",
   "default_container_padding": 2,
