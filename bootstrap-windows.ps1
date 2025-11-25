@@ -30,7 +30,7 @@ scoop bucket add extras
 scoop bucket add versions
 
 # Install apps
-scoop install 7zip uutils-coreutils starship bat ripgrep fd neovim eza zoxide fzf
+scoop install 7zip winrar uutils-coreutils starship bat ripgrep fd neovim eza zoxide fzf
 scoop install python fnm
 sudo scoop install windowsdesktop-runtime-lts
 scoop install qbittorrent everything everything-cli instant-eyedropper mailspring ds4windows
@@ -43,10 +43,6 @@ WingetSilentInstall Bitwarden
 WingetSilentInstall TranslucentTB
 WingetSilentInstall Powershell
 Refresh-PATH
-
-# Run post-install scripts
-&"$HOME\scoop\apps\7zip\current\install-context.reg"
-&"$HOME\scoop\apps\python\current\install-pep-514.reg"
 
 # Install Rust
 irm -Uri https://win.rustup.rs/x86_64 -Out $Env:TEMP/rustup-init.exe
