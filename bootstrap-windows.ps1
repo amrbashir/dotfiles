@@ -63,7 +63,9 @@ WingetSilentInstall Screenbox
 WingetSilentInstall Discord
 WingetSilentInstall VSCode
 WingetSilentInstall Steam
+WingetSilentInstall HidHide
 WingetSilentInstall Powershell
+WingetSilentInstall Google.AndroidStudio
 WingetSilentInstall Docker
 
 Refresh-PATH
