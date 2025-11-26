@@ -70,7 +70,7 @@ SymlinkConfig -File "$PWD\windows\altsnap.ini" -ToDir "$HOME\scoop\persist\altsn
 SymlinkConfig -File "$PWD\windows\trafficmonitor.ini" -ToDir "$HOME\scoop\persist\trafficmonitor-lite\" -ToFile "config.ini"
 
 # Install scoop apps
-scoop install 7zip winrar
+scoop install 7zip
 scoop install uutils-coreutils starship bat ripgrep fd neovim eza zoxide fzf nircmd
 scoop install python fnm gh cmake ninja deno nsis taplo
 scoop install bitwarden-cli yubioath
