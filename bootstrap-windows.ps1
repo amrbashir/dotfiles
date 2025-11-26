@@ -28,6 +28,24 @@ Function AddAppToStartup {
     New-ItemProperty -Path "HKCU:\Software\Microsoft\Windows\CurrentVersion\Run" -Name $name -Value "`"$path`"$args"
 }
 
+function SymlinkConfig {
+    param(
+        [string]$File,
+        [string]$ToDir,
+        [string]$ToFile
+    )
+    New-Item -Path $ToDir -ItemType Directory -Force
+    $to = $ToDir + $ToFile
+
+    if (Test-Path -Path $to) {
+        Remove-Item -Path $to -Force
+    }
+
+    # This requires Developer mode
+    New-Item -ItemType SymbolicLink -Target $File -Path $to
+}
+
+
 #################
 #  Main Script  #
 #################
@@ -46,6 +64,10 @@ Refresh-PATH
 # Add Scoop buckets
 scoop bucket add extras
 scoop bucket add nerd-fonts
+
+# Symlink configs that needed before installing from scoop
+SymlinkConfig -File "$PWD\windows\altsnap.ini" -ToDir "$HOME\scoop\persist\altsnap\" -ToFile "AltSnap.ini"
+SymlinkConfig -File "$PWD\windows\trafficmonitor.ini" -ToDir "$HOME\scoop\persist\trafficmonitor-lite\" -ToFile "config.ini"
 
 # Install scoop apps
 scoop install 7zip winrar
@@ -108,23 +130,9 @@ AddAppToStartup kal "$Env:LOCALAPPDATA\kal\kal.exe"
 AddAppToStartup komorebi-switcher "$Env:LOCALAPPDATA\komorebi-switcher\komorebi-switcher.exe"
 AddAppToStartup electron.app.Bitwarden "$Env:LOCALAPPDATA\Programs\Bitwarden\Bitwarden.exe"
 
-# Symlink config files
-@(
-    @{file = "$PWD\windows\kal.toml"; toDir = "$HOME\.config\"; toFile = "kal.toml"},
-    @{file = "$PWD\windows\powershell.ps1"; toDir = "$HOME\Documents\PowerShell\"; toFile = "Microsoft.PowerShell_profile.ps1"},
-    @{file = "$PWD\windows\windows-terminal.json"; toDir = "$Env:LOCALAPPDATA\Packages\Microsoft.WindowsTerminal_8wekyb3d8bbwe\LocalState\"; toFile = "settings.json"},
-    @{file = "$PWD\shared\starship.toml"; toDir = "$HOME\.config\"; toFile = "starship.toml"},
-    @{file = "$PWD\windows\.gitconfig"; toDir = "$HOME\"; toFile = ".gitconfig"},
-    @{file = "$PWD\windows\altsnap.ini"; toDir = "$HOME\scoop\persist\altsnap\"; toFile = "AltSnap.ini"}
-    @{file = "$PWD\windows\traffic-monitor.ini"; toDir = "$HOME\scoop\persist\trafficmonitor-lite\"; toFile = "config.ini"}
-) | ForEach-Object {
-    New-Item -Path $_.toDir -ItemType Directory -Force
-    $to = $_.toDir + $_.toFile
-
-    if (Test-Path -Path $to) {
-      Remove-Item -Path $to  -Force
-    } 
-
-    # This requires Developer mode
-    New-Item -ItemType SymbolicLink -Target $_.file -Path $to
-}
+# Symlink remaining config files
+SymlinkConfig -File "$PWD\windows\powershell.ps1" -ToDir "$HOME\Documents\PowerShell\" -ToFile "Microsoft.PowerShell_profile.ps1"
+SymlinkConfig -File "$PWD\windows\.gitconfig" -ToDir "$HOME\" -ToFile ".gitconfig"
+SymlinkConfig -File "$PWD\shared\starship.toml" -ToDir "$HOME\.config\" -ToFile "starship.toml"
+SymlinkConfig -File "$PWD\windows\kal.toml" -ToDir "$HOME\.config\" -ToFile "kal.toml"
+SymlinkConfig -File "$PWD\windows\windows-terminal.json" -ToDir "$Env:LOCALAPPDATA\Packages\Microsoft.WindowsTerminal_8wekyb3d8bbwe\LocalState\" -ToFile "settings.json"
