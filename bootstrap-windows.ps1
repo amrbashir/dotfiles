@@ -21,11 +21,11 @@ Function InstallMyApp {
 }
 
 Function AddAppToStartup {
-    $appName = $args[0]
-    $appExePath = $args[1]
+    $name = $args[0]
+    $path = $args[1]
     $args = $args[2]
-    $args = if ($args -eq $null) {""} else {" $args"}
-    New-ItemProperty -Path "HKCU:\Software\Microsoft\Windows\CurrentVersion\Run" -Name $appName -Value "`"$appExePath`"$args"
+    $args = if ($args -eq "") { "" } else { " $args" }
+    New-ItemProperty -Path "HKCU:\Software\Microsoft\Windows\CurrentVersion\Run" -Name $name -Value "`"$path`"$args"
 }
 
 #################
@@ -99,7 +99,7 @@ pwsh -Command "Install-Module posh-git -Scope CurrentUser -AllowPrerelease -Forc
 AddAppToStartup keybindings "$HOME\scoop\apps\autohotkey\current\v2\AutoHotkey64.exe" "`"$PWD\windows\keybindings.ahk`""
 AddAppToStartup Everything "$HOME\scoop\apps\everything\current\everything.exe" "-startup"
 AddAppToStartup Mailspring "$HOME\scoop\apps\mailspring\current\mailspring.exe" "--background"
-AddAppToStartup komorebi "$HOME\scoop\apps\komorebi\current\komorebic.exe" "start --config $PWD\windows\komorebi.json"
+AddAppToStartup komorebi "$HOME\scoop\apps\komorebi\current\komorebic-no-console.exe" "start --config $PWD\windows\komorebi.json"
 AddAppToStartup TrafficMonitor "$HOME\scoop\apps\trafficmonitor-lite\current\TrafficMonitor.exe"
 AddAppToStartup AltSnap "$HOME\scoop\apps\altsnap\current\AltSnap.exe" "-elevate"
 AddAppToStartup Windhawk "$HOME\scoop\apps\windhawk\current\windhawk.exe" "-tray-only"
