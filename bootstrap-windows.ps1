@@ -71,7 +71,7 @@ SymlinkConfig -File "$PWD\windows\trafficmonitor.ini" -ToDir "$HOME\scoop\persis
 
 # Install scoop apps
 scoop install 7zip winrar
-scoop install uutils-coreutils starship bat ripgrep fd neovim eza zoxide fzf
+scoop install uutils-coreutils starship bat ripgrep fd neovim eza zoxide fzf nircmd
 scoop install python fnm gh cmake ninja deno nsis taplo
 scoop install bitwarden-cli yubioath
 scoop install g-helper qbittorrent everything everything-cli instant-eyedropper mailspring ds4windows inkscape
@@ -121,10 +121,10 @@ pwsh -Command "Install-Module posh-git -Scope CurrentUser -AllowPrerelease -Forc
 AddAppToStartup keybindings "$HOME\scoop\apps\autohotkey\current\v2\AutoHotkey64.exe" "`"$PWD\windows\keybindings.ahk`""
 AddAppToStartup Everything "$HOME\scoop\apps\everything\current\everything.exe" "-startup"
 AddAppToStartup Mailspring "$HOME\scoop\apps\mailspring\current\mailspring.exe" "--background"
-AddAppToStartup komorebi "$HOME\scoop\apps\komorebi\current\komorebic-no-console.exe" "start --config $PWD\windows\komorebi.json"
+AddAppToStartup komorebi "$HOME\scoop\apps\nircmd\current\nircmd.exe" "elevate `"$HOME\scoop\apps\komorebi\current\komorebic-no-console.exe`" start --config `"$PWD\windows\komorebi.json`""
 AddAppToStartup TrafficMonitor "$HOME\scoop\apps\trafficmonitor-lite\current\TrafficMonitor.exe"
 AddAppToStartup AltSnap "$HOME\scoop\apps\altsnap\current\AltSnap.exe" "-elevate"
-AddAppToStartup Windhawk "$HOME\scoop\apps\windhawk\current\windhawk.exe" "-tray-only"
+AddAppToStartup Windhawk "$HOME\scoop\apps\nircmd\current\nircmd.exe" "elevate `"$HOME\scoop\apps\windhawk\current\windhawk.exe`" -tray-only"
 AddAppToStartup TranslucentTB "$HOME\scoop\apps\translucenttb\current\TranslucentTB.exe"
 AddAppToStartup kal "$Env:LOCALAPPDATA\kal\kal.exe"
 AddAppToStartup komorebi-switcher "$Env:LOCALAPPDATA\komorebi-switcher\komorebi-switcher.exe"
