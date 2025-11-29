@@ -2,23 +2,20 @@
 
 # TODO: add packages installation
 
-declare -a configs=(
-    # file -- targetDir -- targetFileOrFolder
-    "$PWD/linux/kitty.conf" "$HOME/.config/kitty/" "kitty.conf"
-    "$PWD/linux/.zshrc" "$HOME/" ".zshrc"
-    "$PWD/linux/rofi" "$HOME/.config/" "rofi"
-    "$PWD/linux/paru.conf" "$HOME/.config/paru/" "paru.conf"
-    "$PWD/shared/starship.toml" "$HOME/.config/" "starship.toml"
-    "$PWD/linux/.gitconfig" "$HOME/" ".gitconfig"
-    "$PWD/linux/sheldon.toml" "$HOME/.config/sheldon/" "plugins.toml"
-)
-for ((i = 0 ; i < ${#configs[*]} ; i+=3)); do
-    file="${configs[$i]}"
-    targetDir="${configs[$(($i+1))]}"
-    targetFileOrDir="${configs[$(($i+2))]}"
-    target="$targetDir$targetFileOrDir"
+# Function to create symlink for config files
+# Arguments:
+#   $1 - source file path
+#   $2 - target directory path
+#   $3 - target file or directory name
+symlink_config() {
+    mkdir -p "$2"
+    rm -rf "$2$3"
+    ln -sf "$1" "$2$3"
+}
 
-    mkdir -p $targetDir
-    rm -rf $target
-    ln -sf $file $target
-done
+symlink_config "$PWD/linux/kitty.conf" "$HOME/.config/kitty/" "kitty.conf"
+symlink_config "$PWD/linux/.zshrc" "$HOME/" ".zshrc"
+symlink_config "$PWD/linux/rofi" "$HOME/.config/" "rofi"
+symlink_config "$PWD/linux/paru.conf" "$HOME/.config/paru/" "paru.conf"
+symlink_config "$PWD/shared/starship.toml" "$HOME/.config/" "starship.toml"
+symlink_config "$PWD/linux/.gitconfig" "$HOME/" ".gitconfig"

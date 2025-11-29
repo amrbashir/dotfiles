@@ -11,17 +11,18 @@ source "${ZINIT_HOME}/zinit.zsh"
 # zinit plugins
 # ------------------
 
-zinit light zdharma-continuum/fast-syntax-highlighting
 zinit light zsh-users/zsh-completions
-zinit light zsh-users/zsh-autosuggestions
 zinit light jirutka/zsh-shift-select
-zinit light Aloxaf/fzf-tab
 zinit snippet OMZP::sudo
 zinit snippet OMZP::command-not-found
 
 # Load completions
 autoload -Uz compinit && compinit 
 zinit cdreplay -q
+
+zinit light Aloxaf/fzf-tab
+zinit light zdharma-continuum/fast-syntax-highlighting
+zinit light zsh-users/zsh-autosuggestions
 
 # ------------------
 # ZSH configurations
@@ -90,5 +91,6 @@ alias grebase="git rebase"
 alias start="dolphin"
 
 # -----------------
+eval "$(zoxide init zsh --cmd cd)"
 eval "$(starship init zsh)"
 eval "`fnm env`"
