@@ -10,6 +10,7 @@ cd $HOME/dotfiles
 ### windows
 
 > Before proceeding:
+>
 > - Enable Developer Mode
 > - Enable sudo
 > - Disable UAC
@@ -21,6 +22,12 @@ Set-ExecutionPolicy -ExecutionPolicy RemoteSigned -Scope CurrentUser
 
 ### Linux
 
-```powershell
+```bash
 ./bootstrap-linux.sh
+```
+
+### macOS
+
+```bash
+./bootstrap-macos.sh
 ```

@@ -13,8 +13,8 @@ symlink_config() {
     ln -sf "$1" "$2$3"
 }
 
-symlink_config "$PWD/linux/rofi" "$HOME/.config/" "rofi"
-symlink_config "$PWD/linux/paru.conf" "$HOME/.config/paru/" "paru.conf"
+symlink_config "$PWD/macos/komorebi.json" "$HOME/.config/komorebi/" "komorebi.json"
+symlink_config "$PWD/macos/skhdrc" "$HOME/.config/skhd/" "skhdrc"
 symlink_config "$PWD/shared/starship.toml" "$HOME/.config/" "starship.toml"
 symlink_config "$PWD/unix/.zshrc" "$HOME/" ".zshrc"
 symlink_config "$PWD/unix/.gitconfig" "$HOME/" ".gitconfig"

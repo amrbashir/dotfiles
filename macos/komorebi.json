@@ -1,0 +1,38 @@
+{
+  "$schema": "https://raw.githubusercontent.com/LGUG2Z/komorebi/master/schema.json",
+  "app_specific_configuration_path": "~/dotfiles/macos/applications.json",
+  "window_hiding_behaviour": "Cloak",
+  "cross_monitor_move_behaviour": "Insert",
+  "default_container_padding": 2,
+  "default_workspace_padding": 5,
+  "mouse_follows_focus": false,
+  "border": false,
+  "monitors": [
+    {
+      "workspaces": [
+        { "name": "1", "layout": "VerticalStack" },
+        { "name": "2", "layout": "VerticalStack" },
+        { "name": "3", "layout": "VerticalStack" },
+        { "name": "4", "layout": "VerticalStack" },
+        { "name": "5", "layout": "VerticalStack" },
+        { "name": "6", "layout": "VerticalStack" },
+        { "name": "7", "layout": "VerticalStack" },
+        { "name": "8", "layout": "VerticalStack" },
+        { "name": "9", "layout": "VerticalStack" },
+        { "name": "10", "layout": "VerticalStack" }
+      ]
+    }
+  ],
+  "ignore_rules": [
+    {
+      "id": "KalWindowClass",
+      "kind": "Class",
+      "matching_strategy": "Equals"
+    },
+    {
+      "id": "MozillaDialogClass",
+      "kind": "Class",
+      "matching_strategy": "Equals"
+    }
+  ]
+}
