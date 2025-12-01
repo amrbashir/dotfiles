@@ -1,7 +1,6 @@
-cmd - return 	        : open -a Ghostty.app
-
+# Komorebi window manager keybindings
 cmd + shift - r         : komorebic retile
-cmd + shift - return    : komorebic promote
+cmd + shift - return    : komorebic promote-swap
 cmd - t                 : komorebic toggle-float
 cmd + shift - f         : komorebic toggle-monocle
 
@@ -24,3 +23,13 @@ cmd + shift - 6         : komorebic send-to-workspace 5
 cmd + shift - 7         : komorebic send-to-workspace 6
 cmd + shift - 8         : komorebic send-to-workspace 7
 cmd + shift - 9         : komorebic send-to-workspace 8
+
+# Launch apps
+cmd - return 	        : open -a Ghostty.app
+
+# Manage windows
+.define tray_apps ["discord", "zulip"]
+cmd - q [
+	@tray_apps          | cmd - m  # Minimize certain apps instead of quitting them
+	*                   | cmd - w  # Close other apps normally
+]

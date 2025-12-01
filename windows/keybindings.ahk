@@ -41,7 +41,7 @@ Komorebic(cmd) {
 #+r::Komorebic("retile")
 
 ; Win + Shift + Enter
-#+Enter::Komorebic("promote")
+#+Enter::Komorebic("promote-swap")
 
 ; Win + T
 #t::Komorebic("toggle-float")
