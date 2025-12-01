@@ -1,53 +1,13 @@
 #SingleInstance force
 
-; Launch apps
-; -----------
-
-; Launch Terminal
-#Enter:: ; Win + Enter
-{
-  Run "wt.exe"
-  WinWait "ahk_exe WindowsTerminal.exe"
-  WinActivate "ahk_exe WindowsTerminal.exe"
-}
-
-; Manage windows
-; --------------
-
-; Close active window
-; Win + Q     
-#q::
-{
-  try {
-    WinClose "A"
-  }
-}
-
-; Media keys
-; ----------
-
-PrintScreen::Media_Prev
-ScrollLock::Media_Play_Pause
-Pause::Media_Next
-
-; Komorebi
-; --------------
-
 Komorebic(cmd) {
     RunWait(format("komorebic.exe {}", cmd), , "Hide")
 }
 
-; Win + Shift + R
-#+r::Komorebic("retile")
-
-; Win + Shift + Enter
-#+Enter::Komorebic("promote-swap")
-
-; Win + T
-#t::Komorebic("toggle-float")
-
-; Win + Shift + F
-#+f::Komorebic("toggle-monocle")
+#+r::Komorebic("retile")               ; Win + Shift + R
+#+Enter::Komorebic("promote-swap")     ; Win + Shift + Enter
+#t::Komorebic("toggle-float")          ; Win + T
+#+f::Komorebic("toggle-monocle")       ; Win + Shift + F
 
 ; Win + [0..9]
 #1::Komorebic("focus-workspace 0")
@@ -72,3 +32,22 @@ Komorebic(cmd) {
 #+8::Komorebic("send-to-workspace 7")
 #+9::Komorebic("send-to-workspace 8")
 #+0::Komorebic("send-to-workspace 9")
+
+#Enter:: ; Win + Enter
+{
+  Run "wt.exe"
+  WinWait "ahk_exe WindowsTerminal.exe"
+  WinActivate "ahk_exe WindowsTerminal.exe"
+}
+
+ 
+#q:: ; Win + Q
+{
+  try {
+    WinClose "A"
+  }
+}
+
+PrintScreen::Media_Prev
+ScrollLock::Media_Play_Pause
+Pause::Media_Next

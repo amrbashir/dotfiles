@@ -1,4 +1,3 @@
-# Komorebi window manager keybindings
 cmd + shift - r         : komorebic retile
 cmd + shift - return    : komorebic promote-swap
 cmd - t                 : komorebic toggle-float
@@ -24,12 +23,12 @@ cmd + shift - 7         : komorebic send-to-workspace 6
 cmd + shift - 8         : komorebic send-to-workspace 7
 cmd + shift - 9         : komorebic send-to-workspace 8
 
-# Launch apps
 cmd - return 	        : open -a Ghostty.app
 
-# Manage windows
 .define tray_apps ["discord", "zulip"]
 cmd - q [
-	@tray_apps          | cmd - m  # Minimize certain apps instead of quitting them
-	*                   | cmd - w  # Close other apps normally
+	@tray_apps          | cmd - m         # Minimize certain apps instead of quitting them
+	*                   | cmd - w         # Close other apps normally
 ]
+
+cmd - space             | ctrl - space    # Change keyboard language
