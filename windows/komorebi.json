@@ -22,5 +22,17 @@
         { "name": "10", "layout": "VerticalStack" }
       ]
     }
+  ],
+  "ignore_rules": [
+    {
+      "id": "KalWindowClass",
+      "kind": "Class",
+      "matching_strategy": "Equals"
+    },
+    {
+      "id": "Bitwarden.exe",
+      "kind": "Exe",
+      "matching_strategy": "Equals"
+    }
   ]
 }
