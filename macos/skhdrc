@@ -30,5 +30,3 @@ cmd - q [
 	@tray_apps          | cmd - m         # Minimize certain apps instead of quitting them
 	*                   | cmd - w         # Close other apps normally
 ]
-
-cmd - space             | ctrl - space    # Change keyboard language
