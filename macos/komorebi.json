@@ -22,5 +22,12 @@
         { "name": "10", "layout": "VerticalStack" }
       ]
     }
+  ],
+  "ignore_rules": [
+    {
+      "id": "Bitwarden",
+      "kind": "Exe",
+      "matching_strategy": "Equals"
+    }
   ]
 }
