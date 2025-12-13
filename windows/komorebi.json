@@ -33,6 +33,11 @@
       "id": "Bitwarden.exe",
       "kind": "Exe",
       "matching_strategy": "Equals"
+    },
+    {
+      "id": "spyxx.exe",
+      "kind": "Exe",
+      "matching_strategy": "Equals"
     }
   ]
 }
