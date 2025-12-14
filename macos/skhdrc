@@ -27,6 +27,6 @@ cmd - return 	        : open -a Ghostty.app
 
 .define tray_apps ["discord", "zulip"]
 cmd - q [
-	@tray_apps          | cmd - m         # Minimize certain apps instead of quitting them
-	*                   | cmd - w         # Close other apps normally
+	@tray_apps          | cmd - m         # Minimize window on tray apps instead of quitting them
+	*                   | ctrl - q        # Close window for other apps (ctrl - q is set to close window in macOS keyboard shortcuts settings)
 ]
