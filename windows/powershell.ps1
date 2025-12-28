@@ -1,4 +1,4 @@
-# configure PSReadLine
+# Configure PSReadLine
 $PSReadLineOptions = @{
     PredictionSource              = "History"
     HistoryNoDuplicates           = $true
@@ -44,23 +44,20 @@ Set-PSReadLineKeyHandler -Key Escape -ScriptBlock {
 }
 
 
-
-
-# set environment variables (don't forget to also add them in Widnows settings for GUI apps)
-$env:CARGO_TARGET_DIR = "D:\.cargo-target"
-$env:KOMOREBI_CONFIG_HOME = "$HOME\dotfiles\windows"
-
-# functions
+# Utilities
 Function Refresh-PATH {
     $env:path = [System.Environment]::GetEnvironmentVariable("Path", "Machine") + ";" + [System.Environment]::GetEnvironmentVariable("Path", "User")
 }
+
 Function Add-PATHEntry {
     $newpath = [System.Environment]::GetEnvironmentVariable("Path") + ";" + $args[0]
     [System.Environment]::SetEnvironmentVariable("Path", $newpath, "User")
 }
+
 Function Add-EnvVar {
     [System.Environment]::SetEnvironmentVariable($args[0], $args[1], "User")
 }
+
 Function Load-DotEnv {
     Get-Content .env | ForEach {
         $nameValue, $comment = $_.split('#')
@@ -73,7 +70,7 @@ Function Load-DotEnv {
     }
 }
 
-# aliases
+# Aliases
 Set-Alias vim nvim
 
 Function __ls { eza --icons $args }
@@ -138,10 +135,10 @@ Set-Alias gremote Git-remote
 Function Git-rebase { git rebase $args }
 Set-Alias grebase Git-rebase
 
-# imports
+# Imports
 Import-Module posh-git -arg 0,0,1
 
-# ------------------
+# Shell integrations
 Invoke-Expression (&starship init powershell)
 fnm env --use-on-cd --shell power-shell | Out-String | Invoke-Expression
 Invoke-Expression (& { (zoxide init powershell --cmd cd | Out-String) })
