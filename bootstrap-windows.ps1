@@ -9,6 +9,10 @@ Function Add-PATHEntry {
     Set-ItemProperty -Path "Registry::HKEY_CURRENT_USER\Environment" -Name PATH -Value $newPath
 }
 
+Function Add-EnvVar {
+    [System.Environment]::SetEnvironmentVariable($args[0], $args[1], "User")
+}
+
 Function WingetSilentInstall {
     winget install --silent --accept-package-agreements --accept-source-agreements --source winget $args
 }
@@ -136,3 +140,7 @@ SymlinkConfig -File "$PWD\windows\.gitconfig" -ToDir "$HOME\" -ToFile ".gitconfi
 SymlinkConfig -File "$PWD\shared\starship.toml" -ToDir "$HOME\.config\" -ToFile "starship.toml"
 SymlinkConfig -File "$PWD\windows\kal.toml" -ToDir "$HOME\.config\" -ToFile "kal.toml"
 SymlinkConfig -File "$PWD\windows\windows-terminal.json" -ToDir "$Env:LOCALAPPDATA\Packages\Microsoft.WindowsTerminal_8wekyb3d8bbwe\LocalState\" -ToFile "settings.json"
+
+# Set environment variables
+Add-EnvVar "KOMOREBI_CONFIG_HOME" "$HOME\dotfiles\windows"
+Add-EnvVar "CARGO_TARGET_DIR" "D:\.cargo-target"
