@@ -9,6 +9,11 @@ Komorebic(cmd) {
 #t::Komorebic("toggle-float")          ; Win + T
 #+f::Komorebic("toggle-monocle")       ; Win + Shift + F
 
+#=::Komorebic("resize-axis horizontal increase")   ; Win + =
+#-::Komorebic("resize-axis horizontal decrease")   ; Win + -
+#+=::Komorebic("resize-axis vertical increase")    ; Win + Shift + =
+#+-::Komorebic("resize-axis vertical decrease")    ; Win + Shift + -
+
 ; Win + [0..9]
 #1::Komorebic("focus-workspace 0")
 #2::Komorebic("focus-workspace 1")

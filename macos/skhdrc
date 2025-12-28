@@ -3,6 +3,11 @@ cmd + shift - return    : komorebic promote-swap
 cmd - t                 : komorebic toggle-float
 cmd + shift - f         : komorebic toggle-monocle
 
+cmd - 0x18              : komorebic resize-axis horizontal increase # 0x18 is +
+cmd - 0x1B              : komorebic resize-axis horizontal decrease # 0x1B is -
+cmd + shift - 0x18      : komorebic resize-axis vertical increase
+cmd + shift - 0x1B      : komorebic resize-axis vertical decrease
+
 cmd - 1                 : komorebic focus-workspace 0
 cmd - 2                 : komorebic focus-workspace 1
 cmd - 3                 : komorebic focus-workspace 2
