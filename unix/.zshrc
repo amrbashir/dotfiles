@@ -59,7 +59,6 @@ zstyle ':fzf-tab:complete:__zoxide_z:*' fzf-preview 'ls --color $realpath'
 # ---------------------
 export EDITOR="nvim"
 export MANPAGER="sh -c 'col -bx | bat -l man -p'"
-export CARGO_TARGET_DIR=~/.cache/.cargo-target
 
 # -------
 # Aliases
