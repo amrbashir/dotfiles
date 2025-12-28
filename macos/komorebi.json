@@ -28,6 +28,11 @@
       "id": "Bitwarden",
       "kind": "Exe",
       "matching_strategy": "Equals"
+    },
+    {
+      "id": "Raycast",
+      "kind": "Exe",
+      "matching_strategy": "Equals"
     }
   ]
 }
