@@ -3,6 +3,9 @@
 	name = amrbashir
     signingkey = ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABgQCvi/NpQAxwVB7hxly0JzG+811FNYaWDqvZEE759IEAjs+4CVYqK2RAyyS/rXVMQOZvI2MdehiWVjD9XAhduCsdd3ScySYEMH12X5AYUdL9moAjwbXfTWi/R+uV9OFujyyh9DlyFSUJnd0i5J2ocHtTBzhMewINb6yA7nm1Vk+1CTG/CIwCCLZyTMMcMPzDFfWf+ARpl6vW7NRVwdqp7fjQ4TukahMYAa9KfmA+B2Gzmw4pjM3l1dh/FKsJS5HuNDRFDH0EgTpIwrX+HWbT0HOo0fzz0IMWMLNJ+YngEScVAgch3oJ5RppRaxi9OEEmDLR/H+bUsazroeffOxoft+jyn8yd5wqfrMC6ciZZ91+8DC9mXuYH4YNouds8knY7Q5FWQ4corzpA7IAVsUiLRsSzZp8VTeiaex1+c6sQQ+K2s6X5TFzrAPipCkftx5o+nyXvwOKuhV7j2+TvfWa30z/QkySsNHMrI9pqZaf3AfaVBv1yJyy5yE5mM42D8tufpm8=
 
+[url "git@github.com:"]
+	insteadof = https://github.com/
+
 [gpg]
   format = ssh
 
