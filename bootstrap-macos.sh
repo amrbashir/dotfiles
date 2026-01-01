@@ -18,3 +18,8 @@ symlink_config "$PWD/macos/skhdrc" "$HOME/.config/skhd/" "skhdrc"
 symlink_config "$PWD/shared/starship.toml" "$HOME/.config/" "starship.toml"
 symlink_config "$PWD/unix/.zshrc" "$HOME/" ".zshrc"
 symlink_config "$PWD/unix/.gitconfig" "$HOME/" ".gitconfig"
+
+# Set environment variables
+echo "export PATH=\"/opt/homebrew/opt/coreutils/libexec/gnubin:$PATH\"" >> "$HOME/.zprofile"
+echo "export CARGO_TARGET_DIR=$HOME/.cache/.cargo-target" >> "$HOME/.zshenv"
+echo "export SSH_AUTH_SOCK=\"$HOME/Library/Containers/com.bitwarden.desktop/Data/.bitwarden-ssh-agent.sock\"" >> "$HOME/.zshenv"

@@ -18,3 +18,7 @@ symlink_config "$PWD/linux/paru.conf" "$HOME/.config/paru/" "paru.conf"
 symlink_config "$PWD/shared/starship.toml" "$HOME/.config/" "starship.toml"
 symlink_config "$PWD/unix/.zshrc" "$HOME/" ".zshrc"
 symlink_config "$PWD/unix/.gitconfig" "$HOME/" ".gitconfig"
+
+
+# Set environment variables
+echo "export CARGO_TARGET_DIR=$HOME/.cache/.cargo-target" >> "$HOME/.zshenv"
