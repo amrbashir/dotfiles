@@ -17,13 +17,6 @@ Function WingetSilentInstall {
     winget install --silent --accept-package-agreements --accept-source-agreements --source winget $args
 }
 
-Function InstallMyApp {
-    $appName = $args[0]
-    Write-Output "Installing $appName..."
-    irm "https://github.com/amrbashir/$appName/releases/latest/download/$appName-setup.exe" -OutFile "$Env:TEMP/$appName-setup.exe"
-    &"$Env:TEMP/$appName-setup.exe" /S
-}
-
 Function AddAppToStartup {
     $name = $args[0]
     $path = $args[1]
@@ -68,6 +61,7 @@ Refresh-PATH
 # Add Scoop buckets
 scoop bucket add extras
 scoop bucket add nerd-fonts
+scoop bucket add amrbashir https://github.com/amrbashir/scoop-bucket
 
 # Symlink configs that needed before installing from scoop
 SymlinkConfig -File "$PWD\windows\altsnap.ini" -ToDir "$HOME\scoop\persist\altsnap\" -ToFile "AltSnap.ini"
@@ -81,10 +75,9 @@ scoop install bitwarden-cli yubioath
 scoop install g-helper qbittorrent everything everything-cli instant-eyedropper mailspring ds4windows inkscape
 scoop install komorebi autohotkey trafficmonitor-lite altsnap windhawk translucenttb
 scoop install FiraCode FiraCode-NF
+scoop install kal komorebi-switcher
 sudo scoop install windowsdesktop-runtime-lts
 
-InstallMyApp kal
-InstallMyApp komorebi-switcher
  
 WingetSilentInstall --id Bitwarden.Bitwarden
 WingetSilentInstall --id Zen-Team.Zen-Browser
@@ -130,8 +123,8 @@ AddAppToStartup TrafficMonitor "$HOME\scoop\apps\trafficmonitor-lite\current\Tra
 AddAppToStartup AltSnap "$HOME\scoop\apps\altsnap\current\AltSnap.exe" "-elevate"
 AddAppToStartup Windhawk "$HOME\scoop\apps\nircmd\current\nircmd.exe" "elevate `"$HOME\scoop\apps\windhawk\current\windhawk.exe`" -tray-only"
 AddAppToStartup TranslucentTB "$HOME\scoop\apps\translucenttb\current\TranslucentTB.exe"
-AddAppToStartup kal "$Env:LOCALAPPDATA\kal\kal.exe"
-AddAppToStartup komorebi-switcher "$Env:LOCALAPPDATA\komorebi-switcher\komorebi-switcher.exe"
+AddAppToStartup kal "$HOME\scoop\apps\kal\current\kal.exe"
+AddAppToStartup komorebi-switcher "$HOME\scoop\apps\komorebi-switcher\current\komorebi-switcher.exe"
 AddAppToStartup electron.app.Bitwarden "$Env:LOCALAPPDATA\Programs\Bitwarden\Bitwarden.exe"
 
 # Symlink remaining config files
