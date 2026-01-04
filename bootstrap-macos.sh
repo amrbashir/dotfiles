@@ -21,5 +21,14 @@ symlink_config "$PWD/unix/.gitconfig" "$HOME/" ".gitconfig"
 
 # Set environment variables
 echo "export PATH=\"/opt/homebrew/opt/coreutils/libexec/gnubin:$PATH\"" >> "$HOME/.zprofile"
+echo "export PATH=\"/opt/homebrew/opt/coreutils/libexec/gnubin:$PATH\"" >> "$HOME/.zprofile"
+echo "export PATH=\"/opt/homebrew/opt/findutils/libexec/gnubin:$PATH\"" >> "$HOME/.zprofile"
+echo "export PATH=\"/opt/homebrew/opt/grep/libexec/gnubin:$PATH\"" >> "$HOME/.zprofile"
+echo "export PATH=\"/opt/homebrew/opt/gnu-tar/libexec/gnubin:$PATH\"" >> "$HOME/.zprofile"
+echo "export PATH=\"/opt/homebrew/opt/gsed/libexec/gnubin:$PATH\"" >> "$HOME/.zprofile"
+echo "export PATH=\"/opt/homebrew/opt/gawk/libexec/gnubin:$PATH\"" >> "$HOME/.zprofile"
+echo "export PATH=\"/opt/homebrew/opt/gnu-indent/libexec/gnubin:$PATH\"" >> "$HOME/.zprofile"
+echo "export PATH=\"/opt/homebrew/opt/gnu-getopt/libexec/gnubin:$PATH\"" >> "$HOME/.zprofile"
+
 echo "export CARGO_TARGET_DIR=$HOME/.cache/.cargo-target" >> "$HOME/.zshenv"
 echo "export SSH_AUTH_SOCK=\"$HOME/Library/Containers/com.bitwarden.desktop/Data/.bitwarden-ssh-agent.sock\"" >> "$HOME/.zshenv"
