@@ -53,6 +53,6 @@ Komorebic(cmd) {
   }
 }
 
-PrintScreen::Media_Prev
-ScrollLock::Media_Play_Pause
-Pause::Media_Next
+Pause::Media_Prev
+PrintScreen::Media_Play_Pause
+Home::Media_Next
