@@ -23,117 +23,124 @@ Set-PSReadLineKeyHandler -Key Alt+Backspace -Function BackwardKillWord
 Set-PSReadLineKeyHandler -Key F1 -Function WhatIsKey
 Set-PSReadLineKeyHandler -Key Ctrl+Shift+LeftArrow -Function SelectBackwardWord
 Set-PSReadLineKeyHandler -Key Ctrl+Shift+RightArrow -Function SelectForwardWord
-$___escTapCount=0
-Set-PSReadLineKeyHandler -Key Escape -ScriptBlock {
-    ([ref]$___escTapCount).Value++
-    if ($___escTapCount % 2 -eq 0) {
-        ([ref]$___escTapCount).Value=0
-
-        $currentString=$null
-        $currentCPos=$null
-        [Microsoft.PowerShell.PSConsoleReadLine]::GetBufferState([ref] $currentString, [ref] $currentCPos)
-        if ($currentString -like "sudo *") {
+Set-PSReadLineKeyHandler -Key Escape -ScriptBlock { # Add sudo on double ESC tap
+    $script:escTapCount++
+    if ($script:escTapCount % 2 -eq 0) {
+        $script:escTapCount = 0
+        $line=$null
+        $cursor=$null
+        [Microsoft.PowerShell.PSConsoleReadLine]::GetBufferState([ref]$line, [ref]$cursor)
+        if ($line -like "sudo *") {
             [Microsoft.PowerShell.PSConsoleReadLine]::Delete(0, 5)
-            [Microsoft.PowerShell.PSConsoleReadLine]::SetCursorPosition($currentCPos - 5)
+            [Microsoft.PowerShell.PSConsoleReadLine]::SetCursorPosition($cursor - 5)
         } else {
             [Microsoft.PowerShell.PSConsoleReadLine]::SetCursorPosition(0)
             [Microsoft.PowerShell.PSConsoleReadLine]::Insert("sudo ")
-            [Microsoft.PowerShell.PSConsoleReadLine]::SetCursorPosition($currentCPos + 5)
+            [Microsoft.PowerShell.PSConsoleReadLine]::SetCursorPosition($cursor + 5)
         }
     }
 }
-
 
 # Utilities
 Function Refresh-PATH {
     $env:path = [System.Environment]::GetEnvironmentVariable("Path", "Machine") + ";" + [System.Environment]::GetEnvironmentVariable("Path", "User")
 }
 
-Function Add-PATHEntry {
-    $newpath = [System.Environment]::GetEnvironmentVariable("Path") + ";" + $args[0]
+Function AddTo-PATH {
+    param(
+        [string]$Path
+    )
+    $newpath = [System.Environment]::GetEnvironmentVariable("Path") + ";" + $Path
     [System.Environment]::SetEnvironmentVariable("Path", $newpath, "User")
 }
 
 Function Add-EnvVar {
-    [System.Environment]::SetEnvironmentVariable($args[0], $args[1], "User")
+    param(
+        [string]$Name,
+        [string]$Value,
+        [string]$Scope = "User"
+    )
+    [System.Environment]::SetEnvironmentVariable($Name, $Value, $Scope)
 }
 
-Function Load-DotEnv {
-    Get-Content .env | ForEach {
-        $nameValue, $comment = $_.split('#')
-        if (![string]::IsNullOrWhiteSpace($nameValue)) {
-            $name, $value = $nameValue.split('=')
-            if (![string]::IsNullOrWhiteSpace($name)) {
-                Set-Item -Path Env:\$($name) -Value $value
-            }
-        }
+Function AddTo-Startup {
+    param(
+        [string]$Name,
+        [string]$Path,
+        [string]$Args = ""
+    )
+    $Args = if ($Args -eq "") { "" } else { " $Args" }
+    New-ItemProperty -Path "HKCU:\Software\Microsoft\Windows\CurrentVersion\Run" -Name $Name -Value "`"$Path`"$Args"
+}
+
+function Symlink-Config {
+    param(
+        [string]$File,
+        [string]$ToDir,
+        [string]$ToFile
+    )
+    New-Item -Path $ToDir -ItemType Directory -Force
+    $to = $ToDir + $ToFile
+
+    if (Test-Path -Path $to) {
+        Remove-Item -Path $to -Force
     }
+
+    # This requires Developer mode to be enabled
+    New-Item -ItemType SymbolicLink -Target $File -Path $to
+}
+
+Function Set-AliasEx {
+    param (
+        [string]$AliasName,
+        [string]$Command,
+        [string]$WrapperFn = ""
+    )
+
+    $WrapperFn = if ($WrapperFn -eq "") { "__$AliasName" } else { "$WrapperFn" }
+
+    # Remove existing alias if it exists
+    Remove-Alias $AliasName -Force -ErrorAction SilentlyContinue
+
+    # Create an intermediate function to allow aliases that has fixed arguments
+    $functionScript = "Function global:$WrapperFn {$Command `$args }"
+    Invoke-Expression $functionScript
+
+    # Set Alias to the intermediate function
+    Set-Alias $AliasName "$WrapperFn" -Scope Global -Force
+}
+
+Function Set-GitAlias {
+    param (
+        [string]$AliasName,
+        [string]$GitCommand
+    )
+
+    $gitVerb = $GitCommand.Split(' ')[1]
+    Set-AliasEx $AliasName $GitCommand -WrapperFn "Git-$gitVerb"
 }
 
 # Aliases
-Set-Alias vim nvim
+Set-AliasEx vim nvim
+Set-AliasEx ls "eza --icons"
+Set-AliasEx ll "eza -lah --icons --git --group-directories-first"
 
-Function __ls { eza --icons $args }
-Remove-Alias ls
-Set-Alias ls __ls
-Function __ll { eza -lah --icons --git --group-directories-first $args }
-Set-Alias ll __ll
-
-Function __coreutils_cp { coreutils cp $args }
-Remove-Alias cp
-Set-Alias cp __coreutils_cp
-Function __coreutils_mv { coreutils mv $args }
-Set-Alias mv __coreutils_mv
-Function __coreutils_rm { coreutils rm $args }
-Set-Alias rm __coreutils_rm
-Function __coreutils_rmdir { coreutils rmdir $args }
-Set-Alias rmdir __coreutils_rmdir
-Function __coreutils_touch { coreutils touch $args }
-Set-Alias touch __coreutils_touch
-Function __coreutils_mkdir { coreutils mkdir $args }
-Set-Alias mkdir __coreutils_mkdir
-Function __coreutils_dirname { coreutils dirname $args }
-Set-Alias dirname __coreutils_dirname
-Function __coreutils_pwd { coreutils pwd $args }
-Set-Alias pwd __coreutils_pwd
-Function __coreutils_wc { coreutils wc $args }
-Set-Alias wc __coreutils_wc
-
-Function Git-checkout { git checkout $args }
-Remove-Alias gc -Force
-Set-Alias gc Git-checkout
-Function Git-status { git st $args }
-Set-Alias gs Git-status
-Function Git-diff { git diff $args }
-Set-Alias gd Git-diff
-Function Git-add { git add $args }
-Set-Alias ga Git-add
-Function Git-add-all { git add . $args }
-Set-Alias gaa Git-add-all
-Function Git-commit { git commit $args }
-Remove-Alias gcm -Force
-Set-Alias gcm Git-commit
-Function Git-commit-m { git commit -m $args }
-Set-Alias gcmm Git-commit-m
-Function Git-stash { git stash $args }
-Set-Alias gst Git-stash
-Function Git-pull { git pull $args }
-Set-Alias gpl Git-pull
-Function Git-push { git push $args }
-Set-Alias gp Git-push -Force
-Function Git-lg { git lg $args }
-Remove-Alias gl -Force
-Set-Alias gl Git-lg
-Function Git-branch { git branch $args }
-Set-Alias gb Git-branch
-Function Git-restore { git restore $args }
-Set-Alias grestore Git-restore
-Function Git-reset { git reset $args }
-Set-Alias greset Git-reset
-Function Git-remote { git remote $args }
-Set-Alias gremote Git-remote
-Function Git-rebase { git rebase $args }
-Set-Alias grebase Git-rebase
+Set-GitAlias gc        "git checkout"
+Set-GitAlias gs        "git status"
+Set-GitAlias gd        "git diff"
+Set-GitAlias ga        "git add"
+Set-GitAlias gaa       "git add ."
+Set-GitAlias gcm       "git commit"
+Set-GitAlias gcmm      "git commit -m"
+Set-GitAlias gst       "git stash"
+Set-GitAlias gpl       "git pull"
+Set-GitAlias gp        "git push"
+Set-GitAlias gl        "git lg"
+Set-GitAlias gb        "git branch"
+Set-GitAlias grestore  "git restore"
+Set-GitAlias greset    "git reset"
+Set-GitAlias gremote   "git remote"
+Set-GitAlias grebase   "git rebase"
 
 # Imports
 Import-Module posh-git -arg 0,0,1

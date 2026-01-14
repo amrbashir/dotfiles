@@ -1,47 +1,9 @@
-# Helper functions
-function Refresh-PATH {
-	$ENV:path = [System.ENVironment]::GetENVironmentVariable("Path", "Machine") + ";" + [System.ENVironment]::GetENVironmentVariable("Path", "User")
-}
-
-Function Add-PATHEntry {
-    $oldpath = (Get-ItemProperty -Path "Registry::HKEY_CURRENT_USER\Environment" -Name PATH).path
-    $newpath = $oldpath + ";" + $args
-    Set-ItemProperty -Path "Registry::HKEY_CURRENT_USER\Environment" -Name PATH -Value $newPath
-}
-
-Function Add-EnvVar {
-    [System.Environment]::SetEnvironmentVariable($args[0], $args[1], "User")
-}
+# Source powershell profile (as it have useful functions and aliases)
+. "$PWD\windows\powershell.ps1" -ErrorAction SilentlyContinue
 
 Function WingetSilentInstall {
     winget install --silent --accept-package-agreements --accept-source-agreements --source winget $args
 }
-
-Function AddAppToStartup {
-    $name = $args[0]
-    $path = $args[1]
-    $args = $args[2]
-    $args = if ($args -eq "") { "" } else { " $args" }
-    New-ItemProperty -Path "HKCU:\Software\Microsoft\Windows\CurrentVersion\Run" -Name $name -Value "`"$path`"$args"
-}
-
-function SymlinkConfig {
-    param(
-        [string]$File,
-        [string]$ToDir,
-        [string]$ToFile
-    )
-    New-Item -Path $ToDir -ItemType Directory -Force
-    $to = $ToDir + $ToFile
-
-    if (Test-Path -Path $to) {
-        Remove-Item -Path $to -Force
-    }
-
-    # This requires Developer mode
-    New-Item -ItemType SymbolicLink -Target $File -Path $to
-}
-
 
 #################
 #  Main Script  #
@@ -49,7 +11,7 @@ function SymlinkConfig {
 
 # Install Git
 WingetSilentInstall --id Git.Git
-Add-PATHEntry "$Env:SYSTEMDRIVE\Program Files\Git\bin"
+AddTo-PATH "$Env:SYSTEMDRIVE\Program Files\Git\bin"
 
 Refresh-PATH
 
@@ -63,9 +25,9 @@ scoop bucket add extras
 scoop bucket add nerd-fonts
 scoop bucket add amrbashir https://github.com/amrbashir/scoop-bucket
 
-# Symlink configs that needed before installing from scoop
-SymlinkConfig -File "$PWD\windows\altsnap.ini" -ToDir "$HOME\scoop\persist\altsnap\" -ToFile "AltSnap.ini"
-SymlinkConfig -File "$PWD\windows\trafficmonitor.ini" -ToDir "$HOME\scoop\persist\trafficmonitor-lite\" -ToFile "config.ini"
+# Symlink configs that are needed before installing from scoop
+Symlink-Config -File "$PWD\windows\altsnap.ini" -ToDir "$HOME\scoop\persist\altsnap\" -ToFile "AltSnap.ini"
+Symlink-Config -File "$PWD\windows\trafficmonitor.ini" -ToDir "$HOME\scoop\persist\trafficmonitor-lite\" -ToFile "config.ini"
 
 # Install scoop apps
 scoop install 7zip
@@ -78,7 +40,7 @@ scoop install FiraCode FiraCode-NF
 scoop install kal komorebi-switcher
 sudo scoop install windowsdesktop-runtime-lts
 
- 
+# Install winget apps 
 WingetSilentInstall --id Bitwarden.Bitwarden
 WingetSilentInstall --id Zen-Team.Zen-Browser
 WingetSilentInstall --id Starpine.Screenbox
@@ -115,25 +77,24 @@ pwsh -Command "Install-Module PSReadLine -Force -SkipPublisherCheck -AllowPrerel
 pwsh -Command "Install-Module posh-git -Scope CurrentUser -AllowPrerelease -Force"
 
 # Add startup apps
-AddAppToStartup keybindings "$HOME\scoop\apps\autohotkey\current\v2\AutoHotkey64.exe" "`"$PWD\windows\keybindings.ahk`""
-AddAppToStartup Everything "$HOME\scoop\apps\everything\current\everything.exe" "-startup"
-AddAppToStartup Mailspring "$HOME\scoop\apps\mailspring\current\mailspring.exe" "--background"
-AddAppToStartup komorebi "$HOME\scoop\apps\nircmd\current\nircmd.exe" "elevate `"$HOME\scoop\apps\komorebi\current\komorebic-no-console.exe`" start --config `"$PWD\windows\komorebi.json`""
-AddAppToStartup TrafficMonitor "$HOME\scoop\apps\trafficmonitor-lite\current\TrafficMonitor.exe"
-AddAppToStartup AltSnap "$HOME\scoop\apps\altsnap\current\AltSnap.exe" "-elevate"
-AddAppToStartup Windhawk "$HOME\scoop\apps\nircmd\current\nircmd.exe" "elevate `"$HOME\scoop\apps\windhawk\current\windhawk.exe`" -tray-only"
-AddAppToStartup TranslucentTB "$HOME\scoop\apps\translucenttb\current\TranslucentTB.exe"
-AddAppToStartup kal "$HOME\scoop\apps\kal\current\kal.exe"
-AddAppToStartup komorebi-switcher "$HOME\scoop\apps\komorebi-switcher\current\komorebi-switcher.exe"
-AddAppToStartup electron.app.Bitwarden "$Env:LOCALAPPDATA\Programs\Bitwarden\Bitwarden.exe"
+AddTo-Startup keybindings "$HOME\scoop\apps\autohotkey\current\v2\AutoHotkey64.exe" "`"$PWD\windows\keybindings.ahk`""
+AddTo-Startup Everything "$HOME\scoop\apps\everything\current\everything.exe" "-startup"
+AddTo-Startup Mailspring "$HOME\scoop\apps\mailspring\current\mailspring.exe" "--background"
+AddTo-Startup komorebi "$HOME\scoop\apps\nircmd\current\nircmd.exe" "elevate `"$HOME\scoop\apps\komorebi\current\komorebic-no-console.exe`" start --config `"$PWD\windows\komorebi.json`""
+AddTo-Startup TrafficMonitor "$HOME\scoop\apps\trafficmonitor-lite\current\TrafficMonitor.exe"
+AddTo-Startup AltSnap "$HOME\scoop\apps\altsnap\current\AltSnap.exe" "-elevate"
+AddTo-Startup Windhawk "$HOME\scoop\apps\nircmd\current\nircmd.exe" "elevate `"$HOME\scoop\apps\windhawk\current\windhawk.exe`" -tray-only"
+AddTo-Startup TranslucentTB "$HOME\scoop\apps\translucenttb\current\TranslucentTB.exe"
+AddTo-Startup kal "$HOME\scoop\apps\kal\current\kal.exe"
+AddTo-Startup komorebi-switcher "$HOME\scoop\apps\komorebi-switcher\current\komorebi-switcher.exe"
+AddTo-Startup electron.app.Bitwarden "$Env:LOCALAPPDATA\Programs\Bitwarden\Bitwarden.exe"
 
 # Symlink remaining config files
-SymlinkConfig -File "$PWD\windows\powershell.ps1" -ToDir "$HOME\Documents\PowerShell\" -ToFile "Microsoft.PowerShell_profile.ps1"
-SymlinkConfig -File "$PWD\windows\.gitconfig" -ToDir "$HOME\" -ToFile ".gitconfig"
-SymlinkConfig -File "$PWD\shared\starship.toml" -ToDir "$HOME\.config\" -ToFile "starship.toml"
-SymlinkConfig -File "$PWD\windows\kal.toml" -ToDir "$HOME\.config\" -ToFile "kal.toml"
-SymlinkConfig -File "$PWD\windows\windows-terminal.json" -ToDir "$Env:LOCALAPPDATA\Packages\Microsoft.WindowsTerminal_8wekyb3d8bbwe\LocalState\" -ToFile "settings.json"
+Symlink-Config -File "$PWD\windows\powershell.ps1" -ToDir "$HOME\Documents\PowerShell\" -ToFile "Microsoft.PowerShell_profile.ps1"
+Symlink-Config -File "$PWD\windows\.gitconfig" -ToDir "$HOME\" -ToFile ".gitconfig"
+Symlink-Config -File "$PWD\shared\starship.toml" -ToDir "$HOME\.config\" -ToFile "starship.toml"
+Symlink-Config -File "$PWD\windows\kal.toml" -ToDir "$HOME\.config\" -ToFile "kal.toml"
+Symlink-Config -File "$PWD\windows\windows-terminal.json" -ToDir "$Env:LOCALAPPDATA\Packages\Microsoft.WindowsTerminal_8wekyb3d8bbwe\LocalState\" -ToFile "settings.json"
 
 # Set environment variables
-Add-EnvVar "KOMOREBI_CONFIG_HOME" "$HOME\dotfiles\windows"
 Add-EnvVar "CARGO_TARGET_DIR" "D:\.cargo-target"
