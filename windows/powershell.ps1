@@ -1,4 +1,6 @@
+# ----------------------------------
 # Configure PSReadLine
+# ----------------------------------
 $PSReadLineOptions = @{
     PredictionSource              = "History"
     HistoryNoDuplicates           = $true
@@ -41,7 +43,9 @@ Set-PSReadLineKeyHandler -Key Escape -ScriptBlock { # Add sudo on double ESC tap
     }
 }
 
+# ----------------------------------
 # Utilities
+# ----------------------------------
 Function Refresh-PATH {
     $env:path = [System.Environment]::GetEnvironmentVariable("Path", "Machine") + ";" + [System.Environment]::GetEnvironmentVariable("Path", "User")
 }
@@ -120,8 +124,11 @@ Function Set-GitAlias {
     Set-AliasEx $AliasName $GitCommand -WrapperFn "Git-$gitVerb"
 }
 
+# ----------------------------------
 # Aliases
+# ----------------------------------
 Set-AliasEx vim nvim
+
 Set-AliasEx ls "eza --icons"
 Set-AliasEx ll "eza -lah --icons --git --group-directories-first"
 
@@ -142,10 +149,25 @@ Set-GitAlias greset    "git reset"
 Set-GitAlias gremote   "git remote"
 Set-GitAlias grebase   "git rebase"
 
-# Imports
+# For each util in `coreutils --list` provided by uutils-coreutils,
+# remove any existing alias to avoid conflicts
+foreach ($util in (coreutils --list)) {
+    # Skip the `[` utility as it conflicts with PowerShell syntax
+    if ($util -eq "[") { continue } 
+
+    if (Get-Alias $util -ErrorAction SilentlyContinue) {
+        Remove-Alias $util -Force
+    }
+}
+
+# ----------------------------------
+# Poweshell Modules
+# ----------------------------------
 Import-Module posh-git -arg 0,0,1
 
+# ----------------------------------
 # Shell integrations
+# ----------------------------------
 Invoke-Expression (&starship init powershell)
 fnm env --use-on-cd --shell power-shell | Out-String | Invoke-Expression
 Invoke-Expression (& { (zoxide init powershell --cmd cd | Out-String) })

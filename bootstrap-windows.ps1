@@ -72,8 +72,7 @@ fnm use lts-latest
 Refresh-PATH
 
 # Install PowerShell modules
-pwsh -Command "Install-Module -Name PowerShellGet -Force"
-pwsh -Command "Install-Module PSReadLine -Force -SkipPublisherCheck -AllowPrerelease"
+pwsh -Command "Install-Module PSReadLine -Repository PSGallery -Scope CurrentUser -Force"
 pwsh -Command "Install-Module posh-git -Scope CurrentUser -AllowPrerelease -Force"
 
 # Add startup apps
