@@ -11,7 +11,7 @@ $PSReadLineOptions = @{
     }
 }
 Set-PSReadLineOption @PSReadLineOptions
-Set-PSReadLineKeyHandler -Key Tab -Function MenuComplete
+Set-PSReadLineKeyHandler -Key Tab -ScriptBlock { Invoke-FzfTabCompletion }
 Set-PSReadLineKeyHandler -Key UpArrow -Function HistorySearchBackward
 Set-PSReadLineKeyHandler -Key DownArrow -Function HistorySearchForward
 Set-PSReadLineKeyHandler -Key Escape -ScriptBlock { # Add sudo on double ESC tap
@@ -36,14 +36,14 @@ Set-PSReadLineKeyHandler -Key Escape -ScriptBlock { # Add sudo on double ESC tap
 # Utilities
 # ----------------------------------
 Function Refresh-PATH {
-    $env:path = [System.Environment]::GetEnvironmentVariable("Path", "Machine") + ";" + [System.Environment]::GetEnvironmentVariable("Path", "User")
+    $env:Path = [System.Environment]::GetEnvironmentVariable("Path", "Machine") + ";" + [System.Environment]::GetEnvironmentVariable("Path", "User")
 }
 
 Function AddTo-PATH {
     param(
         [string]$Path
     )
-    $newpath = [System.Environment]::GetEnvironmentVariable("Path") + ";" + $Path
+    $newpath = $Path + ";" + [System.Environment]::GetEnvironmentVariable("Path")
     [System.Environment]::SetEnvironmentVariable("Path", $newpath, "User")
 }
 
