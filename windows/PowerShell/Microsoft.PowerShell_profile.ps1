@@ -89,3 +89,5 @@ Import-Module posh-git -arg 0, 0, 1 # for git tab completion
 Invoke-Expression (&starship init powershell)
 fnm env --use-on-cd --shell power-shell | Out-String | Invoke-Expression
 Invoke-Expression (& { (zoxide init powershell --cmd cd | Out-String) })
+
+Use-CDIntegrations @("__zoxide_z", "Set-FnmOnLoad")

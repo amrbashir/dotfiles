@@ -128,7 +128,8 @@ Function Set-AliasEx {
     Set-Alias $AliasName "$WrapperFn" -Scope Global -Force
 }
 
-<#.SYNOPSIS
+<#
+.SYNOPSIS
     Set an alias for a git command, ensuring the alias is setup correctly for posh-git integration.
 .PARAMETER AliasName
     The name of the alias to create.
@@ -143,4 +144,30 @@ Function Set-GitAlias {
 
     $gitVerb = $GitCommand.Split(' ')[1]
     Set-AliasEx $AliasName $GitCommand -WrapperFn "Git-$gitVerb"
+}
+
+<#
+.SYNOPSIS
+    Create a cd alias that calls all integrations. Intended for fnm and zoxide to work together.
+.PARAMETER IntegrationFunctions
+    The list of integration function names to call on cd, order is important.
+#>
+Function Use-CDIntegrations {
+    param (
+        [string[]]$IntegrationFunctions
+    )
+
+    $quotedFunctions = $IntegrationFunctions | ForEach-Object { "'$_'" }
+    $functionList = $quotedFunctions -join ', '
+    
+    $functionScript = @"
+        Function global:Set-LocationWithAllIntegrations {
+            foreach (`$fn in @($functionList)) {
+                & `$fn @args
+            }
+        }
+"@
+    Invoke-Expression $functionScript
+
+    Set-Alias -Name cd -Value Set-LocationWithAllIntegrations -Option AllScope -Scope Global -Force
 }
