@@ -38,6 +38,7 @@ scoop install g-helper qbittorrent everything everything-cli instant-eyedropper 
 scoop install komorebi autohotkey trafficmonitor-lite altsnap windhawk translucenttb
 scoop install FiraCode FiraCode-NF
 scoop install kal komorebi-switcher
+scoop install PSReadLine posh-git PSFzf
 sudo scoop install windowsdesktop-runtime-lts
 
 # Install winget apps 
@@ -70,10 +71,6 @@ fnm env --use-on-cd --shell power-shell | Out-String | Invoke-Expression
 fnm use lts-latest
 
 Refresh-PATH
-
-# Install PowerShell modules
-pwsh -Command "Install-Module PSReadLine -Repository PSGallery -Scope CurrentUser -Force"
-pwsh -Command "Install-Module posh-git -Scope CurrentUser -AllowPrerelease -Force"
 
 # Add startup apps
 AddTo-Startup keybindings "$HOME\scoop\apps\autohotkey\current\v2\AutoHotkey64.exe" "`"$PWD\windows\keybindings.ahk`""
