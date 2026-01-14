@@ -1,5 +1,5 @@
-# Source powershell profile (as it have useful functions and aliases)
-. "$PWD\windows\powershell.ps1" -ErrorAction SilentlyContinue
+# Source powershell utilities
+. "$PSScriptRoot/windows/PowerShell/Utils.ps1"
 
 Function WingetSilentInstall {
     winget install --silent --accept-package-agreements --accept-source-agreements --source winget $args
@@ -11,14 +11,14 @@ Function WingetSilentInstall {
 
 # Install Git
 WingetSilentInstall --id Git.Git
-AddTo-PATH "$Env:SYSTEMDRIVE\Program Files\Git\bin"
+Add-ToPATH "$Env:SYSTEMDRIVE\Program Files\Git\bin"
 
-Refresh-PATH
+Update-PATH
 
 # Install Scoop
-iwr -useb get.scoop.sh | iex
+Invoke-RestMethod -Uri https://get.scoop.sh | Invoke-Expression
 
-Refresh-PATH
+Update-PATH
 
 # Add Scoop buckets
 scoop bucket add extras
@@ -26,8 +26,8 @@ scoop bucket add nerd-fonts
 scoop bucket add amrbashir https://github.com/amrbashir/scoop-bucket
 
 # Symlink configs that are needed before installing from scoop
-Symlink-Config -File "$PWD\windows\AltSnap.ini" -ToDir "$HOME\scoop\persist\altsnap\" -ToFile "AltSnap.ini"
-Symlink-Config -File "$PWD\windows\trafficmonitor-lite\config.ini" -ToDir "$HOME\scoop\persist\trafficmonitor-lite\" -ToFile "config.ini"
+Set-ConfigSymlink -File "$PWD\windows\AltSnap.ini" -ToDir "$HOME\scoop\persist\altsnap\" -ToFile "AltSnap.ini"
+Set-ConfigSymlink -File "$PWD\windows\trafficmonitor-lite\config.ini" -ToDir "$HOME\scoop\persist\trafficmonitor-lite\" -ToFile "config.ini"
 
 # Install scoop apps
 scoop install 7zip
@@ -53,44 +53,44 @@ WingetSilentInstall --id Microsoft.PowerShell
 WingetSilentInstall --id Google.AndroidStudio
 WingetSilentInstall --id Docker.DockerDesktop
 
-Refresh-PATH
+Update-PATH
 
 # Install WSL
 wsl --update
 wsl --install debian --no-launch
 
 # Install Rust
-irm -Uri https://win.rustup.rs/x86_64 -Out "$Env:TEMP/rustup-init.exe"
+Invoke-RestMethod -Uri https://win.rustup.rs/x86_64 -Out "$Env:TEMP/rustup-init.exe"
 &"$Env:TEMP/rustup-init.exe"
 
-Refresh-PATH
+Update-PATH
 
 # Install Node.js
 fnm install --lts
 fnm env --use-on-cd --shell power-shell | Out-String | Invoke-Expression
 fnm use lts-latest
 
-Refresh-PATH
+Update-PATH
 
 # Add startup apps
-AddTo-Startup keybindings "$HOME\scoop\apps\autohotkey\current\v2\AutoHotkey64.exe" "`"$PWD\windows\keybindings.ahk`""
-AddTo-Startup Everything "$HOME\scoop\apps\everything\current\everything.exe" "-startup"
-AddTo-Startup Mailspring "$HOME\scoop\apps\mailspring\current\mailspring.exe" "--background"
-AddTo-Startup komorebi "$HOME\scoop\apps\nircmd\current\nircmd.exe" "elevate `"$HOME\scoop\apps\komorebi\current\komorebic-no-console.exe`" start --config `"$PWD\windows\komorebi.json`""
-AddTo-Startup TrafficMonitor "$HOME\scoop\apps\trafficmonitor-lite\current\TrafficMonitor.exe"
-AddTo-Startup AltSnap "$HOME\scoop\apps\altsnap\current\AltSnap.exe" "-elevate"
-AddTo-Startup Windhawk "$HOME\scoop\apps\nircmd\current\nircmd.exe" "elevate `"$HOME\scoop\apps\windhawk\current\windhawk.exe`" -tray-only"
-AddTo-Startup TranslucentTB "$HOME\scoop\apps\translucenttb\current\TranslucentTB.exe"
-AddTo-Startup kal "$HOME\scoop\apps\kal\current\kal.exe"
-AddTo-Startup komorebi-switcher "$HOME\scoop\apps\komorebi-switcher\current\komorebi-switcher.exe"
-AddTo-Startup electron.app.Bitwarden "$Env:LOCALAPPDATA\Programs\Bitwarden\Bitwarden.exe"
+Add-StartupApp keybindings "$HOME\scoop\apps\autohotkey\current\v2\AutoHotkey64.exe" "`"$PWD\windows\keybindings.ahk`""
+Add-StartupApp Everything "$HOME\scoop\apps\everything\current\everything.exe" "-startup"
+Add-StartupApp Mailspring "$HOME\scoop\apps\mailspring\current\mailspring.exe" "--background"
+Add-StartupApp komorebi "$HOME\scoop\apps\nircmd\current\nircmd.exe" "elevate `"$HOME\scoop\apps\komorebi\current\komorebic-no-console.exe`" start --config `"$PWD\windows\komorebi.json`""
+Add-StartupApp TrafficMonitor "$HOME\scoop\apps\trafficmonitor-lite\current\TrafficMonitor.exe"
+Add-StartupApp AltSnap "$HOME\scoop\apps\altsnap\current\AltSnap.exe" "-elevate"
+Add-StartupApp Windhawk "$HOME\scoop\apps\nircmd\current\nircmd.exe" "elevate `"$HOME\scoop\apps\windhawk\current\windhawk.exe`" -tray-only"
+Add-StartupApp TranslucentTB "$HOME\scoop\apps\translucenttb\current\TranslucentTB.exe"
+Add-StartupApp kal "$HOME\scoop\apps\kal\current\kal.exe"
+Add-StartupApp komorebi-switcher "$HOME\scoop\apps\komorebi-switcher\current\komorebi-switcher.exe"
+Add-StartupApp electron.app.Bitwarden "$Env:LOCALAPPDATA\Programs\Bitwarden\Bitwarden.exe"
 
 # Symlink remaining config files
-Symlink-Config -File "$PWD\windows\Microsoft.PowerShell_profile.ps1" -ToDir "$HOME\Documents\PowerShell\" -ToFile "Microsoft.PowerShell_profile.ps1"
-Symlink-Config -File "$PWD\windows\.gitconfig" -ToDir "$HOME\" -ToFile ".gitconfig"
-Symlink-Config -File "$PWD\shared\starship.toml" -ToDir "$HOME\.config\" -ToFile "starship.toml"
-Symlink-Config -File "$PWD\windows\kal.toml" -ToDir "$HOME\.config\" -ToFile "kal.toml"
-Symlink-Config -File "$PWD\windows\Windows Terminal\settings.json" -ToDir "$Env:LOCALAPPDATA\Packages\Microsoft.WindowsTerminal_8wekyb3d8bbwe\LocalState\" -ToFile "settings.json"
+Set-ConfigSymlink -File "$PWD\windows\PowerShell\Microsoft.PowerShell_profile.ps1" -ToDir "$HOME\Documents\PowerShell\" -ToFile "Microsoft.PowerShell_profile.ps1"
+Set-ConfigSymlink -File "$PWD\windows\.gitconfig" -ToDir "$HOME\" -ToFile ".gitconfig"
+Set-ConfigSymlink -File "$PWD\shared\starship.toml" -ToDir "$HOME\.config\" -ToFile "starship.toml"
+Set-ConfigSymlink -File "$PWD\windows\kal.toml" -ToDir "$HOME\.config\" -ToFile "kal.toml"
+Set-ConfigSymlink -File "$PWD\windows\Windows Terminal\settings.json" -ToDir "$Env:LOCALAPPDATA\Packages\Microsoft.WindowsTerminal_8wekyb3d8bbwe\LocalState\" -ToFile "settings.json"
 
 # Set environment variables
 Add-EnvVar "CARGO_TARGET_DIR" "D:\.cargo-target"

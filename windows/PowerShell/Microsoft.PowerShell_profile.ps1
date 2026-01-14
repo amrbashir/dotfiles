@@ -1,13 +1,22 @@
 # ----------------------------------
+# Source utilities
+# ----------------------------------
+# Because current file is symlinked, resolve the actual script root
+$ScriptTarget = (Get-Item $PSCommandPath | Select-Object -ExpandProperty Target)
+$ScriptRoot = Split-Path -Path $ScriptTarget -Parent
+
+. "$ScriptRoot/Utils.ps1"
+
+# ----------------------------------
 # Configure PSReadLine
 # ----------------------------------
 $PSReadLineOptions = @{
     PredictionSource              = "History"
     HistorySearchCursorMovesToEnd = $true
     Colors                        = @{
-        Operator         = "Yellow"
-        Parameter        = "Blue"
-        Member           = "DarkYellow"
+        Operator  = "Yellow"
+        Parameter = "Blue"
+        Member    = "DarkYellow"
     }
 }
 Set-PSReadLineOption @PSReadLineOptions
@@ -18,13 +27,14 @@ Set-PSReadLineKeyHandler -Key Escape -ScriptBlock { # Add sudo on double ESC tap
     $script:escTapCount++
     if ($script:escTapCount % 2 -eq 0) {
         $script:escTapCount = 0
-        $line=$null
-        $cursor=$null
+        $line = $null
+        $cursor = $null
         [Microsoft.PowerShell.PSConsoleReadLine]::GetBufferState([ref]$line, [ref]$cursor)
         if ($line -like "sudo *") {
             [Microsoft.PowerShell.PSConsoleReadLine]::Delete(0, 5)
             [Microsoft.PowerShell.PSConsoleReadLine]::SetCursorPosition($cursor - 5)
-        } else {
+        }
+        else {
             [Microsoft.PowerShell.PSConsoleReadLine]::SetCursorPosition(0)
             [Microsoft.PowerShell.PSConsoleReadLine]::Insert("sudo ")
             [Microsoft.PowerShell.PSConsoleReadLine]::SetCursorPosition($cursor + 5)
@@ -33,90 +43,8 @@ Set-PSReadLineKeyHandler -Key Escape -ScriptBlock { # Add sudo on double ESC tap
 }
 
 # ----------------------------------
-# Utilities
-# ----------------------------------
-Function Refresh-PATH {
-    $env:Path = [System.Environment]::GetEnvironmentVariable("Path", "Machine") + ";" + [System.Environment]::GetEnvironmentVariable("Path", "User")
-}
-
-Function AddTo-PATH {
-    param(
-        [string]$Path
-    )
-    $newpath = $Path + ";" + [System.Environment]::GetEnvironmentVariable("Path")
-    [System.Environment]::SetEnvironmentVariable("Path", $newpath, "User")
-}
-
-Function Add-EnvVar {
-    param(
-        [string]$Name,
-        [string]$Value,
-        [string]$Scope = "User"
-    )
-    [System.Environment]::SetEnvironmentVariable($Name, $Value, $Scope)
-}
-
-Function AddTo-Startup {
-    param(
-        [string]$Name,
-        [string]$Path,
-        [string]$Args = ""
-    )
-    $Args = if ($Args -eq "") { "" } else { " $Args" }
-    New-ItemProperty -Path "HKCU:\Software\Microsoft\Windows\CurrentVersion\Run" -Name $Name -Value "`"$Path`"$Args"
-}
-
-function Symlink-Config {
-    param(
-        [string]$File,
-        [string]$ToDir,
-        [string]$ToFile
-    )
-    New-Item -Path $ToDir -ItemType Directory -Force
-    $to = $ToDir + $ToFile
-
-    if (Test-Path -Path $to) {
-        Remove-Item -Path $to -Force
-    }
-
-    # This requires Developer mode to be enabled
-    New-Item -ItemType SymbolicLink -Target $File -Path $to
-}
-
-Function Set-AliasEx {
-    param (
-        [string]$AliasName,
-        [string]$Command,
-        [string]$WrapperFn = ""
-    )
-
-    $WrapperFn = if ($WrapperFn -eq "") { "__$AliasName" } else { "$WrapperFn" }
-
-    # Remove existing alias if it exists
-    Remove-Alias $AliasName -Force -ErrorAction SilentlyContinue
-
-    # Create an intermediate function to allow aliases that has fixed arguments
-    $functionScript = "Function global:$WrapperFn {$Command `$args }"
-    Invoke-Expression $functionScript
-
-    # Set Alias to the intermediate function
-    Set-Alias $AliasName "$WrapperFn" -Scope Global -Force
-}
-
-Function Set-GitAlias {
-    param (
-        [string]$AliasName,
-        [string]$GitCommand
-    )
-
-    $gitVerb = $GitCommand.Split(' ')[1]
-    Set-AliasEx $AliasName $GitCommand -WrapperFn "Git-$gitVerb"
-}
-
-# ----------------------------------
 # Aliases
 # ----------------------------------
-
 # For each util in `coreutils --list` provided by uutils-coreutils,
 # remove any existing alias to avoid conflicts
 foreach ($util in (coreutils --list)) {
@@ -153,7 +81,7 @@ Set-GitAlias grebase   "git rebase"
 # ----------------------------------
 # Poweshell Modules
 # ----------------------------------
-Import-Module posh-git -arg 0,0,1
+Import-Module posh-git -arg 0, 0, 1 # for git tab completion
 
 # ----------------------------------
 # Shell integrations
