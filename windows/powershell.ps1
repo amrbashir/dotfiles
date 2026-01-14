@@ -116,6 +116,18 @@ Function Set-GitAlias {
 # ----------------------------------
 # Aliases
 # ----------------------------------
+
+# For each util in `coreutils --list` provided by uutils-coreutils,
+# remove any existing alias to avoid conflicts
+foreach ($util in (coreutils --list)) {
+    # Skip the `[` utility as it conflicts with PowerShell syntax
+    if ($util -eq "[") { continue } 
+
+    if (Get-Alias $util -ErrorAction SilentlyContinue) {
+        Remove-Alias $util -Force
+    }
+}
+
 Set-AliasEx vim nvim
 
 Set-AliasEx ls "eza --icons"
@@ -137,17 +149,6 @@ Set-GitAlias grestore  "git restore"
 Set-GitAlias greset    "git reset"
 Set-GitAlias gremote   "git remote"
 Set-GitAlias grebase   "git rebase"
-
-# For each util in `coreutils --list` provided by uutils-coreutils,
-# remove any existing alias to avoid conflicts
-foreach ($util in (coreutils --list)) {
-    # Skip the `[` utility as it conflicts with PowerShell syntax
-    if ($util -eq "[") { continue } 
-
-    if (Get-Alias $util -ErrorAction SilentlyContinue) {
-        Remove-Alias $util -Force
-    }
-}
 
 # ----------------------------------
 # Poweshell Modules
