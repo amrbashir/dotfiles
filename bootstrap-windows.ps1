@@ -26,8 +26,8 @@ scoop bucket add nerd-fonts
 scoop bucket add amrbashir https://github.com/amrbashir/scoop-bucket
 
 # Symlink configs that are needed before installing from scoop
-Symlink-Config -File "$PWD\windows\altsnap.ini" -ToDir "$HOME\scoop\persist\altsnap\" -ToFile "AltSnap.ini"
-Symlink-Config -File "$PWD\windows\trafficmonitor.ini" -ToDir "$HOME\scoop\persist\trafficmonitor-lite\" -ToFile "config.ini"
+Symlink-Config -File "$PWD\windows\AltSnap.ini" -ToDir "$HOME\scoop\persist\altsnap\" -ToFile "AltSnap.ini"
+Symlink-Config -File "$PWD\windows\trafficmonitor-lite\config.ini" -ToDir "$HOME\scoop\persist\trafficmonitor-lite\" -ToFile "config.ini"
 
 # Install scoop apps
 scoop install 7zip
@@ -86,11 +86,11 @@ AddTo-Startup komorebi-switcher "$HOME\scoop\apps\komorebi-switcher\current\komo
 AddTo-Startup electron.app.Bitwarden "$Env:LOCALAPPDATA\Programs\Bitwarden\Bitwarden.exe"
 
 # Symlink remaining config files
-Symlink-Config -File "$PWD\windows\powershell.ps1" -ToDir "$HOME\Documents\PowerShell\" -ToFile "Microsoft.PowerShell_profile.ps1"
+Symlink-Config -File "$PWD\windows\Microsoft.PowerShell_profile.ps1" -ToDir "$HOME\Documents\PowerShell\" -ToFile "Microsoft.PowerShell_profile.ps1"
 Symlink-Config -File "$PWD\windows\.gitconfig" -ToDir "$HOME\" -ToFile ".gitconfig"
 Symlink-Config -File "$PWD\shared\starship.toml" -ToDir "$HOME\.config\" -ToFile "starship.toml"
 Symlink-Config -File "$PWD\windows\kal.toml" -ToDir "$HOME\.config\" -ToFile "kal.toml"
-Symlink-Config -File "$PWD\windows\windows-terminal.json" -ToDir "$Env:LOCALAPPDATA\Packages\Microsoft.WindowsTerminal_8wekyb3d8bbwe\LocalState\" -ToFile "settings.json"
+Symlink-Config -File "$PWD\windows\Windows Terminal\settings.json" -ToDir "$Env:LOCALAPPDATA\Packages\Microsoft.WindowsTerminal_8wekyb3d8bbwe\LocalState\" -ToFile "settings.json"
 
 # Set environment variables
 Add-EnvVar "CARGO_TARGET_DIR" "D:\.cargo-target"
