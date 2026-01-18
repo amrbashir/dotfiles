@@ -91,6 +91,7 @@ New-ConfigSymlink -Path "$PWD\windows\.gitconfig" -ToDir "$HOME" -ToFile ".gitco
 New-ConfigSymlink -Path "$PWD\shared\starship.toml" -ToDir "$HOME\.config" -ToFile "starship.toml"
 New-ConfigSymlink -Path "$PWD\windows\kal.toml" -ToDir "$HOME\.config" -ToFile "kal.toml"
 New-ConfigSymlink -Path "$PWD\windows\Windows Terminal\settings.json" -ToDir "$Env:LOCALAPPDATA\Packages\Microsoft.WindowsTerminal_8wekyb3d8bbwe\LocalState" -ToFile "settings.json"
+New-ConfigSymlink -Path "$PWD\windows\Windhawk-Mods" -ToDir "$HOME\scoop\persist\windhawk\AppData\Engine" -ToFile "Mods"
 
 # Set environment variables
 Add-EnvVar "CARGO_TARGET_DIR" "D:\.cargo-target"
