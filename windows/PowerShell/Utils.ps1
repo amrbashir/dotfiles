@@ -1,24 +1,46 @@
 <#
 .SYNOPSIS
-    Update $env:Path from Machine and User environment variables so it updates in the current session. 
+    Update $Env:Path from Machine and User environment variables so it updates in the current session. 
 #>
 Function Update-PATH {
-    $env:Path = [System.Environment]::GetEnvironmentVariable("Path", "Machine") + ";" + [System.Environment]::GetEnvironmentVariable("Path", "User")
+   $machinepath = [System.Environment]::GetEnvironmentVariable("Path", "Machine");
+   $userpath = [System.Environment]::GetEnvironmentVariable("Path", "User")
+   $Env:Path = $machinepath + ";" + $userpath
 }
 
 <#
 .SYNOPSIS
-    Add a directory to the User PATH environment variable. Updates the current session PATH as well.
+    Add a directory to the PATH environment variable. Updates the current session PATH as well.
 .PARAMETER Path
     The directory to add to PATH.
+.PARAMETER Scope
+    The scope of the environment variable. Can be "User" or "Machine". Default is "User".
 #>
 Function Add-ToPATH {
     param(
-        [string]$Path
+        [string]$Path,
+        [string]$Scope = "User"
     )
 
-    $newpath = $Path + ";" + [System.Environment]::GetEnvironmentVariable("Path")
-    [System.Environment]::SetEnvironmentVariable("Path", $newpath, "User")
+    $oldpath = [System.Environment]::GetEnvironmentVariable("Path", $Scope)
+    $newpath = $oldpath + ";" + $Path
+    [System.Environment]::SetEnvironmentVariable("Path", $newpath, $Scope)
+    Update-PATH
+}
+
+<#
+.SYNOPSIS
+    Remove duplicates from the PATH environment variable.
+.PARAMETER Scope
+    The scope of the environment variable. Can be "User" or "Machine". Default is "User".
+#>
+Function Remove-PATHDuplicates {
+    param(
+        [string]$Scope = "User"
+    )
+    $oldpath = [System.Environment]::GetEnvironmentVariable("Path", $Scope)
+    $newpath = ($oldpath -split ';' | Select-Object -Unique) -join ';'
+    [System.Environment]::SetEnvironmentVariable("Path", $newpath, $Scope)
     Update-PATH
 }
 
@@ -171,3 +193,4 @@ Function Use-CDIntegrations {
 
     Set-Alias -Name cd -Value Set-LocationWithAllIntegrations -Option AllScope -Scope Global -Force
 }
+
