@@ -26,8 +26,8 @@ scoop bucket add nerd-fonts
 scoop bucket add amrbashir https://github.com/amrbashir/scoop-bucket
 
 # Symlink configs that are needed before installing from scoop
-Set-ConfigSymlink -File "$PWD\windows\AltSnap.ini" -ToDir "$HOME\scoop\persist\altsnap\" -ToFile "AltSnap.ini"
-Set-ConfigSymlink -File "$PWD\windows\trafficmonitor-lite\config.ini" -ToDir "$HOME\scoop\persist\trafficmonitor-lite\" -ToFile "config.ini"
+New-ConfigSymlink -File "$PWD\windows\AltSnap.ini" -ToDir "$HOME\scoop\persist\altsnap\" -ToFile "AltSnap.ini"
+New-ConfigSymlink -File "$PWD\windows\trafficmonitor-lite\config.ini" -ToDir "$HOME\scoop\persist\trafficmonitor-lite\" -ToFile "config.ini"
 
 # Install scoop apps
 scoop install 7zip
@@ -86,11 +86,11 @@ Add-StartupApp komorebi-switcher "$HOME\scoop\apps\komorebi-switcher\current\kom
 Add-StartupApp electron.app.Bitwarden "$Env:LOCALAPPDATA\Programs\Bitwarden\Bitwarden.exe"
 
 # Symlink remaining config files
-Set-ConfigSymlink -File "$PWD\windows\PowerShell\Microsoft.PowerShell_profile.ps1" -ToDir "$HOME\Documents\PowerShell\" -ToFile "Microsoft.PowerShell_profile.ps1"
-Set-ConfigSymlink -File "$PWD\windows\.gitconfig" -ToDir "$HOME\" -ToFile ".gitconfig"
-Set-ConfigSymlink -File "$PWD\shared\starship.toml" -ToDir "$HOME\.config\" -ToFile "starship.toml"
-Set-ConfigSymlink -File "$PWD\windows\kal.toml" -ToDir "$HOME\.config\" -ToFile "kal.toml"
-Set-ConfigSymlink -File "$PWD\windows\Windows Terminal\settings.json" -ToDir "$Env:LOCALAPPDATA\Packages\Microsoft.WindowsTerminal_8wekyb3d8bbwe\LocalState\" -ToFile "settings.json"
+New-ConfigSymlink -Path "$PWD\windows\PowerShell\Microsoft.PowerShell_profile.ps1" -ToDir "$HOME\Documents\PowerShell" -ToFile "Microsoft.PowerShell_profile.ps1"
+New-ConfigSymlink -Path "$PWD\windows\.gitconfig" -ToDir "$HOME" -ToFile ".gitconfig"
+New-ConfigSymlink -Path "$PWD\shared\starship.toml" -ToDir "$HOME\.config" -ToFile "starship.toml"
+New-ConfigSymlink -Path "$PWD\windows\kal.toml" -ToDir "$HOME\.config" -ToFile "kal.toml"
+New-ConfigSymlink -Path "$PWD\windows\Windows Terminal\settings.json" -ToDir "$Env:LOCALAPPDATA\Packages\Microsoft.WindowsTerminal_8wekyb3d8bbwe\LocalState" -ToFile "settings.json"
 
 # Set environment variables
 Add-EnvVar "CARGO_TARGET_DIR" "D:\.cargo-target"

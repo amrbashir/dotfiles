@@ -100,27 +100,27 @@ Function Remove-StartupApp {
 <#
 .SYNOPSIS
     Create a symbolic link for a configuration file in a target directory. Creates the target directory if it does not exist and removes any existing file at the target location.
-.PARAMETER File
+.PARAMETER Path
     The source configuration file to link.
 .PARAMETER ToDir
     The target directory where the symbolic link will be created.
 .PARAMETER ToFile
     The name of the symbolic link file in the target directory.
 #>
-function Set-ConfigSymlink {
+function New-ConfigSymlink {
     param(
-        [string]$File,
+        [string]$Path,
         [string]$ToDir,
         [string]$ToFile
     )
     New-Item -Path $ToDir -ItemType Directory -Force
-    $to = $ToDir + $ToFile
+    $to = Join-Path -Path $ToDir -ChildPath $ToFile
 
     if (Test-Path -Path $to) {
         Remove-Item -Path $to -Force
     }
 
-    New-Item -ItemType SymbolicLink -Target $File -Path $to
+    New-Item -ItemType SymbolicLink -Target $Path -Path $to
 }
 
 <#
