@@ -23,6 +23,8 @@ Set-PSReadLineOption @PSReadLineOptions
 Set-PSReadLineKeyHandler -Key Tab -ScriptBlock { Invoke-FzfTabCompletion }
 Set-PSReadLineKeyHandler -Key UpArrow -Function HistorySearchBackward
 Set-PSReadLineKeyHandler -Key DownArrow -Function HistorySearchForward
+Set-PSReadLineKeyHandler -Key Ctrl+RightArrow -Function ForwardWord
+Set-PSReadLineKeyHandler -Key Ctrl+Shift+RightArrow -Function SelectForwardWord
 Set-PSReadLineKeyHandler -Key Escape -ScriptBlock { # Add sudo on double ESC tap
     $script:escTapCount++
     if ($script:escTapCount % 2 -eq 0) {
