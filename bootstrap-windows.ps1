@@ -92,4 +92,4 @@ New-ConfigSymlink -Path "$PWD\windows\Windows Terminal\settings.json" -ToDir "$E
 New-ConfigSymlink -Path "$PWD\windows\Windhawk-Mods" -ToDir "$HOME\scoop\persist\windhawk\AppData\Engine" -ToFile "Mods"
 
 # Set environment variables
-Add-EnvVar "CARGO_TARGET_DIR" "D:\.cargo-target"
+Add-EnvVar "CARGO_TARGET_DIR" "$HOME\.cache\.cargo-target"
