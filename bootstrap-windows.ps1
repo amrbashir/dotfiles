@@ -35,9 +35,8 @@ scoop install uutils-coreutils starship bat ripgrep fd neovim eza zoxide fzf nir
 scoop install python fnm gh cmake ninja deno nsis taplo
 scoop install bitwarden-cli yubioath
 scoop install g-helper qbittorrent everything everything-cli instant-eyedropper mailspring ds4windows inkscape
-scoop install komorebi autohotkey trafficmonitor-lite altsnap windhawk translucenttb
+scoop install komorebi komorebi-switcher autohotkey trafficmonitor-lite altsnap windhawk translucenttb
 scoop install FiraCode FiraCode-NF
-scoop install kal komorebi-switcher
 scoop install PSReadLine posh-git PSFzf
 sudo scoop install windowsdesktop-runtime-lts
 
@@ -52,6 +51,7 @@ WingetSilentInstall --id Nefarius.HidHide
 WingetSilentInstall --id Microsoft.PowerShell
 WingetSilentInstall --id Google.AndroidStudio
 WingetSilentInstall --id Docker.DockerDesktop
+WingetSilentInstall --Name Raycast
 
 Update-PATH
 
@@ -81,7 +81,6 @@ Add-StartupApp TrafficMonitor "$HOME\scoop\apps\trafficmonitor-lite\current\Traf
 Add-StartupApp AltSnap "$HOME\scoop\apps\altsnap\current\AltSnap.exe" "-elevate"
 Add-StartupApp Windhawk "$HOME\scoop\apps\nircmd\current\nircmd.exe" "elevate `"$HOME\scoop\apps\windhawk\current\windhawk.exe`" -tray-only"
 Add-StartupApp TranslucentTB "$HOME\scoop\apps\translucenttb\current\TranslucentTB.exe"
-Add-StartupApp kal "$HOME\scoop\apps\kal\current\kal.exe"
 Add-StartupApp komorebi-switcher "$HOME\scoop\apps\komorebi-switcher\current\komorebi-switcher.exe"
 Add-StartupApp electron.app.Bitwarden "$Env:LOCALAPPDATA\Programs\Bitwarden\Bitwarden.exe"
 
@@ -89,7 +88,6 @@ Add-StartupApp electron.app.Bitwarden "$Env:LOCALAPPDATA\Programs\Bitwarden\Bitw
 New-ConfigSymlink -Path "$PWD\windows\PowerShell\Microsoft.PowerShell_profile.ps1" -ToDir "$HOME\Documents\PowerShell" -ToFile "Microsoft.PowerShell_profile.ps1"
 New-ConfigSymlink -Path "$PWD\windows\.gitconfig" -ToDir "$HOME" -ToFile ".gitconfig"
 New-ConfigSymlink -Path "$PWD\shared\starship.toml" -ToDir "$HOME\.config" -ToFile "starship.toml"
-New-ConfigSymlink -Path "$PWD\windows\kal.toml" -ToDir "$HOME\.config" -ToFile "kal.toml"
 New-ConfigSymlink -Path "$PWD\windows\Windows Terminal\settings.json" -ToDir "$Env:LOCALAPPDATA\Packages\Microsoft.WindowsTerminal_8wekyb3d8bbwe\LocalState" -ToFile "settings.json"
 New-ConfigSymlink -Path "$PWD\windows\Windhawk-Mods" -ToDir "$HOME\scoop\persist\windhawk\AppData\Engine" -ToFile "Mods"
 
