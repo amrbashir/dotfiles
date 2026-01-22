@@ -92,4 +92,4 @@ Invoke-Expression (&starship init powershell)
 fnm env --use-on-cd --shell power-shell | Out-String | Invoke-Expression
 Invoke-Expression (& { (zoxide init powershell --cmd cd | Out-String) })
 
-Use-CDIntegrations @("__zoxide_z", "Set-FnmOnLoad")
+Use-CDIntegrations @("__zoxide_z", "Merge-NearestGitConfig", "Set-FnmOnLoad")

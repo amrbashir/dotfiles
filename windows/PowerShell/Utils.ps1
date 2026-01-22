@@ -170,6 +170,51 @@ Function Set-GitAlias {
 
 <#
 .SYNOPSIS
+    Merge the nearest .gitconfig file from the current directory upwards into the current session's git configuration.
+#>
+Function Merge-NearestGitConfig {
+    # Reset any previous temporary git config
+    if ($Env:GIT_CONFIG_GLOBAL) {
+        Remove-Item $Env:GIT_CONFIG_GLOBAL -ErrorAction SilentlyContinue
+        Remove-Item Env:GIT_CONFIG_GLOBAL
+    }
+
+    $currentDir = Get-Location
+    $nearestGitconfig = $null
+
+    # Find the nearest .gitconfig file upwards in the directory tree
+    while ($currentDir) {
+        $gitconfigPath = Join-Path -Path $currentDir -ChildPath ".gitconfig"
+        if (Test-Path $gitconfigPath) {
+            $nearestGitconfig = $gitconfigPath
+            break
+        }
+
+        # Move up one directory
+        $currentDir = Split-Path -Path $currentDir -Parent
+    }
+
+    # if the found .gitconfig is not the user's global config, merge it
+    if ($nearestGitconfig -and ($nearestGitconfig -ne "$HOME\.gitconfig")) {
+        # Create a temporary config file with the user's global config ~/.gitconfig
+        $tempConfig = [System.IO.Path]::GetTempFileName()
+        Get-Content "$HOME\.gitconfig" | Set-Content $tempConfig
+
+        # Append an include directive for the nearest .gitconfig
+        $nearestGitconfig = $nearestGitconfig -replace '\\', '/' # Normalize path for git
+        Add-Content $tempConfig "`n[include]`n    path = $nearestGitconfig"
+
+        # Point Git to this merged config for the session
+        $Env:GIT_CONFIG_GLOBAL = $tempConfig
+        Write-Host "Merged git config from " -NoNewline 
+        Write-Host $nearestGitconfig -NoNewline -ForegroundColor Cyan
+        Write-Host " into current session."
+    }
+}
+
+
+<#
+.SYNOPSIS
     Create a cd alias that calls all integrations. Intended for fnm and zoxide to work together.
 .PARAMETER IntegrationFunctions
     The list of integration function names to call on cd, order is important.
