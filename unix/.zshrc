@@ -131,9 +131,6 @@ eval "$(zoxide init zsh --cmd cd)"
 eval "$(starship init zsh)"
 eval "`fnm env --shell zsh --use-on-cd`"
 
-# load zsh hook function
-autoload -U add-zsh-hook
-
 # add hook on directory change to merge nearest gitconfig
 # also run it once at startup
 add-zsh-hook chpwd merge_nearest_gitconfig && merge_nearest_gitconfig
