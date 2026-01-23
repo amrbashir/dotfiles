@@ -24,6 +24,46 @@ zinit light zdharma-continuum/fast-syntax-highlighting
 zinit light zsh-users/zsh-autosuggestions
 
 # ------------------
+# Utility functions
+# ------------------
+merge_nearest_gitconfig() {
+    # Reset any previous temporary git config
+    if [[ -n "$GIT_CONFIG_GLOBAL" ]]; then
+        rm -f "$GIT_CONFIG_GLOBAL" 2>/dev/null
+        unset GIT_CONFIG_GLOBAL
+    fi
+
+    local current_dir="$PWD"
+    local nearest_gitconfig=""
+
+    # Find the nearest .gitconfig file upwards in the directory tree
+    while [[ -n "$current_dir" ]]; do
+        local gitconfig_path="$current_dir/.gitconfig"
+        if [[ -f "$gitconfig_path" ]]; then
+            nearest_gitconfig="$gitconfig_path"
+            break
+        fi
+
+        # Move up one directory
+        current_dir="${current_dir%/*}"
+    done
+
+    # if the found .gitconfig is not the user's global config, merge it
+    if [[ -n "$nearest_gitconfig" && "$nearest_gitconfig" != "$HOME/.gitconfig" ]]; then
+        # Create a temporary config file with the user's global config ~/.gitconfig
+        local temp_config=$(mktemp)
+        cat "$HOME/.gitconfig" > "$temp_config"
+
+        # Append an include directive for the nearest .gitconfig
+        echo -e "\n[include]\n    path = $nearest_gitconfig" >> "$temp_config"
+
+        # Point Git to this merged config for the session
+        export GIT_CONFIG_GLOBAL="$temp_config"
+        echo "Merged git config from \e[36m$nearest_gitconfig\e[0m into current session."
+    fi
+}
+
+# ------------------
 # ZSH configurations
 # ------------------
 
@@ -85,6 +125,15 @@ alias gremote="git remote"
 alias grebase="git rebase"
 
 # -----------------
+# Integrations
+# -----------------
 eval "$(zoxide init zsh --cmd cd)"
 eval "$(starship init zsh)"
-eval "`fnm env`"
+eval "`fnm env --shell zsh --use-on-cd`"
+
+# load zsh hook function
+autoload -U add-zsh-hook
+
+# add hook on directory change to merge nearest gitconfig
+# also run it once at startup
+add-zsh-hook chpwd merge_nearest_gitconfig && merge_nearest_gitconfig
