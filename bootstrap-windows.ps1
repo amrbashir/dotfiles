@@ -38,7 +38,6 @@ scoop install g-helper qbittorrent everything everything-cli instant-eyedropper 
 scoop install komorebi komorebi-switcher autohotkey trafficmonitor-lite altsnap windhawk translucenttb
 scoop install FiraCode FiraCode-NF
 scoop install PSReadLine posh-git PSFzf
-sudo scoop install windowsdesktop-runtime-lts
 
 # Install winget apps 
 WingetSilentInstall --id Bitwarden.Bitwarden
@@ -52,6 +51,7 @@ WingetSilentInstall --id Microsoft.PowerShell
 WingetSilentInstall --id Google.AndroidStudio
 WingetSilentInstall --id Docker.DockerDesktop
 WingetSilentInstall --Name Raycast
+WingetSilentInstall --id Microsoft.DotNet.DesktopRuntime.8
 
 Update-PATH
 
