@@ -152,6 +152,27 @@ Function Set-AliasEx {
 
 <#
 .SYNOPSIS
+    Remove an alias or built-in function.
+.PARAMETER AliasName
+    The name of the alias to remove.
+#>
+Function Remove-AliasEx {
+    param (
+        [string]$AliasName
+    )
+
+    if (Get-Alias $AliasName -ErrorAction SilentlyContinue) {
+        Remove-Alias $AliasName -Force
+    }
+
+    $maybeFunction = Get-Command $AliasName -ErrorAction SilentlyContinue
+    if ($maybeFunction -and $maybeFunction.CommandType -eq 'Function') {
+        Remove-Item "Function:$AliasName" -Force
+    }
+}
+
+<#
+.SYNOPSIS
     Set an alias for a git command, ensuring the alias is setup correctly for posh-git integration.
 .PARAMETER AliasName
     The name of the alias to create.

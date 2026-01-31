@@ -12,6 +12,7 @@ $ScriptRoot = Split-Path -Path $ScriptTarget -Parent
 # ----------------------------------
 $PSReadLineOptions = @{
     PredictionSource              = "History"
+    HistoryNoDuplicates           = $true
     HistorySearchCursorMovesToEnd = $true
     Colors                        = @{
         Operator  = "Yellow"
@@ -53,9 +54,7 @@ foreach ($util in (coreutils --list)) {
     # Skip the `[` utility as it conflicts with PowerShell syntax
     if ($util -eq "[") { continue } 
 
-    if (Get-Alias $util -ErrorAction SilentlyContinue) {
-        Remove-Alias $util -Force
-    }
+    Remove-AliasEx $util
 }
 
 Set-AliasEx vim nvim
