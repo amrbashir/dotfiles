@@ -161,9 +161,10 @@ Function Remove-AliasEx {
         [string]$AliasName
     )
 
-    if (Get-Alias $AliasName -ErrorAction SilentlyContinue) {
-        Remove-Alias $AliasName -Force
-    }
+    # Remove at script level
+    if (Get-Alias $AliasName -ErrorAction SilentlyContinue) { Remove-Alias $AliasName -Force }
+    # Remove at global level
+    if (Get-Alias $AliasName -ErrorAction SilentlyContinue) { Remove-Alias $AliasName -Force }
 
     $maybeFunction = Get-Command $AliasName -ErrorAction SilentlyContinue
     if ($maybeFunction -and $maybeFunction.CommandType -eq 'Function') {
