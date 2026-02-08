@@ -26,8 +26,8 @@ scoop bucket add nerd-fonts
 scoop bucket add amrbashir https://github.com/amrbashir/scoop-bucket
 
 # Symlink configs that are needed before installing from scoop
-New-ConfigSymlink -File "$PWD\windows\AltSnap.ini" -ToDir "$HOME\scoop\persist\altsnap\" -ToFile "AltSnap.ini"
-New-ConfigSymlink -File "$PWD\windows\trafficmonitor-lite\config.ini" -ToDir "$HOME\scoop\persist\trafficmonitor-lite\" -ToFile "config.ini"
+New-ConfigSymlink -File "$PSScriptRoot\windows\AltSnap.ini" -ToDir "$HOME\scoop\persist\altsnap\" -ToFile "AltSnap.ini"
+New-ConfigSymlink -File "$PSScriptRoot\windows\trafficmonitor-lite\config.ini" -ToDir "$HOME\scoop\persist\trafficmonitor-lite\" -ToFile "config.ini"
 
 # Install scoop apps
 scoop install 7zip
@@ -73,10 +73,10 @@ fnm use lts-latest
 Update-PATH
 
 # Add startup apps
-Add-StartupApp keybindings "$HOME\scoop\apps\autohotkey\current\v2\AutoHotkey64.exe" "`"$PWD\windows\keybindings.ahk`""
+Add-StartupApp keybindings "$HOME\scoop\apps\autohotkey\current\v2\AutoHotkey64.exe" "`"$PSScriptRoot\windows\keybindings.ahk`""
 Add-StartupApp Everything "$HOME\scoop\apps\everything\current\everything.exe" "-startup"
 Add-StartupApp Mailspring "$HOME\scoop\apps\mailspring\current\mailspring.exe" "--background"
-Add-StartupApp komorebi "$HOME\scoop\apps\nircmd\current\nircmd.exe" "elevate `"$HOME\scoop\apps\komorebi\current\komorebic-no-console.exe`" start --config `"$PWD\windows\komorebi.json`""
+Add-StartupApp komorebi "$HOME\scoop\apps\nircmd\current\nircmd.exe" "elevate `"$HOME\scoop\apps\komorebi\current\komorebic-no-console.exe`" start --config `"$PSScriptRoot\windows\komorebi.json`""
 Add-StartupApp TrafficMonitor "$HOME\scoop\apps\trafficmonitor-lite\current\TrafficMonitor.exe"
 Add-StartupApp AltSnap "$HOME\scoop\apps\altsnap\current\AltSnap.exe" "-elevate"
 Add-StartupApp Windhawk "$HOME\scoop\apps\nircmd\current\nircmd.exe" "elevate `"$HOME\scoop\apps\windhawk\current\windhawk.exe`" -tray-only"
@@ -85,11 +85,16 @@ Add-StartupApp komorebi-switcher "$HOME\scoop\apps\komorebi-switcher\current\kom
 Add-StartupApp electron.app.Bitwarden "$Env:LOCALAPPDATA\Programs\Bitwarden\Bitwarden.exe"
 
 # Symlink remaining config files
-New-ConfigSymlink -Path "$PWD\windows\PowerShell\Microsoft.PowerShell_profile.ps1" -ToDir "$HOME\Documents\PowerShell" -ToFile "Microsoft.PowerShell_profile.ps1"
-New-ConfigSymlink -Path "$PWD\windows\.gitconfig" -ToDir "$HOME" -ToFile ".gitconfig"
-New-ConfigSymlink -Path "$PWD\shared\starship.toml" -ToDir "$HOME\.config" -ToFile "starship.toml"
-New-ConfigSymlink -Path "$PWD\windows\Windows Terminal\settings.json" -ToDir "$Env:LOCALAPPDATA\Packages\Microsoft.WindowsTerminal_8wekyb3d8bbwe\LocalState" -ToFile "settings.json"
-New-ConfigSymlink -Path "$PWD\windows\Windhawk-Mods" -ToDir "$HOME\scoop\persist\windhawk\AppData\Engine" -ToFile "Mods"
+New-ConfigSymlink -Path "$PSScriptRoot\windows\PowerShell\Microsoft.PowerShell_profile.ps1" -ToDir "$HOME\Documents\PowerShell" -ToFile "Microsoft.PowerShell_profile.ps1"
+New-ConfigSymlink -Path "$PSScriptRoot\windows\.gitconfig" -ToDir "$HOME" -ToFile ".gitconfig"
+New-ConfigSymlink -Path "$PSScriptRoot\shared\starship.toml" -ToDir "$HOME\.config" -ToFile "starship.toml"
+New-ConfigSymlink -Path "$PSScriptRoot\windows\Windows Terminal\settings.json" -ToDir "$Env:LOCALAPPDATA\Packages\Microsoft.WindowsTerminal_8wekyb3d8bbwe\LocalState" -ToFile "settings.json"
+New-ConfigSymlink -Path "$PSScriptRoot\windows\Windhawk-Mods" -ToDir "$HOME\scoop\persist\windhawk\AppData\Engine" -ToFile "Mods"
 
 # Set environment variables
 Add-EnvVar "CARGO_TARGET_DIR" "$HOME\.cache\.cargo-target"
+
+# Run registry modifications
+Get-ChildItem -Path "$PSScriptRoot\windows\Registry\*.reg" | ForEach-Object {
+    reg import $_.FullName
+}
