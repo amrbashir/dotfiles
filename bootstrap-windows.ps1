@@ -32,8 +32,8 @@ New-ConfigSymlink -File "$PSScriptRoot\windows\trafficmonitor-lite\config.ini" -
 # Install scoop apps
 scoop install 7zip
 scoop install uutils-coreutils starship bat ripgrep fd neovim eza zoxide fzf nircmd
-scoop install python fnm gh cmake ninja deno nsis taplo
-scoop install bitwarden-cli yubioath
+scoop install python fnm gh cmake ninja nsis taplo
+scoop install yubioath
 scoop install g-helper qbittorrent everything everything-cli instant-eyedropper mailspring ds4windows inkscape
 scoop install komorebi komorebi-switcher autohotkey trafficmonitor-lite altsnap windhawk translucenttb
 scoop install FiraCode FiraCode-NF
