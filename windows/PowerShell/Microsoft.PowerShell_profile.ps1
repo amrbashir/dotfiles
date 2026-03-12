@@ -48,12 +48,8 @@ Set-PSReadLineKeyHandler -Key Escape -ScriptBlock { # Add sudo on double ESC tap
 # ----------------------------------
 # Aliases
 # ----------------------------------
-# For each util in `coreutils --list` provided by uutils-coreutils,
-# remove any existing alias to avoid conflicts
-foreach ($util in (coreutils --list)) {
-    # Skip the `[` utility as it conflicts with PowerShell syntax
-    if ($util -eq "[") { continue } 
-
+# For each util provided by uutils-coreutils, remove any existing alias to avoid conflicts
+foreach ($util in (Get-ChildItem "$HOME\scoop\apps\uutils-coreutils\current\*.exe" | Select-Object -ExpandProperty BaseName)) {
     Remove-AliasEx $util
 }
 
