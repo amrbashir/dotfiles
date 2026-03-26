@@ -30,5 +30,4 @@ echo "export PATH=\"/opt/homebrew/opt/gawk/libexec/gnubin:$PATH\"" >> "$HOME/.zp
 echo "export PATH=\"/opt/homebrew/opt/gnu-indent/libexec/gnubin:$PATH\"" >> "$HOME/.zprofile"
 echo "export PATH=\"/opt/homebrew/opt/gnu-getopt/libexec/gnubin:$PATH\"" >> "$HOME/.zprofile"
 
-echo "export CARGO_TARGET_DIR=$HOME/.cache/.cargo-target" >> "$HOME/.zshenv"
 echo "export SSH_AUTH_SOCK=\"$HOME/Library/Containers/com.bitwarden.desktop/Data/.bitwarden-ssh-agent.sock\"" >> "$HOME/.zshenv"

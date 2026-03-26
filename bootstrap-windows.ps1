@@ -92,9 +92,6 @@ New-ConfigSymlink -Path "$PSScriptRoot\windows\Windows Terminal\settings.json" -
 New-ConfigSymlink -Path "$PSScriptRoot\windows\Windhawk-Mods" -ToDir "$HOME\scoop\persist\windhawk\AppData\Engine" -ToFile "Mods"
 New-ConfigSymlink -Path "$PSScriptRoot\windows\psmux.conf" -ToDir "$HOME\.config\psmux" -ToFile "psmux.conf"
 
-# Set environment variables
-Add-EnvVar "CARGO_TARGET_DIR" "$HOME\.cache\.cargo-target"
-
 # Run registry modifications
 Get-ChildItem -Path "$PSScriptRoot\windows\Registry\*.reg" | ForEach-Object {
     reg import $_.FullName
