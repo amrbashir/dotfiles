@@ -18,6 +18,7 @@ symlink_config "$PWD/macos/skhdrc" "$HOME/.config/skhd/" "skhdrc"
 symlink_config "$PWD/shared/starship.toml" "$HOME/.config/" "starship.toml"
 symlink_config "$PWD/unix/.zshrc" "$HOME/" ".zshrc"
 symlink_config "$PWD/unix/.gitconfig" "$HOME/" ".gitconfig"
+symlink_config "$PWD/unix/.tmux.conf" "$HOME/" ".tmux.conf"
 
 # Set environment variables
 echo "export PATH=\"/opt/homebrew/opt/coreutils/libexec/gnubin:$PATH\"" >> "$HOME/.zprofile"
