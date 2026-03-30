@@ -90,7 +90,7 @@ New-ConfigSymlink -Path "$PSScriptRoot\windows\.gitconfig" -ToDir "$HOME" -ToFil
 New-ConfigSymlink -Path "$PSScriptRoot\shared\starship.toml" -ToDir "$HOME\.config" -ToFile "starship.toml"
 New-ConfigSymlink -Path "$PSScriptRoot\windows\Windows Terminal\settings.json" -ToDir "$Env:LOCALAPPDATA\Packages\Microsoft.WindowsTerminal_8wekyb3d8bbwe\LocalState" -ToFile "settings.json"
 New-ConfigSymlink -Path "$PSScriptRoot\windows\Windhawk-Mods" -ToDir "$HOME\scoop\persist\windhawk\AppData\Engine" -ToFile "Mods"
-New-ConfigSymlink -Path "$PSScriptRoot\windows\psmux.conf" -ToDir "$HOME\.config\psmux" -ToFile "psmux.conf"
+New-ConfigSymlink -Path "$PSScriptRoot\windows\.tmux.conf" -ToDir "$HOME" -ToFile ".tmux.conf"
 
 # Run registry modifications
 Get-ChildItem -Path "$PSScriptRoot\windows\Registry\*.reg" | ForEach-Object {
