@@ -50,7 +50,8 @@ brew install \
     starship \
     tailscale \
     tmux \
-    zoxide
+    zoxide \
+    sccache
 
 # Install casks
 brew install --cask \
