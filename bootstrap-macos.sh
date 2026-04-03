@@ -76,7 +76,7 @@ xcode-select --install
 
 # Easy Ethernet Icon (no Homebrew cask available)
 curl -L -o /tmp/Easy-Ethernet-Icon.zip "https://github.com/felixblome/easy-ethernet-icon/releases/download/v1.2/Easy-Ethernet-Icon.zip"
-unzip -o /tmp/Easy-Ethernet-Icon.zip -d /tmp/Easy-Ethernet-Icon
+unzip -o /tmp/Easy-Ethernet-Icon.zip -d /tmp
 cp -r "/tmp/Easy-Ethernet-Icon/Easy Ethernet Icon.app" /Applications/
 xattr -dr com.apple.quarantine "/Applications/Easy Ethernet Icon.app"
 rm -rf /tmp/Easy-Ethernet-Icon /tmp/Easy-Ethernet-Icon.zip
