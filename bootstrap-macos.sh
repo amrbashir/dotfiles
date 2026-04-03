@@ -1,7 +1,5 @@
 #!/bin/bash
 
-# TODO: add packages installation
-
 # Function to create symlink for config files
 # Arguments:
 #   $1 - source file path
@@ -13,6 +11,86 @@ symlink_config() {
     ln -sf "$1" "$2$3"
 }
 
+# Install Homebrew if not installed
+if ! command -v brew &> /dev/null; then
+    /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
+    eval "$(/opt/homebrew/bin/brew shellenv)"
+fi
+
+# Add taps
+brew tap amrbashir/tap
+brew tap jackielii/tap
+brew tap lgug2z/tap
+
+# Install formulae
+brew install \
+    bat \
+    clang-format \
+    cmake \
+    coreutils \
+    create-dmg \
+    eza \
+    fd \
+    findutils \
+    fnm \
+    fzf \
+    gawk \
+    gh \
+    gnu-getopt \
+    gnu-indent \
+    gnu-sed \
+    gnu-tar \
+    gnutls \
+    grep \
+    jackielii/tap/skhd-zig \
+    lgug2z/tap/komorebi-for-mac \
+    neovim \
+    ninja \
+    opencode \
+    starship \
+    tailscale \
+    tmux \
+    zoxide
+
+# Install casks
+brew install --cask \
+    1password-cli \
+    alt-tab \
+    bitwarden \
+    claude-code \
+    codex \
+    discord \
+    ghostty \
+    jordanbaird-ice@beta \
+    komorebi-switcher \
+    mailspring \
+    openmtp \
+    raycast \
+    stats \
+    swift-shift \
+    visual-studio-code \
+    zen-browser \
+    zulip
+
+xcode-select --install
+
+# Easy Ethernet Icon (no Homebrew cask available)
+curl -L -o /tmp/Easy-Ethernet-Icon.zip "https://github.com/felixblome/easy-ethernet-icon/releases/download/v1.2/Easy-Ethernet-Icon.zip"
+unzip -o /tmp/Easy-Ethernet-Icon.zip -d /tmp/Easy-Ethernet-Icon
+cp -r "/tmp/Easy-Ethernet-Icon/Easy Ethernet Icon.app" /Applications/
+xattr -dr com.apple.quarantine "/Applications/Easy Ethernet Icon.app"
+rm -rf /tmp/Easy-Ethernet-Icon /tmp/Easy-Ethernet-Icon.zip
+
+# Start services
+brew services start skhd-zig
+sudo brew services start tailscale
+komorebic enable-autostart
+
+# Launch agents
+symlink_config "$PWD/macos/env.plist" "$HOME/Library/LaunchAgents/" "env.plist"
+launchctl load "$HOME/Library/LaunchAgents/env.plist"
+
+# Symlink config files
 symlink_config "$PWD/macos/komorebi.json" "$HOME/.config/komorebi/" "komorebi.json"
 symlink_config "$PWD/macos/skhdrc" "$HOME/.config/skhd/" "skhdrc"
 symlink_config "$PWD/shared/starship.toml" "$HOME/.config/" "starship.toml"
@@ -31,4 +109,4 @@ echo "export PATH=\"/opt/homebrew/opt/gawk/libexec/gnubin:$PATH\"" >> "$HOME/.zp
 echo "export PATH=\"/opt/homebrew/opt/gnu-indent/libexec/gnubin:$PATH\"" >> "$HOME/.zprofile"
 echo "export PATH=\"/opt/homebrew/opt/gnu-getopt/libexec/gnubin:$PATH\"" >> "$HOME/.zprofile"
 
-echo "export SSH_AUTH_SOCK=\"$HOME/Library/Containers/com.bitwarden.desktop/Data/.bitwarden-ssh-agent.sock\"" >> "$HOME/.zshenv"
+echo "export SSH_AUTH_SOCK=\"$HOME/.bitwarden-ssh-agent.sock\"" >> "$HOME/.zshenv"
