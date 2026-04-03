@@ -81,6 +81,9 @@ cp -r "/tmp/Easy-Ethernet-Icon/Easy Ethernet Icon.app" /Applications/
 xattr -dr com.apple.quarantine "/Applications/Easy Ethernet Icon.app"
 rm -rf /tmp/Easy-Ethernet-Icon /tmp/Easy-Ethernet-Icon.zip
 
+# Install rustup and Rust toolchain
+curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh -s -- -y
+
 # Start services
 brew services start skhd-zig
 sudo brew services start tailscale
