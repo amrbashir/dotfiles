@@ -2,12 +2,12 @@
 
 REM Required parameters:
 REM @raycast.schemaVersion 1
-REM @raycast.title Ping Google DNS
+REM @raycast.title Ping Google
 REM @raycast.mode fullOutput
 
 REM Optional parameters:
 REM @raycast.icon 🤖
-REM @raycast.description Pings Google DNS
+REM @raycast.description Pings Google DNS server (8.8.8.8)
 
 
 REM Documentation:
