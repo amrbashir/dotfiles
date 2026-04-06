@@ -6,8 +6,9 @@ REM @raycast.title Sleep
 REM @raycast.mode silent
 
 REM Optional parameters:
-REM @raycast.icon 🤖
+REM @raycast.icon 💤
 REM @raycast.description Actually sleep, no standby bullshit
+REM @raycast.needsConfirmation true
 
 REM Documentation:
 REM @raycast.author Amr

@@ -6,7 +6,7 @@ REM @raycast.title Restart Explorer
 REM @raycast.mode silent
 
 REM Optional parameters:
-REM @raycast.icon 🤖
+REM @raycast.icon 🔄️
 REM @raycast.description Restarts Windows Explorer
 
 REM Documentation:

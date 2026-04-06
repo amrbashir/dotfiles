@@ -6,9 +6,8 @@ REM @raycast.title Ping Google
 REM @raycast.mode fullOutput
 
 REM Optional parameters:
-REM @raycast.icon 🤖
+REM @raycast.icon 🌐
 REM @raycast.description Pings Google DNS server (8.8.8.8)
-
 
 REM Documentation:
 REM @raycast.author Amr
