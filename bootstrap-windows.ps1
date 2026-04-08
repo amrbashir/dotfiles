@@ -99,3 +99,4 @@ Get-ChildItem -Path "$PSScriptRoot\windows\Registry\*.reg" | ForEach-Object {
 
 # Extend PATH
 Add-ToPATH "$PSScriptRoot\windows\scripts"
+Add-ToPATH "$PSScriptRoot\shared\scripts"

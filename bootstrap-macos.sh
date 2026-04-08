@@ -113,6 +113,7 @@ echo "export PATH=\"/opt/homebrew/opt/gawk/libexec/gnubin:\$PATH\"" >> "$HOME/.z
 echo "export PATH=\"/opt/homebrew/opt/gnu-indent/libexec/gnubin:\$PATH\"" >> "$HOME/.zprofile"
 echo "export PATH=\"/opt/homebrew/opt/gnu-getopt/libexec/gnubin:\$PATH\"" >> "$HOME/.zprofile"
 echo "export PATH=\"$PWD/unix/scripts:\$PATH\"" >> "$HOME/.zprofile"
+echo "export PATH=\"$PWD/shared/scripts:\$PATH\"" >> "$HOME/.zprofile"
 
 # Set environment variables
 echo "export SSH_AUTH_SOCK=\"\$HOME/.bitwarden-ssh-agent.sock\"" >> "$HOME/.zshenv"

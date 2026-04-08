@@ -1,0 +1,98 @@
+#!/usr/bin/env bash
+set -euo pipefail
+
+WORKTREE_DIR=".worktrees"
+
+usage() {
+  echo "Usage: git wt [-b] <branch> [<start-point>]
+       git wt -D <branch>
+       git wt list|ls
+
+Create a git worktree inside <repo-root>/${WORKTREE_DIR}/<branch>.
+The ${WORKTREE_DIR}/ directory is automatically excluded via .git/info/exclude.
+
+Options:
+  -b              Create a new branch
+  -D              Remove worktree and delete branch
+  list|ls         List all worktrees (forwarded to git worktree list)
+  <start-point>   Base ref for new branch (default: HEAD)
+
+Examples:
+  git wt feature/login            # existing branch
+  git wt -b feature/login          # new branch from HEAD
+  git wt -b feature/login main     # new branch from main
+  git wt -D feature/login          # remove worktree + delete branch
+  git wt ls                        # list all worktrees"
+  exit 1
+}
+
+ensure_exclude() {
+  local exclude_file="$root/.git/info/exclude"
+  if ! grep -qxF "/$WORKTREE_DIR" "$exclude_file" 2>/dev/null; then
+    echo "/$WORKTREE_DIR" >> "$exclude_file"
+  fi
+}
+
+add_worktree() {
+  local branch="$1"
+  local create_branch="$2"
+  local start_point="${3:-}"
+  local wt_path="$root/$WORKTREE_DIR/$branch"
+
+  ensure_exclude
+
+  if $create_branch; then
+    if [[ -n "$start_point" ]]; then
+      git worktree add -b "$branch" "$wt_path" "$start_point"
+    else
+      git worktree add -b "$branch" "$wt_path"
+    fi
+  else
+    git worktree add "$wt_path" "$branch"
+  fi
+}
+
+delete_worktree() {
+  local branch="$1"
+  local wt_path="$root/$WORKTREE_DIR/$branch"
+  local found=false
+
+  if [[ -d "$wt_path" ]]; then
+    git worktree remove --force "$wt_path"
+    found=true
+  fi
+
+  if git rev-parse --verify "refs/heads/$branch" &>/dev/null; then
+    git branch -D "$branch"
+    found=true
+  fi
+
+  $found || { echo "error: no worktree or branch found for '$branch'" >&2; exit 1; }
+
+  rmdir "$root/$WORKTREE_DIR" 2>/dev/null || true
+}
+
+root="$(git rev-parse --show-toplevel 2>/dev/null)" || { echo "error: not a git repository" >&2; exit 1; }
+
+case "${1:-}" in
+  -b)
+    [[ -z "${2:-}" ]] && usage
+    add_worktree "$2" true "${3:-}"
+    ;;
+  -D)
+    [[ -z "${2:-}" ]] && usage
+    [[ $# -gt 2 ]] && usage
+    delete_worktree "$2"
+    ;;
+  list|ls)
+    shift
+    git worktree list "$@"
+    ;;
+  -h|--help|"")
+    usage
+    ;;
+  *)
+    [[ $# -gt 1 ]] && usage
+    add_worktree "$1" false
+    ;;
+esac
