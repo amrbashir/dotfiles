@@ -102,7 +102,7 @@ symlink_config "$PWD/unix/.zshrc" "$HOME/" ".zshrc"
 symlink_config "$PWD/unix/.gitconfig" "$HOME/" ".gitconfig"
 symlink_config "$PWD/unix/.tmux.conf" "$HOME/" ".tmux.conf"
 
-# Set environment variables
+# Extend PATH
 echo "export PATH=\"/opt/homebrew/opt/coreutils/libexec/gnubin:\$PATH\"" >> "$HOME/.zprofile"
 echo "export PATH=\"/opt/homebrew/opt/coreutils/libexec/gnubin:\$PATH\"" >> "$HOME/.zprofile"
 echo "export PATH=\"/opt/homebrew/opt/findutils/libexec/gnubin:\$PATH\"" >> "$HOME/.zprofile"
@@ -112,5 +112,7 @@ echo "export PATH=\"/opt/homebrew/opt/gsed/libexec/gnubin:\$PATH\"" >> "$HOME/.z
 echo "export PATH=\"/opt/homebrew/opt/gawk/libexec/gnubin:\$PATH\"" >> "$HOME/.zprofile"
 echo "export PATH=\"/opt/homebrew/opt/gnu-indent/libexec/gnubin:\$PATH\"" >> "$HOME/.zprofile"
 echo "export PATH=\"/opt/homebrew/opt/gnu-getopt/libexec/gnubin:\$PATH\"" >> "$HOME/.zprofile"
+echo "export PATH=\"$PWD/unix/scripts:\$PATH\"" >> "$HOME/.zprofile"
 
+# Set environment variables
 echo "export SSH_AUTH_SOCK=\"\$HOME/.bitwarden-ssh-agent.sock\"" >> "$HOME/.zshenv"

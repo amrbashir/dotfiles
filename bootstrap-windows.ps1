@@ -96,3 +96,6 @@ New-ConfigSymlink -Path "$PSScriptRoot\windows\.tmux.conf" -ToDir "$HOME" -ToFil
 Get-ChildItem -Path "$PSScriptRoot\windows\Registry\*.reg" | ForEach-Object {
     reg import $_.FullName
 }
+
+# Extend PATH
+Add-ToPATH "$PSScriptRoot\windows\scripts"
