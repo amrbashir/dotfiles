@@ -43,5 +43,6 @@ if (-not $ArtifactUrl) {
     exit 1
 }
 
-Write-Host "curl -LO -H 'Authorization: token `$(gh auth token)' $ArtifactUrl"
-curl -LO -H "Authorization: token $(gh auth token)" $ArtifactUrl
+$FinalUrl = curl -s -w '%{redirect_url}' -o /dev/null -H "Authorization: token $(gh auth token)" $ArtifactUrl
+Write-Host "curl -LO `"$FinalUrl`""
+curl -LO $FinalUrl

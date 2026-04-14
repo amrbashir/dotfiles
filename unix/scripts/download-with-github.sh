@@ -41,5 +41,6 @@ if [ -z "$ARTIFACT_URL" ]; then
   exit 1
 fi
 
-echo "curl -LO -H \"Authorization: token \$(gh auth token)\" $ARTIFACT_URL"
-curl -LO -H "Authorization: token $(gh auth token)" "$ARTIFACT_URL"
+FINAL_URL=$(curl -s -w '%{redirect_url}' -o /dev/null -H "Authorization: token $(gh auth token)" "$ARTIFACT_URL")
+echo "curl -LO \"$FINAL_URL\""
+curl -LO "$FINAL_URL"
