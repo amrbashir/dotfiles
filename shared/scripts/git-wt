@@ -58,7 +58,10 @@ delete_worktree() {
   local found=false
 
   if [[ -d "$wt_path" ]]; then
-    git worktree remove --force "$wt_path"
+     git worktree remove --force "$wt_path" 2>/dev/null || {
+      rm -rf "$wt_path"
+      git worktree prune
+    }
     found=true
   fi
 
