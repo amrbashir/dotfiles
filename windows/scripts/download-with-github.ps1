@@ -43,5 +43,5 @@ if (-not $ArtifactUrl) {
     exit 1
 }
 
-Write-Host "curl -LO $ArtifactUrl"
-curl -LO $ArtifactUrl
+Write-Host "curl -LO -H 'Authorization: token `$(gh auth token)' $ArtifactUrl"
+curl -LO -H "Authorization: token $(gh auth token)" $ArtifactUrl

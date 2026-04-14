@@ -41,5 +41,5 @@ if [ -z "$ARTIFACT_URL" ]; then
   exit 1
 fi
 
-echo "curl -LO $ARTIFACT_URL"
-curl -LO "$ARTIFACT_URL"
+echo "curl -LO -H \"Authorization: token \$(gh auth token)\" $ARTIFACT_URL"
+curl -LO -H "Authorization: token $(gh auth token)" "$ARTIFACT_URL"
