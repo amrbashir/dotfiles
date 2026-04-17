@@ -23,7 +23,7 @@ Function Add-ToPATH {
     )
 
     $oldpath = [System.Environment]::GetEnvironmentVariable("Path", $Scope)
-    $newpath = $oldpath + ";" + $Path
+    $newpath = $Path + ";" + $oldpath
     [System.Environment]::SetEnvironmentVariable("Path", $newpath, $Scope)
     Update-PATH
 }
