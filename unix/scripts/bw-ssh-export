@@ -1,0 +1,47 @@
+#!/usr/bin/env bash
+
+# Required parameters:
+# @raycast.schemaVersion 1
+# @raycast.title Export SSH Keys from Bitwarden
+# @raycast.description Export all SSH keys from Bitwarden vault to ~/.ssh
+# @raycast.mode compact
+
+# Documentation:
+# @raycast.author Amr
+# @raycast.authorURL https://amrbashir.me
+
+set -e
+
+# Login if not logged in
+if ! bw login --check &>/dev/null; then
+    echo "Not logged in. Logging in..."
+    export BW_SESSION=$(bw login --raw)
+fi
+
+# Unlock if locked
+if ! bw unlock --check &>/dev/null; then
+    echo "Vault is locked. Unlocking..."
+    export BW_SESSION=$(bw unlock --raw)
+fi
+
+# Ensure ~/.ssh exists
+mkdir -p ~/.ssh
+chmod 700 ~/.ssh
+
+# Export SSH keys
+bw list items | jq -c '.[] | select(.type == 5)' | \
+while read -r item; do
+    name=$(echo "$item" | jq -r '.name')
+    id=$(echo "$item" | jq -r '.id')
+    full_item=$(bw get item "$id")
+
+    echo "Exporting: $name"
+
+    echo "$full_item" | jq -r '.sshKey.privateKey' > "$HOME/.ssh/$name"
+    chmod 600 "$HOME/.ssh/$name"
+
+    echo "$full_item" | jq -r '.sshKey.publicKey' > "$HOME/.ssh/$name.pub"
+    chmod 644 "$HOME/.ssh/$name.pub"
+done
+
+echo "Done."

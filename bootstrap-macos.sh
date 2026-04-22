@@ -51,6 +51,7 @@ brew install \
     tailscale \
     tmux \
     zoxide \
+    bitwarden-cli \
     sccache
 
 # Install casks
@@ -90,10 +91,6 @@ brew services start skhd-zig
 sudo brew services start tailscale
 komorebic enable-autostart
 
-# Launch agents
-symlink_config "$PWD/macos/env.plist" "$HOME/Library/LaunchAgents/" "env.plist"
-launchctl load "$HOME/Library/LaunchAgents/env.plist"
-
 # Symlink config files
 symlink_config "$PWD/macos/komorebi.json" "$HOME/.config/komorebi/" "komorebi.json"
 symlink_config "$PWD/macos/skhdrc" "$HOME/.config/skhd/" "skhdrc"
@@ -116,4 +113,3 @@ echo "export PATH=\"$PWD/unix/scripts:\$PATH\"" >> "$HOME/.zprofile"
 echo "export PATH=\"$PWD/shared/scripts:\$PATH\"" >> "$HOME/.zprofile"
 
 # Set environment variables
-echo "export SSH_AUTH_SOCK=\"\$HOME/.bitwarden-ssh-agent.sock\"" >> "$HOME/.zshenv"
