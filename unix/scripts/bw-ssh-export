@@ -42,6 +42,8 @@ while read -r item; do
 
     echo "$full_item" | jq -r '.sshKey.publicKey' > "$HOME/.ssh/$name.pub"
     chmod 644 "$HOME/.ssh/$name.pub"
+
+    ssh-add "$HOME/.ssh/$name"
 done
 
 echo "Done."

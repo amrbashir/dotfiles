@@ -52,6 +52,8 @@ $items | Where-Object { $_.type -eq 5 } | ForEach-Object {
     )
     $acl.AddAccessRule($rule)
     Set-Acl -Path $privatePath -AclObject $acl
+
+    ssh-add $privatePath
 }
 
 Write-Host "Done."
