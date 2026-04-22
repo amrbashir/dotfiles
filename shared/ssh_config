@@ -1,0 +1,7 @@
+Host github.com
+    HostName github.com
+    IdentityFile ~/.ssh/id_github_auth.pub
+
+Host github-crabnebula
+    HostName github.com
+    IdentityFile ~/.ssh/id_github_crabnebula_auth.pub

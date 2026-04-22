@@ -19,6 +19,7 @@ symlink_config "$PWD/shared/starship.toml" "$HOME/.config/" "starship.toml"
 symlink_config "$PWD/unix/.zshrc" "$HOME/" ".zshrc"
 symlink_config "$PWD/unix/.gitconfig" "$HOME/" ".gitconfig"
 symlink_config "$PWD/unix/.tmux.conf" "$HOME/" ".tmux.conf"
+symlink_config "$PWD/shared/ssh_config" "$HOME/.ssh/" "config"
 
 # Extend PATH
 echo "export PATH=\"$PWD/unix/scripts:\$PATH\"" >> "$HOME/.zprofile"
