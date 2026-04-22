@@ -1,7 +1,7 @@
 Host github.com
     HostName github.com
-    IdentityFile ~/.ssh/id_github_auth.pub
+    IdentityFile ~/.ssh/id_github_auth
 
 Host github-crabnebula
     HostName github.com
-    IdentityFile ~/.ssh/id_github_crabnebula_auth.pub
+    IdentityFile ~/.ssh/id_github_crabnebula_auth
