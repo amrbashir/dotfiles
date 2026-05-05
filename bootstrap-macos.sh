@@ -87,8 +87,8 @@ rm -rf /tmp/Easy-Ethernet-Icon /tmp/Easy-Ethernet-Icon.zip
 curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh -s -- -y
 
 # Start services
-brew services start skhd-zig
 sudo brew services start tailscale
+skhd --start-service
 komorebic enable-autostart
 
 # Symlink config files
