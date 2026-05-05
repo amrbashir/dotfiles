@@ -88,6 +88,8 @@ curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh -s -- -y
 
 # Start services
 sudo /opt/homebrew/opt/tailscale/bin/tailscaled install-system-daemon
+# Route *.ts.net DNS queries to Tailscale MagicDNS — https://github.com/tailscale/tailscale/issues/18510
+sudo mkdir -p /etc/resolver && echo 'nameserver 100.100.100.100' | sudo tee /etc/resolver/ts.net >/dev/null
 skhd --start-service
 komorebic enable-autostart
 
