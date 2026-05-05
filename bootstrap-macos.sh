@@ -87,7 +87,7 @@ rm -rf /tmp/Easy-Ethernet-Icon /tmp/Easy-Ethernet-Icon.zip
 curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh -s -- -y
 
 # Start services
-sudo brew services start tailscale
+sudo /opt/homebrew/opt/tailscale/bin/tailscaled install-system-daemon
 skhd --start-service
 komorebic enable-autostart
 
