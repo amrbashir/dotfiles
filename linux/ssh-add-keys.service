@@ -1,0 +1,10 @@
+[Unit]
+Description=Add SSH keys to agent
+After=ssh-agent.service
+
+[Service]
+Type=oneshot
+ExecStart=/bin/bash -c 'for pub in "$HOME"/.ssh/*.pub; do key="${pub%.pub}"; [ -f "$key" ] && /usr/bin/ssh-add "$key"; done'
+
+[Install]
+WantedBy=default.target

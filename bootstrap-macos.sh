@@ -101,6 +101,7 @@ symlink_config "$PWD/unix/.zshrc" "$HOME/" ".zshrc"
 symlink_config "$PWD/unix/.gitconfig" "$HOME/" ".gitconfig"
 symlink_config "$PWD/unix/.tmux.conf" "$HOME/" ".tmux.conf"
 symlink_config "$PWD/shared/ssh_config" "$HOME/.ssh/" "config"
+symlink_config "$PWD/macos/com.user.ssh-add-keys.plist" "$HOME/Library/LaunchAgents/" "com.user.ssh-add-keys.plist"
 
 # Extend PATH
 echo "export PATH=\"/opt/homebrew/opt/coreutils/libexec/gnubin:\$PATH\"" >> "$HOME/.zprofile"

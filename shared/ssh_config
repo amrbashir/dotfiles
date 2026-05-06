@@ -1,3 +1,6 @@
+Host *
+    AddKeysToAgent yes
+
 Host github.com
     HostName github.com
     IdentityFile ~/.ssh/id_github_auth
