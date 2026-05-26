@@ -35,7 +35,7 @@ scoop install uutils-coreutils starship bat ripgrep fd neovim eza zoxide fzf nir
 scoop install python fnm gh cmake ninja nsis taplo sccache amrbashir/winspy
 scoop install yubioath bitwarden-cli
 scoop install g-helper qbittorrent everything everything-cli instant-eyedropper mailspring ds4windows inkscape
-scoop install komorebi komorebi-switcher autohotkey trafficmonitor-lite altsnap windhawk translucenttb
+scoop install komorebi komorebi-switcher autohotkey trafficmonitor-lite altsnap windhawk translucenttb tailscale
 scoop install FiraCode FiraCode-NF
 scoop install PSReadLine posh-git PSFzf
 
@@ -83,6 +83,7 @@ Add-StartupApp Windhawk "$HOME\scoop\apps\nircmd\current\nircmd.exe" "elevate `"
 Add-StartupApp TranslucentTB "$HOME\scoop\apps\translucenttb\current\TranslucentTB.exe"
 Add-StartupApp komorebi-switcher "$HOME\scoop\apps\komorebi-switcher\current\komorebi-switcher.exe"
 Add-StartupApp electron.app.Bitwarden "$Env:LOCALAPPDATA\Programs\Bitwarden\Bitwarden.exe"
+Add-StartupApp Tailscale "$HOME\scoop\apps\tailscale\current\tailscale-ipn.exe"
 
 # Symlink remaining config files
 New-ConfigSymlink -Path "$PSScriptRoot\windows\PowerShell\Microsoft.PowerShell_profile.ps1" -ToDir "$HOME\Documents\PowerShell" -ToFile "Microsoft.PowerShell_profile.ps1"
