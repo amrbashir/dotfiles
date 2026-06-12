@@ -23,6 +23,7 @@ symlink_config "$PWD/shared/ssh_config" "$HOME/.ssh/" "config"
 symlink_config "$PWD/linux/ssh-add-keys.service" "$HOME/.config/systemd/user/" "ssh-add-keys.service"
 systemctl --user daemon-reload
 systemctl --user enable ssh-add-keys.service
+systemctl --user start ssh-add-keys.service
 
 # Extend PATH
 echo "export PATH=\"$PWD/unix/scripts:\$PATH\"" >> "$HOME/.zprofile"
