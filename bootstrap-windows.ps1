@@ -66,6 +66,7 @@ Invoke-RestMethod -Uri https://win.rustup.rs/x86_64 -Out "$Env:TEMP/rustup-init.
 Update-PATH
 
 # Install Node.js
+mise settings "node.corepack=true"
 mise install node
 mise use --global node
 

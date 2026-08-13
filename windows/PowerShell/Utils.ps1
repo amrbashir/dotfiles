@@ -237,27 +237,27 @@ Function Merge-NearestGitConfig {
 
 <#
 .SYNOPSIS
-    Create a cd alias that calls all integrations.
-.PARAMETER IntegrationFunctions
-    The list of integration function names to call on cd, order is important.
+    Register a function to run on every directory change, without owning the `cd` command.
+.DESCRIPTION
+    Hooks into PowerShell's LocationChangedAction, so it fires for any location change
+    (cd/zoxide, Set-Location, pushd), and chains onto hooks registered by other tools (mise).
+.PARAMETER FunctionName
+    The name of the function to call on directory change.
 #>
-Function Use-CDIntegrations {
+Function Register-LocationChangedHook {
     param (
-        [string[]]$IntegrationFunctions
+        [Parameter(Mandatory)]
+        [string]$FunctionName
     )
 
-    $quotedFunctions = $IntegrationFunctions | ForEach-Object { "'$_'" }
-    $functionList = $quotedFunctions -join ', '
-    
-    $functionScript = @"
-        Function global:Set-LocationWithAllIntegrations {
-            foreach (`$fn in @($functionList)) {
-                & `$fn @args
-            }
-        }
-"@
-    Invoke-Expression $functionScript
+    # GetNewClosure captures $FunctionName, which is gone by the time the hook runs
+    $hook = [EventHandler[System.Management.Automation.LocationChangedEventArgs]] { & $FunctionName }.GetNewClosure()
 
-    Set-Alias -Name cd -Value Set-LocationWithAllIntegrations -Option AllScope -Scope Global -Force
+    # Combine() with a $null left side just returns the hook, so no need to special case the first one
+    $invokeCommand = $ExecutionContext.SessionState.InvokeCommand
+    $invokeCommand.LocationChangedAction = [Delegate]::Combine($invokeCommand.LocationChangedAction, $hook)
+
+    # The hook only fires on later changes, so run it once for the startup directory
+    & $FunctionName
 }
 

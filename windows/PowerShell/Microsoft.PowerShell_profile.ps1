@@ -86,8 +86,4 @@ Import-Module posh-git -arg 0, 0, 1 # for git tab completion
 Invoke-Expression (&starship init powershell)
 Invoke-Expression (& { (zoxide init powershell --cmd cd | Out-String) })
 (&mise activate pwsh) | Out-String | Invoke-Expression
-
-Use-CDIntegrations @("__zoxide_z", "Merge-NearestGitConfig", "Set-FnmOnLoad") 
-
-# Run once on startup to merge nearest gitconfig 
-Merge-NearestGitConfig
+Register-LocationChangedHook Merge-NearestGitConfig
