@@ -237,7 +237,7 @@ Function Merge-NearestGitConfig {
 
 <#
 .SYNOPSIS
-    Create a cd alias that calls all integrations. Intended for fnm and zoxide to work together.
+    Create a cd alias that calls all integrations.
 .PARAMETER IntegrationFunctions
     The list of integration function names to call on cd, order is important.
 #>

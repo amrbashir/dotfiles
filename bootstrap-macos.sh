@@ -32,7 +32,7 @@ brew install \
     eza \
     fd \
     findutils \
-    fnm \
+    mise \
     fzf \
     gawk \
     gh \

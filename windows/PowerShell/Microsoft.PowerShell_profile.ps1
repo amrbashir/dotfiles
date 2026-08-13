@@ -84,8 +84,8 @@ Import-Module posh-git -arg 0, 0, 1 # for git tab completion
 # Shell integrations
 # ----------------------------------
 Invoke-Expression (&starship init powershell)
-fnm env --use-on-cd --shell power-shell | Out-String | Invoke-Expression
 Invoke-Expression (& { (zoxide init powershell --cmd cd | Out-String) })
+(&mise activate pwsh) | Out-String | Invoke-Expression
 
 Use-CDIntegrations @("__zoxide_z", "Merge-NearestGitConfig", "Set-FnmOnLoad") 
 

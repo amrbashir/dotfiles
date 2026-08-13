@@ -129,7 +129,7 @@ alias grebase="git rebase"
 # -----------------
 eval "$(zoxide init zsh --cmd cd)"
 eval "$(starship init zsh)"
-eval "`fnm env --shell zsh --use-on-cd`"
+eval "$(mise activate zsh)"
 
 # add hook on directory change to merge nearest gitconfig
 # also run it once at startup

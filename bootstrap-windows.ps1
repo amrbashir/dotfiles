@@ -32,7 +32,7 @@ New-ConfigSymlink -Path "$PSScriptRoot\windows\trafficmonitor-lite\config.ini" -
 # Install scoop apps
 scoop install 7zip
 scoop install uutils-coreutils starship bat ripgrep fd neovim eza zoxide fzf nircmd
-scoop install python fnm gh cmake ninja nsis taplo sccache amrbashir/winspy
+scoop install python mise gh cmake ninja nsis taplo sccache amrbashir/winspy
 scoop install yubioath bitwarden-cli
 scoop install g-helper qbittorrent everything everything-cli instant-eyedropper mailspring ds4windows inkscape
 scoop install komorebi komorebi-switcher autohotkey trafficmonitor-lite altsnap windhawk translucenttb tailscale
@@ -66,9 +66,8 @@ Invoke-RestMethod -Uri https://win.rustup.rs/x86_64 -Out "$Env:TEMP/rustup-init.
 Update-PATH
 
 # Install Node.js
-fnm install --lts
-fnm env --use-on-cd --shell power-shell | Out-String | Invoke-Expression
-fnm use lts-latest
+mise install node
+mise use --global node
 
 Update-PATH
 
