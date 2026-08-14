@@ -52,7 +52,7 @@ brew install \
     tmux \
     zoxide \
     bitwarden-cli \
-    sccache
+    kunobi-ninja/kunobi/kache
 
 # Install casks
 brew install --cask \

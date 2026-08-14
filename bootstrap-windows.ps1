@@ -24,6 +24,7 @@ Update-PATH
 scoop bucket add extras
 scoop bucket add nerd-fonts
 scoop bucket add amrbashir https://github.com/amrbashir/scoop-bucket
+scoop bucket add kunobi https://github.com/kunobi-ninja/scoop-kunobi
 
 # Symlink configs that are needed before installing from scoop
 New-ConfigSymlink -Path "$PSScriptRoot\windows\AltSnap.ini" -ToDir "$HOME\scoop\persist\altsnap\" -ToFile "AltSnap.ini"
@@ -32,7 +33,7 @@ New-ConfigSymlink -Path "$PSScriptRoot\windows\trafficmonitor-lite\config.ini" -
 # Install scoop apps
 scoop install 7zip
 scoop install uutils-coreutils starship bat ripgrep fd neovim eza zoxide fzf nircmd
-scoop install python mise gh cmake ninja nsis taplo sccache amrbashir/winspy
+scoop install python mise gh cmake ninja nsis taplo kache amrbashir/winspy
 scoop install yubioath bitwarden-cli
 scoop install g-helper qbittorrent everything everything-cli instant-eyedropper mailspring ds4windows inkscape
 scoop install komorebi komorebi-switcher autohotkey trafficmonitor-lite altsnap windhawk translucenttb tailscale
