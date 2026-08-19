@@ -30,8 +30,4 @@ cmd + shift - 9         : komorebic send-to-workspace 8
 
 cmd - return 	        : open -a Ghostty.app
 
-.define tray_apps ["discord", "zulip"]
-cmd - q [
-	@tray_apps          | cmd - m         # Minimize window on tray apps instead of quitting them
-	*                   | ctrl - q        # Close window for other apps (ctrl - q is set to close window in macOS keyboard shortcuts settings)
-]
+cmd - q | ctrl - q        # Close window (ctrl - q is set to close window in macOS keyboard shortcuts settings)
