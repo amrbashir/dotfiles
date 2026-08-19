@@ -1,5 +1,6 @@
 {
   "json.schemaDownload.trustedDomains": {
-    "https://raw.githubusercontent.com/LGUG2Z/komorebi/master/schema.json": true
+    "https://raw.githubusercontent.com/LGUG2Z/komorebi/master/schema.json": true,
+    "https://raw.githubusercontent.com/LGUG2Z/komorebi-for-mac/refs/heads/master/schema.json": true
   }
 }
