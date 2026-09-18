@@ -63,7 +63,7 @@ brew install --cask \
     codex \
     discord \
     ghostty \
-    jordanbaird-ice@beta \
+    thaw@beta \
     komorebi-switcher \
     mailspring \
     openmtp \
