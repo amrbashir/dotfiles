@@ -46,7 +46,6 @@ brew install \
     lgug2z/tap/komorebi-for-mac \
     neovim \
     ninja \
-    opencode \
     starship \
     tailscale \
     tmux \
@@ -59,8 +58,6 @@ brew install --cask \
     1password-cli \
     alt-tab \
     bitwarden \
-    claude-code \
-    codex \
     discord \
     ghostty \
     thaw@beta \
