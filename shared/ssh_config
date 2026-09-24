@@ -1,10 +1,11 @@
+# Nearest .ssh_config up the tree, exported by the shell on every cd.
+# Must stay first (ssh takes the FIRST value per keyword, unlike git) and the
+# shell must export it even when empty, or ssh warns about an unset variable.
+Include ${SSH_LOCAL_CONFIG}
+
 Host *
     AddKeysToAgent yes
 
 Host github.com
     HostName github.com
     IdentityFile ~/.ssh/id_github_auth
-
-Host github-crabnebula
-    HostName github.com
-    IdentityFile ~/.ssh/id_github_crabnebula_auth

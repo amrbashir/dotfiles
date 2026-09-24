@@ -87,3 +87,4 @@ Invoke-Expression (&starship init powershell)
 Invoke-Expression (& { (zoxide init powershell --cmd cd | Out-String) })
 (&mise activate pwsh) | Out-String | Invoke-Expression
 Register-LocationChangedHook Merge-NearestGitConfig
+Register-LocationChangedHook Merge-NearestSshConfig

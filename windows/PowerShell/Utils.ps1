@@ -234,6 +234,34 @@ Function Merge-NearestGitConfig {
     }
 }
 
+<#
+.SYNOPSIS
+    Merge the nearest .ssh_config file from the current directory upwards into the current session's ssh configuration.
+#>
+Function Merge-NearestSshConfig {
+    # Always set, even when empty: ssh prints a warning if Include refers to an
+    # unset variable, but silently skips an empty or non-existent path
+    $Env:SSH_LOCAL_CONFIG = ""
+
+    $currentDir = Get-Location
+
+    # Find the nearest .ssh_config file upwards in the directory tree
+    while ($currentDir) {
+        $nearestSshConfig = Join-Path -Path $currentDir -ChildPath ".ssh_config"
+        if (Test-Path $nearestSshConfig) {
+            # ~/.ssh/config has `Include ${SSH_LOCAL_CONFIG}` at the top
+            $Env:SSH_LOCAL_CONFIG = $nearestSshConfig -replace '\\', '/' # Normalize path for ssh
+            Write-Host "Merged ssh config from " -NoNewline
+            Write-Host $nearestSshConfig -NoNewline -ForegroundColor Cyan
+            Write-Host " into current session."
+            break
+        }
+
+        # Move up one directory
+        $currentDir = Split-Path -Path $currentDir -Parent
+    }
+}
+
 
 <#
 .SYNOPSIS

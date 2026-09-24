@@ -63,6 +63,28 @@ merge_nearest_gitconfig() {
     fi
 }
 
+merge_nearest_ssh_config() {
+    # Always export, even when empty: ssh prints a warning if Include refers to
+    # an unset variable, but silently skips an empty or non-existent path
+    export SSH_LOCAL_CONFIG=""
+
+    local current_dir="$PWD"
+
+    # Find the nearest .ssh_config file upwards in the directory tree
+    while [[ -n "$current_dir" ]]; do
+        local nearest_ssh_config="$current_dir/.ssh_config"
+        if [[ -f "$nearest_ssh_config" ]]; then
+            # ~/.ssh/config has `Include ${SSH_LOCAL_CONFIG}` at the top
+            export SSH_LOCAL_CONFIG="$nearest_ssh_config"
+            echo "Merged ssh config from \e[36m$nearest_ssh_config\e[0m into current session."
+            break
+        fi
+
+        # Move up one directory
+        current_dir="${current_dir%/*}"
+    done
+}
+
 # ------------------
 # ZSH configurations
 # ------------------
@@ -131,6 +153,7 @@ eval "$(zoxide init zsh --cmd cd)"
 eval "$(starship init zsh)"
 eval "$(mise activate zsh)"
 
-# add hook on directory change to merge nearest gitconfig
-# also run it once at startup
+# add hooks on directory change to pick up the nearest git/ssh config
+# also run them once at startup
 add-zsh-hook chpwd merge_nearest_gitconfig && merge_nearest_gitconfig
+add-zsh-hook chpwd merge_nearest_ssh_config && merge_nearest_ssh_config
