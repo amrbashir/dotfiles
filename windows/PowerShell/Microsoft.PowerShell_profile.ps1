@@ -55,8 +55,8 @@ foreach ($util in (Get-ChildItem "$HOME\scoop\apps\uutils-coreutils\current\*.ex
 
 Set-AliasEx vim nvim
 
-Set-AliasEx ls "eza --icons"
-Set-AliasEx ll "eza -lah --icons --git --group-directories-first"
+Set-AliasEx ls "eza --icons=auto"
+Set-AliasEx ll "eza -lah --icons=auto --git --group-directories-first"
 
 Set-GitAlias gc        "git checkout"
 Set-GitAlias gs        "git status"

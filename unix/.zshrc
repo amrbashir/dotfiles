@@ -126,8 +126,8 @@ export MANPAGER="sh -c 'col -bx | bat -l man -p'"
 # -------
 alias vim="nvim"
 
-alias ls="eza --icons"
-alias ll="eza -lah --icons --git --group-directories-first"
+alias ls="eza --icons=auto"
+alias ll="eza -lah --icons=auto --git --group-directories-first"
 
 alias gc="git checkout"
 alias gs="git status"
