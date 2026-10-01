@@ -243,14 +243,33 @@ Function Merge-NearestSshConfig {
     # unset variable, but silently skips an empty or non-existent path
     $Env:SSH_LOCAL_CONFIG = ""
 
+    # Reset any previous temporary ssh config
+    if ($Env:GIT_SSH_COMMAND) {
+        if ($Env:SSH_MERGED_CONFIG) {
+            Remove-Item $Env:SSH_MERGED_CONFIG -ErrorAction SilentlyContinue
+            Remove-Item Env:SSH_MERGED_CONFIG
+        }
+        Remove-Item Env:GIT_SSH_COMMAND
+    }
+
     $currentDir = Get-Location
 
     # Find the nearest .ssh_config file upwards in the directory tree
     while ($currentDir) {
         $nearestSshConfig = Join-Path -Path $currentDir -ChildPath ".ssh_config"
         if (Test-Path $nearestSshConfig) {
-            # ~/.ssh/config has `Include ${SSH_LOCAL_CONFIG}` at the top
-            $Env:SSH_LOCAL_CONFIG = $nearestSshConfig -replace '\\', '/' # Normalize path for ssh
+            $nearestSshConfig = $nearestSshConfig -replace '\\', '/' # Normalize path for ssh
+            $Env:SSH_LOCAL_CONFIG = $nearestSshConfig
+
+            # `Include ${SSH_LOCAL_CONFIG}` in ~/.ssh/config doesn't work on Windows:
+            # Windows OpenSSH doesn't expand env vars in Include, and newer OpenSSH
+            # treats `C:/...` as relative to ~/.ssh. Instead, point git's ssh at a
+            # temporary config that includes the local config first, then ~/.ssh/config
+            $tempConfig = [System.IO.Path]::GetTempFileName() -replace '\\', '/'
+            Set-Content $tempConfig "Include `"$nearestSshConfig`"`nInclude ~/.ssh/config"
+            $Env:SSH_MERGED_CONFIG = $tempConfig
+            $Env:GIT_SSH_COMMAND = "C:/Windows/System32/OpenSSH/ssh.exe -F `"$tempConfig`""
+
             Write-Host "Merged ssh config from " -NoNewline
             Write-Host $nearestSshConfig -NoNewline -ForegroundColor Cyan
             Write-Host " into current session."

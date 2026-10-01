@@ -1,6 +1,8 @@
 # Nearest .ssh_config up the tree, exported by the shell on every cd.
 # Must stay first (ssh takes the FIRST value per keyword, unlike git) and the
 # shell must export it even when empty, or ssh warns about an unset variable.
+# On Windows this Include never matches; Merge-NearestSshConfig (Utils.ps1) sets
+# GIT_SSH_COMMAND to a temp config that includes the local file instead.
 Include ${SSH_LOCAL_CONFIG}
 
 Host *
