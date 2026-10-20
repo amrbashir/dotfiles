@@ -11,3 +11,7 @@ Host *
 Host github.com
     HostName github.com
     IdentityFile ~/.ssh/id_github_auth
+
+Host *.ts.net 100.*
+    User amr
+    IdentityFile ~/.ssh/id_tailscale
