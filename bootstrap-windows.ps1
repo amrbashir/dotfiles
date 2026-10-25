@@ -66,6 +66,9 @@ Invoke-RestMethod -Uri https://win.rustup.rs/x86_64 -Out "$Env:TEMP/rustup-init.
 
 Update-PATH
 
+# Configure Cargo caching
+kache init --yes --no-shell
+
 # Install Node.js
 mise use --global node
 mise use --global "npm:corepack"
