@@ -9,6 +9,11 @@ Function WingetSilentInstall {
 #  Main Script  #
 #################
 
+# Enable Developer Mode before creating symlinks, and enable Windows sudo.
+Start-Process -FilePath "$Env:WINDIR\System32\reg.exe" `
+    -ArgumentList "import `"$PSScriptRoot\windows\Registry\Development_Settings.reg`"" `
+    -Verb RunAs -WindowStyle Hidden -Wait
+
 # Install Git
 WingetSilentInstall --id Git.Git
 Add-ToPATH "$Env:SYSTEMDRIVE\Program Files\Git\bin"
@@ -99,9 +104,15 @@ New-ConfigSymlink -Path "$PSScriptRoot\shared\ssh_config" -ToDir "$HOME\.ssh" -T
 
 # Run registry modifications
 Get-ChildItem -Path "$PSScriptRoot\windows\Registry\*.reg" | ForEach-Object {
-    reg import $_.FullName
+    & "$Env:WINDIR\System32\sudo.exe" --inline reg.exe import $_.FullName
 }
+
+# Enable Hyper-V (including management tools) and Windows Sandbox.
+& "$Env:WINDIR\System32\sudo.exe" --inline dism.exe /Online /Enable-Feature /FeatureName:Microsoft-Hyper-V-All /All /NoRestart
+& "$Env:WINDIR\System32\sudo.exe" --inline dism.exe /Online /Enable-Feature /FeatureName:Containers-DisposableClientVM /All /NoRestart
 
 # Extend PATH
 Add-ToPATH "$PSScriptRoot\windows\scripts"
 Add-ToPATH "$PSScriptRoot\shared\scripts"
+
+Write-Host 'Restart Windows to finish enabling Hyper-V/Sandbox and apply desktop/input settings.'

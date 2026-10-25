@@ -1,0 +1,7 @@
+Windows Registry Editor Version 5.00
+
+; Disable recent-document tracking and restore taskbar click/multi-monitor preferences.
+[HKEY_CURRENT_USER\Software\Microsoft\Windows\CurrentVersion\Explorer\Advanced]
+"Start_TrackDocs"=dword:00000000
+"LastActiveClick"=dword:00000001
+"MMTaskbarMode"=dword:00000002

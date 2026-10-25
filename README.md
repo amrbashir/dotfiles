@@ -6,8 +6,6 @@
 
 > Before proceeding:
 >
-> - Enable Developer Mode
-> - Enable sudo
 > - Disable UAC
 
 ```powershell
