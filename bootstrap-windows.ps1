@@ -82,7 +82,6 @@ Add-StartupApp AltSnap "$HOME\scoop\apps\altsnap\current\AltSnap.exe" "-elevate"
 Add-StartupApp Windhawk "$HOME\scoop\apps\nircmd\current\nircmd.exe" "elevate `"$HOME\scoop\apps\windhawk\current\windhawk.exe`" -tray-only"
 Add-StartupApp TranslucentTB "$HOME\scoop\apps\translucenttb\current\TranslucentTB.exe"
 Add-StartupApp komorebi-switcher "$HOME\scoop\apps\komorebi-switcher\current\komorebi-switcher.exe"
-Add-StartupApp electron.app.Bitwarden "$Env:LOCALAPPDATA\Programs\Bitwarden\Bitwarden.exe"
 Add-StartupApp Tailscale "$HOME\scoop\apps\tailscale\current\tailscale-ipn.exe"
 
 # Symlink remaining config files
