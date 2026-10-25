@@ -1,4 +1,7 @@
 #!/bin/bash
+set -eo pipefail
+
+SCRIPT_DIR="$(cd -- "$(dirname -- "${BASH_SOURCE[0]}")" && pwd)" || exit 1
 
 # Function to create symlink for config files
 # Arguments:
@@ -10,6 +13,13 @@ symlink_config() {
     rm -rf "$2$3"
     ln -sf "$1" "$2$3"
 }
+
+# Install Command Line Tools before Homebrew
+if ! xcode-select -p &> /dev/null; then
+    xcode-select --install
+    echo "Finish installing Command Line Tools, then rerun this script."
+    exit 1
+fi
 
 # Install Homebrew if not installed
 if ! command -v brew &> /dev/null; then
@@ -42,12 +52,14 @@ brew install \
     gnu-tar \
     gnutls \
     grep \
+    hunk \
     jackielii/tap/skhd-zig \
     lgug2z/tap/komorebi-for-mac \
     neovim \
     ninja \
     starship \
     tailscale \
+    taplo \
     tmux \
     zoxide \
     bitwarden-cli \
@@ -59,8 +71,10 @@ brew install --cask \
     alt-tab \
     bitwarden \
     discord \
+    disktree \
+    font-fira-code \
+    font-fira-code-nerd-font \
     ghostty \
-    thaw@beta \
     komorebi-switcher \
     mailspring \
     openmtp \
@@ -68,33 +82,39 @@ brew install --cask \
     stats \
     swift-shift \
     visual-studio-code \
-    zen-browser \
+    zen \
     zulip
-
-xcode-select --install
 
 # Install rustup and Rust toolchain
 curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh -s -- -y
 
+# Configure Cargo caching and the kache login service
+kache init --yes --no-shell
+
+# Symlink config files
+symlink_config "$SCRIPT_DIR/macos/komorebi.json" "$HOME/.config/komorebi/" "komorebi.json"
+symlink_config "$SCRIPT_DIR/macos/skhdrc" "$HOME/.config/skhd/" "skhdrc"
+symlink_config "$SCRIPT_DIR/macos/ghostty.conf" "$HOME/Library/Application Support/com.mitchellh.ghostty/" "config.ghostty"
+symlink_config "$SCRIPT_DIR/shared/starship.toml" "$HOME/.config/" "starship.toml"
+symlink_config "$SCRIPT_DIR/unix/.zshrc" "$HOME/" ".zshrc"
+symlink_config "$SCRIPT_DIR/unix/.gitconfig" "$HOME/" ".gitconfig"
+symlink_config "$SCRIPT_DIR/unix/.tmux.conf" "$HOME/" ".tmux.conf"
+symlink_config "$SCRIPT_DIR/shared/ssh_config" "$HOME/.ssh/" "config"
+symlink_config "$SCRIPT_DIR/macos/com.user.ssh-add-keys.plist" "$HOME/Library/LaunchAgents/" "com.user.ssh-add-keys.plist"
+
+# Native app preferences must go through defaults, not symlinked plist files.
+bash "$SCRIPT_DIR/macos/app-preferences.sh" || exit 1
+bash "$SCRIPT_DIR/macos/system-preferences.sh"
+
+# Start apps at login
+osascript "$SCRIPT_DIR/macos/login-items.applescript"
+
 # Start services
 sudo /opt/homebrew/opt/tailscale/bin/tailscaled install-system-daemon
-# Route *.ts.net DNS queries to Tailscale MagicDNS — https://github.com/tailscale/tailscale/issues/18510
-sudo mkdir -p /etc/resolver && echo 'nameserver 100.100.100.100' | sudo tee /etc/resolver/ts.net >/dev/null
 skhd --start-service
 komorebic enable-autostart
 
-# Symlink config files
-symlink_config "$PWD/macos/komorebi.json" "$HOME/.config/komorebi/" "komorebi.json"
-symlink_config "$PWD/macos/skhdrc" "$HOME/.config/skhd/" "skhdrc"
-symlink_config "$PWD/shared/starship.toml" "$HOME/.config/" "starship.toml"
-symlink_config "$PWD/unix/.zshrc" "$HOME/" ".zshrc"
-symlink_config "$PWD/unix/.gitconfig" "$HOME/" ".gitconfig"
-symlink_config "$PWD/unix/.tmux.conf" "$HOME/" ".tmux.conf"
-symlink_config "$PWD/shared/ssh_config" "$HOME/.ssh/" "config"
-symlink_config "$PWD/macos/com.user.ssh-add-keys.plist" "$HOME/Library/LaunchAgents/" "com.user.ssh-add-keys.plist"
-
 # Extend PATH
-echo "export PATH=\"/opt/homebrew/opt/coreutils/libexec/gnubin:\$PATH\"" >> "$HOME/.zprofile"
 echo "export PATH=\"/opt/homebrew/opt/coreutils/libexec/gnubin:\$PATH\"" >> "$HOME/.zprofile"
 echo "export PATH=\"/opt/homebrew/opt/findutils/libexec/gnubin:\$PATH\"" >> "$HOME/.zprofile"
 echo "export PATH=\"/opt/homebrew/opt/grep/libexec/gnubin:\$PATH\"" >> "$HOME/.zprofile"
@@ -103,7 +123,7 @@ echo "export PATH=\"/opt/homebrew/opt/gsed/libexec/gnubin:\$PATH\"" >> "$HOME/.z
 echo "export PATH=\"/opt/homebrew/opt/gawk/libexec/gnubin:\$PATH\"" >> "$HOME/.zprofile"
 echo "export PATH=\"/opt/homebrew/opt/gnu-indent/libexec/gnubin:\$PATH\"" >> "$HOME/.zprofile"
 echo "export PATH=\"/opt/homebrew/opt/gnu-getopt/libexec/gnubin:\$PATH\"" >> "$HOME/.zprofile"
-echo "export PATH=\"$PWD/unix/scripts:\$PATH\"" >> "$HOME/.zprofile"
-echo "export PATH=\"$PWD/shared/scripts:\$PATH\"" >> "$HOME/.zprofile"
+echo "export PATH=\"$SCRIPT_DIR/unix/scripts:\$PATH\"" >> "$HOME/.zprofile"
+echo "export PATH=\"$SCRIPT_DIR/shared/scripts:\$PATH\"" >> "$HOME/.zprofile"
 
 # Set environment variables
