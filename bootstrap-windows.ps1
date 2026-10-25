@@ -41,7 +41,7 @@ scoop install 7zip
 scoop install uutils-coreutils starship bat ripgrep fd neovim eza zoxide fzf nircmd jq psmux/psmux
 scoop install main/python mise gh cmake ninja nsis taplo kache amrbashir/winspy just
 scoop install yubioath bitwarden-cli
-scoop install g-helper qbittorrent everything everything-cli instant-eyedropper mailspring ds4windows inkscape zulip
+scoop install g-helper qbittorrent everything everything-cli mailspring ds4windows inkscape zulip
 scoop install komorebi komorebi-switcher autohotkey trafficmonitor-lite altsnap windhawk translucenttb tailscale
 scoop install FiraCode FiraCode-NF
 scoop install PSReadLine posh-git PSFzf
