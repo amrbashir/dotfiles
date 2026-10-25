@@ -25,6 +25,7 @@ scoop bucket add extras
 scoop bucket add nerd-fonts
 scoop bucket add amrbashir https://github.com/amrbashir/scoop-bucket
 scoop bucket add kunobi https://github.com/kunobi-ninja/scoop-kunobi
+scoop bucket add psmux https://github.com/psmux/scoop-psmux
 
 # Symlink configs that are needed before installing from scoop
 New-ConfigSymlink -Path "$PSScriptRoot\windows\AltSnap.ini" -ToDir "$HOME\scoop\persist\altsnap\" -ToFile "AltSnap.ini"
@@ -32,10 +33,10 @@ New-ConfigSymlink -Path "$PSScriptRoot\windows\trafficmonitor-lite\config.ini" -
 
 # Install scoop apps
 scoop install 7zip
-scoop install uutils-coreutils starship bat ripgrep fd neovim eza zoxide fzf nircmd
-scoop install python mise gh cmake ninja nsis taplo kache amrbashir/winspy
+scoop install uutils-coreutils starship bat ripgrep fd neovim eza zoxide fzf nircmd jq psmux/psmux
+scoop install main/python mise gh cmake ninja nsis taplo kache amrbashir/winspy just
 scoop install yubioath bitwarden-cli
-scoop install g-helper qbittorrent everything everything-cli instant-eyedropper mailspring ds4windows inkscape
+scoop install g-helper qbittorrent everything everything-cli instant-eyedropper mailspring ds4windows inkscape zulip
 scoop install komorebi komorebi-switcher autohotkey trafficmonitor-lite altsnap windhawk translucenttb tailscale
 scoop install FiraCode FiraCode-NF
 scoop install PSReadLine posh-git PSFzf
