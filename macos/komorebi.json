@@ -25,7 +25,7 @@
       "matching_strategy": "Equals"
     },
     {
-      "id": "Raycast",
+      "id": "Vicinae",
       "kind": "Exe",
       "matching_strategy": "Equals"
     }

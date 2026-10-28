@@ -1,12 +1,12 @@
 # Required parameters:
-# @raycast.schemaVersion 1
-# @raycast.title Export SSH Keys from Bitwarden
-# @raycast.description Export all SSH keys from Bitwarden vault to ~/.ssh
-# @raycast.mode compact
+# @vicinae.schemaVersion 1
+# @vicinae.title Export SSH Keys from Bitwarden
+# @vicinae.description Export all SSH keys from Bitwarden vault to ~/.ssh
+# @vicinae.mode compact
 
 # Documentation:
-# @raycast.author Amr
-# @raycast.authorURL https://amrbashir.me
+# @vicinae.author Amr
+# @vicinae.authorURL https://amrbashir.me
 
 $ErrorActionPreference = "Stop"
 

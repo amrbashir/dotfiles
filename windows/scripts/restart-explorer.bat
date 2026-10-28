@@ -1,17 +1,17 @@
 @echo off
 
 REM Required parameters:
-REM @raycast.schemaVersion 1
-REM @raycast.title Restart Explorer
-REM @raycast.mode silent
+REM @vicinae.schemaVersion 1
+REM @vicinae.title Restart Explorer
+REM @vicinae.mode silent
 
 REM Optional parameters:
-REM @raycast.icon 🔄️
-REM @raycast.description Restarts Windows Explorer
+REM @vicinae.icon 🔄️
+REM @vicinae.description Restarts Windows Explorer
 
 REM Documentation:
-REM @raycast.author Amr
-REM @raycast.authorURL https://amrbashir.me
+REM @vicinae.author Amr
+REM @vicinae.authorURL https://amrbashir.me
 
 taskkill /f /im explorer.exe
 start explorer.exe

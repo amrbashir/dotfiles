@@ -78,7 +78,7 @@ brew install --cask \
     komorebi-switcher \
     mailspring \
     openmtp \
-    raycast \
+    vicinae \
     stats \
     swift-shift \
     visual-studio-code \

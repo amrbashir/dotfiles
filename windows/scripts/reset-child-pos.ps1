@@ -1,12 +1,12 @@
 # Required parameters:
-# @raycast.schemaVersion 1
-# @raycast.title Reset Child Window Position
-# @raycast.description Click on a child window to reset its position
-# @raycast.mode compact
+# @vicinae.schemaVersion 1
+# @vicinae.title Reset Child Window Position
+# @vicinae.description Click on a child window to reset its position
+# @vicinae.mode compact
 
 # Documentation:
-# @raycast.author Amr
-# @raycast.authorURL https://amrbashir.me
+# @vicinae.author Amr
+# @vicinae.authorURL https://amrbashir.me
 
 $ErrorActionPreference = "Stop"
 
