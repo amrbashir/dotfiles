@@ -1,12 +1,11 @@
 [Unit]
 Description=Add SSH keys to agent
 After=ssh-agent.socket
-Wants=ssh-agent.socket
+Requires=ssh-agent.socket
 
 [Service]
 Type=oneshot
-Environment=SSH_AUTH_SOCK=%t/ssh-agent.socket
-ExecStart=/bin/bash -c 'for pub in "%h"/.ssh/*.pub; do key="$${pub%%.pub}"; [ -f "$$key" ] && /usr/bin/ssh-add "$$key"; done'
+ExecStart=/bin/bash -c 'socket=$$(/usr/bin/systemctl --user show ssh-agent.socket --property=Listen --value); export SSH_AUTH_SOCK="$${socket%% (Stream)}"; for pub in "%h"/.ssh/*.pub; do key="$${pub%%.pub}"; if [ -f "$$key" ]; then /usr/bin/ssh-add "$$key" || exit; fi; done'
 
 [Install]
 WantedBy=default.target
