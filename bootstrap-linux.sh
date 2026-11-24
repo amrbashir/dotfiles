@@ -23,6 +23,7 @@ symlink_config() {
 symlink_config "$SCRIPT_DIR/linux/rofi" "$HOME/.config/" "rofi"
 symlink_config "$SCRIPT_DIR/linux/paru.conf" "$HOME/.config/paru/" "paru.conf"
 symlink_config "$SCRIPT_DIR/shared/starship.toml" "$HOME/.config/" "starship.toml"
+symlink_config "$SCRIPT_DIR/unix/.zshenv" "$HOME/" ".zshenv"
 symlink_config "$SCRIPT_DIR/unix/.zshrc" "$HOME/" ".zshrc"
 symlink_config "$SCRIPT_DIR/unix/.gitconfig" "$HOME/" ".gitconfig"
 symlink_config "$SCRIPT_DIR/unix/.tmux.conf" "$HOME/" ".tmux.conf"
@@ -38,10 +39,3 @@ systemctl --user restart ssh-add-keys.service
 echo "export PATH=\"$SCRIPT_DIR/unix/scripts:\$PATH\"" >> "$HOME/.zprofile"
 echo "export PATH=\"$SCRIPT_DIR/shared/scripts:\$PATH\"" >> "$HOME/.zprofile"
 echo "export PATH=\"$HOME/.local/bin:\$PATH\"" >> "$HOME/.zprofile"
-
-cat << 'EOF' >> "$HOME/.zprofile"
-if [[ "$OSTYPE" == linux* && -z "$SSH_AUTH_SOCK" && -z "$SSH_CONNECTION" ]]; then
-    SSH_AUTH_SOCK="$(systemctl --user show ssh-agent.socket --property=Listen --value)"
-    export SSH_AUTH_SOCK="${SSH_AUTH_SOCK%" (Stream)"}"
-fi
-EOF

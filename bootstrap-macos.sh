@@ -96,6 +96,7 @@ symlink_config "$SCRIPT_DIR/macos/komorebi.json" "$HOME/.config/komorebi/" "komo
 symlink_config "$SCRIPT_DIR/macos/skhdrc" "$HOME/.config/skhd/" "skhdrc"
 symlink_config "$SCRIPT_DIR/macos/ghostty.conf" "$HOME/Library/Application Support/com.mitchellh.ghostty/" "config.ghostty"
 symlink_config "$SCRIPT_DIR/shared/starship.toml" "$HOME/.config/" "starship.toml"
+symlink_config "$SCRIPT_DIR/unix/.zshenv" "$HOME/" ".zshenv"
 symlink_config "$SCRIPT_DIR/unix/.zshrc" "$HOME/" ".zshrc"
 symlink_config "$SCRIPT_DIR/unix/.gitconfig" "$HOME/" ".gitconfig"
 symlink_config "$SCRIPT_DIR/unix/.tmux.conf" "$HOME/" ".tmux.conf"
