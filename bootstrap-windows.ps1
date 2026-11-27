@@ -39,7 +39,7 @@ New-ConfigSymlink -Path "$PSScriptRoot\windows\trafficmonitor-lite\config.ini" -
 # Install scoop apps
 scoop install 7zip
 scoop install uutils-coreutils starship bat ripgrep fd neovim eza zoxide fzf nircmd jq psmux/psmux
-scoop install main/python mise gh cmake ninja nsis taplo kache amrbashir/winspy just
+scoop install main/python mise gh cmake ninja nsis inno-setup taplo kache amrbashir/winspy just
 scoop install yubioath bitwarden-cli
 scoop install vicinae g-helper qbittorrent everything everything-cli mailspring ds4windows inkscape zulip
 scoop install komorebi komorebi-switcher autohotkey trafficmonitor-lite altsnap windhawk translucenttb tailscale
@@ -91,6 +91,7 @@ Add-StartupApp Windhawk "$HOME\scoop\apps\nircmd\current\nircmd.exe" "elevate `"
 Add-StartupApp TranslucentTB "$HOME\scoop\apps\translucenttb\current\TranslucentTB.exe"
 Add-StartupApp komorebi-switcher "$HOME\scoop\apps\komorebi-switcher\current\komorebi-switcher.exe"
 Add-StartupApp Tailscale "$HOME\scoop\apps\tailscale\current\tailscale-ipn.exe"
+Add-StartupApp Vicinae "$HOME\scoop\apps\vicinae\current\bin\vicinae-server.exe"
 
 # Symlink remaining config files
 New-ConfigSymlink -Path "$PSScriptRoot\windows\PowerShell\Microsoft.PowerShell_profile.ps1" -ToDir "$HOME\Documents\PowerShell" -ToFile "Microsoft.PowerShell_profile.ps1"
